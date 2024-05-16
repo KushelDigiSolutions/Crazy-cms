@@ -257,7 +257,7 @@ nav svg {
 .navigation-manual {
     position: absolute;
     /* background-color: blue; */
-    margin-top: -40px;
+    margin-top: 0px;
     /* transform: translateX(230px); */
     display: flex;
     justify-content: center;

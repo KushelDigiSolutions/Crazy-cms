@@ -92,16 +92,16 @@
 
           <!-- slide iamge start  -->
           <div class="slide first">
-            <img src="https://res.cloudinary.com/ecommerce-website/image/upload/v1715847727/banner1_szaxsi.png" alt="banner1" />
+            <img src="{{asset('admin/img/Group.png')}}" alt="banner1" />
           </div>
           <div class="slide">
-            <img src="https://res.cloudinary.com/ecommerce-website/image/upload/v1715847727/banner1_szaxsi.png" alt="banner1" />
+            <img src="{{asset('admin/img/Group.png')}}" alt="banner1" />
           </div>
           <div class="slide">
-            <img src="https://res.cloudinary.com/ecommerce-website/image/upload/v1715847727/banner1_szaxsi.png" alt="banner1" />
+            <img src="{{asset('admin/img/Group.png')}}" alt="banner1" />
           </div>
           <div class="slide">
-            <img src="https://res.cloudinary.com/ecommerce-website/image/upload/v1715847727/banner1_szaxsi.png" alt="banner1" />
+            <img src="{{asset('admin/img/Group.png')}}" alt="banner1" />
           </div>
 
           <!-- slide img end  -->
