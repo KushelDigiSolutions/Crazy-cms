@@ -63,9 +63,11 @@ nav {
 }
 
 #what_we_do {
-    width: 100%;
-    /* overflow: hidden; */
-    background-color: white;
+   width: 100%;
+   background-image: url('../img/gting.svg');
+   /* background-size: cover; */
+   background-repeat: no-repeat;
+   background-position: center;
 }
 
 .links-container {
@@ -170,7 +172,10 @@ nav svg {
 /* navbar end */
 
 #banner_first {
-    background-color: #0793AF;
+    background-image: url("../img/bannerfirst.svg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
     width: 100%;
 }
 
