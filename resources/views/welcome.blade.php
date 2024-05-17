@@ -23,7 +23,7 @@
 
   <nav>
 
-    <img class="navbarImg" src="{{asset('admin/img/navbar.png')}}" alt="">
+    <img class="navbarImg" src="{{asset('admin/img/summer.svg')}}" alt="">
 
 
     <input type="checkbox" id="sidebar-active" />
@@ -47,7 +47,7 @@
         </svg>
       </label>
 
-      <img class="home-link" src="{{asset('admin/img/navbar.png')}}" alt="">
+      <img class="home-link" src="{{asset('admin/img/summer.svg')}}" alt="">
       <!-- link back to homepage -->
       <a href="#" class="navSinItem">Features</a>
       <a href="#" class="navSinItem">Pricing</a>
@@ -141,7 +141,7 @@
   <div class="websiteAdd">
 
     <div class="webInput">
-      <img src="./image/chain.png" alt="" />
+      <img src="{{asset('admin/img/chain.svg')}}" alt="" />
       <input type="text" placeholder="Enter your website Address" />
     </div>
 
