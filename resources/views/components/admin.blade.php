@@ -95,8 +95,7 @@
         <div class="float-right d-none d-sm-block">
             <b>Version</b> 3.2.0
         </div>
-        <strong>Copyright © 2023-{{ date('Y') }} <a href="https://github.com/ZalaNihir/adminlte-laravel10">Zala
-                Nihir</a>.</strong> All rights reserved.
+        <strong>Copyright © 2023-{{ date('Y') }} <a href="#">KushelDigi</a>.</strong> All rights reserved.
     </footer>
     <!-- ./wrapper -->
 
