@@ -215,7 +215,7 @@
     </div>
   </div>
 
-  <div class="row2">
+  <div class="row2 mt-5">
     <div class="inner_section">
       <div class="inner_section_container">
         <svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -513,6 +513,7 @@
           <p class="dollorHead">
             <span class="span1">$60</span>
             <span class="span2">/Yearly</span>
+            <!-- <img src="{{asset('admin/img/jn.png')}}" alt=""> -->
           </p>
 
           <!-- scond part  -->
@@ -560,6 +561,7 @@
           <p class="dollorHead">
             <span class="span1">$96</span>
             <span class="span2">/Yearly</span>
+            <!-- <img src="{{asset('admin/img/jk1.svg')}}" alt=""> -->
           </p>
 
           <!-- scond part  -->
@@ -607,6 +609,7 @@
           <p class="dollorHead">
             <span class="span1">$192</span>
             <span class="span2">/Yearly</span>
+            <!-- <img src="{{asset('admin/img/jk2.svg')}}" alt=""> -->
           </p>
 
           <!-- scond part  -->

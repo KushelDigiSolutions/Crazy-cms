@@ -1,0 +1,140 @@
+
+*{
+    font-family: inter !important;
+}
+.tff{
+    width: 100%;
+    height: 100vh;
+}
+#sign-login-page1 {
+    display: block;
+    margin: auto;
+    width: 100%;
+    height: 100vh;
+}
+#sign-login-page1 .sign-up-banner{
+ height: 1vh;
+}
+#sign-login-page1 .sign-up-content{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    text-align: center;
+}
+#sign-login-page1 .sign-up-left-image{
+    width: 50%;
+}
+#sign-login-page1 .sign-up-left-image h1{
+   font-size: 44px;
+   font-weight: 400;
+   line-height: 44px;
+   text-align: start;
+   padding-left: 76px;
+}
+#sign-login-page1 .sign-up-left-image span{
+    font-weight: 600;
+    color: #0F3D5F;
+}
+#sign-login-page1 .sign-up-left-image img{
+    max-width: 370px;
+    width: 100%;
+    padding-top: 40px;
+}
+#sign-login-page1 .sign-up-right-form{
+    background-color: #FAF8FD;
+    padding: 90px;
+    width: 50%;
+}
+#sign-login-page1 .sign-up-right-form img{
+    max-width: 389px;
+    width: 100%;
+    cursor: pointer;
+}
+#sign-login-page1 .sign-up-right-form h2{
+    font-size: 34px;
+    font-weight: 600;
+    line-height: 41.15px;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    color: #0F3D5F;
+}
+form{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    text-align: start;
+
+}
+input{
+    height: 40px;
+    border-style: none;
+    border-radius: 6px;
+    padding: 10px;
+    max-width: 500px;
+    width: 100%;
+ }
+ #sign-login-page1 .sign-up-button{
+    padding-top: 20px;
+}
+#sign-login-page1 .sign-up-button button{
+    width: 356px;
+    padding: 20px;
+    cursor: pointer;
+    background-color: #0F3D5F;
+    color: #ffffff;
+    font-size: 18px;
+    font-weight: 500;
+    border-style: none;
+    border-radius: 6px;
+}
+#sign-login-page1 .sign-up-button p{
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 24.2px;
+    color: #000000;
+}
+#sign-login-page1 .sign-up-button span{
+    font-weight: 600;
+}
+
+@media(max-width: 916px){
+    #sign-login-page1 .sign-up-content{
+        flex-direction: column;
+        gap: 20px;
+    }
+    #sign-login-page1 .sign-up-button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    }
+    #sign-login-page1 .sign-up-left-image{
+        padding: 40px;
+    }
+    #sign-login-page1 .sign-up-left-image h1{
+        text-align: center;
+        padding-left: 0;
+    }   
+    
+}
+@media(max-width: 917px){
+    #sign-login-page1 .sign-up-left-image{
+        display: none;
+    }
+}
+@media(max-width: 917px){
+   
+    #sign-login-page1 .sign-up-right-form{
+        width: 100%;
+        padding: 40px;
+    }
+    form{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    #sign-login-page1 .sign-up-button button{
+        width: 240px;
+        padding: 15px;
+    }
+}

@@ -490,7 +490,7 @@ nav svg {
 }
 
 #About_us {
-    background-image: url("https://res.cloudinary.com/ecommerce-website/image/upload/v1715851199/backimg_nqu1ld.png");
+    background-image: url("../img/tying.svg");
     background-repeat: no-repeat;
     background-size: cover;
     width: 100%;
@@ -801,15 +801,31 @@ img {
 #footer .fotCont {
     display: flex;
     flex-direction: column;
-    gap: 40px;
+    gap: 20px;
     padding: 72px 10px 20px 10px;
-
+   align-items: center;
+   justify-content: center;
 }
 
 #footer hr {
     color: white;
+    border-bottom: 1px dashed #FFFFFF !important;
+    width: 100% !important;
 }
-
+.somis{
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+}
+.somis .gj{
+    margin: 0px 15px !important;
+}
+.gj1 p{
+    margin-left: 10px !important;
+}
+.gj2{
+    letter-spacing: 2px !important;
+}
 #footer .fooText {
     font-family: Wix Madefor Display;
     font-size: 14px;
@@ -831,6 +847,7 @@ img {
     display: flex;
     flex-wrap: wrap;
     gap: 30px;
+    align-items: center;
 }
 
 #footer .fotItem1 p {
@@ -1008,6 +1025,13 @@ img {
         left: 18%;
     }
 
+    .somis .gj{
+        margin: 10px 0px !important;
+    }
+    .gj1 p{
+        margin-left: 10px !important;
+    }
+
 }
 
 
@@ -1029,3 +1053,16 @@ img {
         text-align: center;
     }
 }
+
+@media only screen and (max-width:850px){
+    .somis{
+        flex-wrap: wrap !important;
+    }
+    .somis .gj{
+        margin: 10px 0px !important;
+    }
+    .gj1 p{
+        margin-left: 10px !important;
+    }
+}
+
