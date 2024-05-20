@@ -2,7 +2,7 @@
     @section('title')
         {{ 'Category' }}
     @endsection
-    <div class="card">
+    <div class="card canting">
         <div class="card-header">
             <h3 class="card-title">Category Table</h3>
             <div class="card-tools">
