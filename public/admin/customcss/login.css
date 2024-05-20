@@ -8,14 +8,47 @@
     height: 100vh;
     width: 100%;
 }
+.login-box{
+    width: 100% !important;
+}
+.login-box .card, .register-box .card{
+    border: none !important;
+    background-color: transparent !important;
+}
+.input_gp11{
+    display: flex !important;
+    /* align-items: center !important; */
+    flex-direction: column !important;
+    width: 100% !important;
+   
+}
+.input_gp11 input{
+    width: 100% !important;
+    border-radius: 5px !important;
+}
+.input_gp11 label{
+    text-align: left !important;
+}
+.login-box .card{
+   box-shadow: none !important;
+}
+.card_header11{
+    border-bottom: none !important;
+}
 #login-page1 .login-page-banner{
     height: 1vh;
 }
+.ichk_pm{
+    display: flex !important;
+    align-items: center !important;
+}
+
 #login-page1 .login-page-content{
     display: flex;
     justify-content: space-around;
     align-items: center;
     text-align: center;
+    height: 100vh !important;
 }
 #login-page1 .login-page-left-content{
     width: 50%;
@@ -42,6 +75,9 @@
 #login-page1 .login-right-form{
     background-color: #FAF8FD;
     padding: 90px 125px;
+    height: 100vh !important;
+    display: flex;
+    align-items: center;
     /* width: 50%; */
 }
 #login-page1 .login-right-form img{
@@ -82,6 +118,9 @@ label{
 }
 #login-page1 .login-button{
     padding-top: 40px;
+}
+#login-page1 .register-right-form{
+    height: 120vh !important;
 }
 #login-page1 .login-button button{
     width: 280px;
