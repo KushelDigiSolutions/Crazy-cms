@@ -682,10 +682,7 @@
 
       <div class="answer">
         <p>
-          MyCrazySimple is an online website editor that simplifies the
-          process of making updates to your HTML website. It provides you
-          with an intuitive interface, making it easy to locate and edit
-          text or images directly on your site.
+        MyCrazySimple is an online website editor that simplifies the process of making updates to your HTML website. It provides you with an intuitive interface, making it easy to locate and edit text or images directly on your site.
         </p>
       </div>
     </div>
@@ -701,10 +698,7 @@
 
       <div class="answer">
         <p>
-          lorem Lorem ipsum dolor sit amet consectetur adipisicing elit. A
-          magnam deleniti vel enim aliquid atque quaerat neque quibusdam
-          laborum. In cupiditate quasi cumque esse eius delectus dicta
-          nisi fugit odit.
+        Yes, you can! MyCrazySimple is specifically designed for individuals who may not have coding expertise. You can make changes to your website's content without the need for HTML or programming skills.
         </p>
       </div>
     </div>
@@ -718,10 +712,7 @@
 
       <div class="answer">
         <p>
-          lorem Lorem ipsum dolor sit amet consectetur adipisicing elit. A
-          magnam deleniti vel enim aliquid atque quaerat neque quibusdam
-          laborum. In cupiditate quasi cumque esse eius delectus dicta
-          nisi fugit odit.
+        MyCrazySimple allows you to edit text and images on your HTML website. You can update content, replace images, and keep your website fresh without the complexity of traditional editing methods.
         </p>
       </div>
     </div>
@@ -735,10 +726,7 @@
 
       <div class="answer">
         <p>
-          lorem Lorem ipsum dolor sit amet consectetur adipisicing elit. A
-          magnam deleniti vel enim aliquid atque quaerat neque quibusdam
-          laborum. In cupiditate quasi cumque esse eius delectus dicta
-          nisi fugit odit.
+        	MyCrazySimple is incredibly user-friendly, requiring no extensive learning curve. The interface is designed to be intuitive, so you can start making edits right away.
         </p>
       </div>
     </div>
@@ -752,10 +740,7 @@
 
       <div class="answer">
         <p>
-          lorem Lorem ipsum dolor sit amet consectetur adipisicing elit. A
-          magnam deleniti vel enim aliquid atque quaerat neque quibusdam
-          laborum. In cupiditate quasi cumque esse eius delectus dicta
-          nisi fugit odit.
+        	No, there's no need to install additional software or plugins. MyCrazySimple is an online tool, so you can access it directly from your web browser.
         </p>
       </div>
     </div>
@@ -769,10 +754,7 @@
 
       <div class="answer">
         <p>
-          lorem Lorem ipsum dolor sit amet consectetur adipisicing elit. A
-          magnam deleniti vel enim aliquid atque quaerat neque quibusdam
-          laborum. In cupiditate quasi cumque esse eius delectus dicta
-          nisi fugit odit.
+        MyCrazySimple offers both free and paid plans. You can start with a free demo to see how it works, and if you decide to continue using the tool, affordable pricing plans are available.
         </p>
       </div>
     </div>
@@ -786,10 +768,7 @@
 
       <div class="answer">
         <p>
-          lorem Lorem ipsum dolor sit amet consectetur adipisicing elit. A
-          magnam deleniti vel enim aliquid atque quaerat neque quibusdam
-          laborum. In cupiditate quasi cumque esse eius delectus dicta
-          nisi fugit odit.
+        Yes, we take precautions to protect your website. MyCrazySimple creates backups before publishing changes, ensuring that any unintended results can be easily undone.
         </p>
       </div>
     </div>
@@ -803,10 +782,7 @@
 
       <div class="answer">
         <p>
-          lorem Lorem ipsum dolor sit amet consectetur adipisicing elit. A
-          magnam deleniti vel enim aliquid atque quaerat neque quibusdam
-          laborum. In cupiditate quasi cumque esse eius delectus dicta
-          nisi fugit odit.
+        Collaboration features are in the works, allowing teams to work together on website editing in the future.
         </p>
       </div>
     </div>
