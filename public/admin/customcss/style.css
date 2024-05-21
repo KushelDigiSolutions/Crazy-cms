@@ -18,12 +18,21 @@
     margin: 0 auto;
 
 }
-
+.suy{
+    margin-top: -15px;
+}
 .com1 {
     max-width: 1260px;
     width: 100%;
     display: block;
     margin: auto;
+}
+.only{
+    position: relative;
+    top: -20px;
+    color: #202020 !important;
+    font-weight: 400;
+    font-size: 18px;
 }
 
 :root {
@@ -270,7 +279,8 @@ nav svg {
 }
 
 .manual-btn {
-    border: 2px solid #40D3DC;
+    /* border: 2px solid #40D3DC; */
+    border: 1px solid #FFFFFF;
     padding: 5px;
     border-radius: 10px;
     cursor: pointer;
@@ -313,7 +323,12 @@ nav svg {
     display: none;
 
 }
-
+.freq h2{
+    color: #0E151D;
+    font-weight: 700;
+    font-size: 34px;
+    font-family: inter !important;
+}
 .navigation-auto div {
     border: 2px solid #40D3DC;
     border-radius: 10px;

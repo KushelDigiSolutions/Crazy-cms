@@ -1,6 +1,6 @@
 <x-admin>
     @section('title', 'Edit User')
-    <div class="card">
+    <div class="card canting">
         <div class="card-header">
             <h3 class="card-title">Edit User</h3>
             <div class="card-tools"><a href="{{ route('admin.user.index') }}" class="btn btn-sm btn-dark">Back</a></div>

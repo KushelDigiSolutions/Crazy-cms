@@ -187,6 +187,9 @@ border: none !important;
     background-color: white !important;
     color: #40444B !important;
 }
+.dark-mode{
+    background-color: #f5f5f5 !important;
+}
 .div.dataTables_wrapper div.dataTables_filter input{
     background-color: transparent !important;
     width: 117px !important;
@@ -212,4 +215,37 @@ border: none !important;
 }
 .dark-mode .page-item:not(.active) .page-link{
     background-color: white !important;
+}
+.table:not(.table-dark){
+    width: 100% !important;
+}
+.card_hand{
+    background-color: #f3f3f3 !important;
+}
+.card_tit{
+    color: #414141;
+}
+.sedi{
+    background-color: white !important;
+}
+.role_name{
+    color: #414141 !important;
+}
+.cv1{
+    background-color: transparent !important;
+}
+.simi{
+    background-color: #ffffff !important;
+}
+.simi h2{
+    color: #414141;
+}
+.simi p{
+    color: #414141;
+}
+.simi label{
+    color: #414141;
+}
+.suy{
+  margin-top: -12px;
 }
