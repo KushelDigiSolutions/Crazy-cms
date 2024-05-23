@@ -83,10 +83,10 @@
       <div class="slider">
         <div class="slides">
           <!-- radio button  -->
-          <input type="radio" name="radio-btn" id="radio1" />
-          <input type="radio" name="radio-btn" id="radio2" />
+          <!-- <input type="radio" name="radio-btn" id="radio1" /> -->
+          <!-- <input type="radio" name="radio-btn" id="radio2" />
           <input type="radio" name="radio-btn" id="radio3" />
-          <input type="radio" name="radio-btn" id="radio4" />
+          <input type="radio" name="radio-btn" id="radio4" /> -->
 
           <!-- radio btn end -->
 
@@ -94,7 +94,7 @@
           <div class="slide first">
             <img src="{{asset('admin/img/Group.png')}}" alt="banner1" />
           </div>
-          <div class="slide">
+          <!-- <div class="slide">
             <img src="{{asset('admin/img/Group.png')}}" alt="banner1" />
           </div>
           <div class="slide">
@@ -102,7 +102,7 @@
           </div>
           <div class="slide">
             <img src="{{asset('admin/img/Group.png')}}" alt="banner1" />
-          </div>
+          </div> -->
 
           <!-- slide img end  -->
 

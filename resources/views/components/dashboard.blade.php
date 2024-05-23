@@ -1,3 +1,4 @@
+
 <div class="row mik">
     @role('admin')
     <div class="sameing1">
@@ -10,7 +11,7 @@
           </div>
         <div class="sameing mt-4">
         <div class="col-lg-3 col-6">
-           <a href="{{ route('admin.user.index') }}"><div class="small-box  bg_int">
+          <div class="small-box  bg_int">
                 <div class="inner int">
                 <img src="{{asset('admin/img/usin.svg')}}" alt="">
                 <p>Total Users</p>
@@ -21,13 +22,13 @@
                 </div> -->
                 <!-- <a href="{{ route('admin.user.index') }}" class="small-box-footer">View <i
                         class="fas fa-arrow-circle-right"></i></a> -->
-            </div></a>
+            </div>
         </div>
         <div class="col-lg-3 col-6">
-           <a href="{{ route('admin.category.index') }}"> <div class="small-box bg-success bg_int bg_int1">
+            <div class="small-box bg-success bg_int bg_int1">
                 <div class="inner int">
                 <img src="{{asset('admin/img/sipup.svg')}}" alt="">
-                    <p>Total Categories</p>
+                    <p>Standard Plan Users</p>
                     <h3>{{ $category }}</h3>
                 </div>
                 <!-- <div class="icon">
@@ -35,13 +36,13 @@
                 </div> -->
                 <!-- <a href="{{ route('admin.category.index') }}" class="small-box-footer">View <i
                         class="fas fa-arrow-circle-right"></i></a> -->
-            </div></a>
+            </div>
         </div>
         <div class="col-lg-3 col-6">
-           <a href="{{ route('admin.product.index') }}"> <div class="small-box bg-primary bg_int bg_int2">
+            <div class="small-box bg-primary bg_int bg_int2">
                 <div class="inner int">
                 <img src="{{asset('admin/img/umi.svg')}}" alt="">
-                    <p>Total Products</p>
+                    <p>Professional Plan Users</p>
                     <h3>{{ $product }}</h3>
                 </div>
                 <!-- <div class="icon">
@@ -49,13 +50,13 @@
                 </div> -->
                 <!-- <a href="{{ route('admin.product.index') }}" class="small-box-footer">View <i
                         class="fas fa-arrow-circle-right"></i></a> -->
-            </div></a>
+            </div>
         </div>
         <div class="col-lg-3 col-6">
-           <a href="{{ route('admin.collection.index') }}"> <div class="small-box bg-secondary bg_int bg_int3">
+            <div class="small-box bg-secondary bg_int bg_int3">
                 <div class="inner int">
                 <img src="{{asset('admin/img/lime.svg')}}" alt="">
-                    <p>Total Collections</p>
+                    <p>Premium Plan Users</p>
                     <h3>{{ $collection }}</h3>
                 </div>
                 <!-- <div class="icon">
@@ -63,13 +64,13 @@
                 </div> -->
                 <!-- <a href="{{ route('admin.collection.index') }}" class="small-box-footer">View <i
                         class="fas fa-arrow-circle-right"></i></a> -->
-            </div></a>
+            </div>
         </div>
         </div>
         </div>
 
         <div class="row mik1 mt-3">
-            <div class="col-md-4">
+            <div class="col-md-3">
                 <div class="user_card">
                     <div class="new_user">
                          <h3>New User</h3>
@@ -118,9 +119,46 @@
                             <img src="{{asset('admin/img/vn.svg')}}" alt="">  
                             </div>
                          </div>
+                         <div class="main_card">
+                            <div class="main_left">
+                               <div class="main_img">
+                                 <img src="{{asset('admin/img/un.svg')}}" alt="">  
+                               </div>
+                               <div class="main_content">
+                                   <span class="sp">Smith John</span>
+                                   <span class="sp1">India</span>
+                               </div>
+                            </div>
+                            <div class="main_right">
+                            <img src="{{asset('admin/img/vn.svg')}}" alt="">  
+                            </div>
+                         </div>
+                         <div class="main_card">
+                            <div class="main_left">
+                               <div class="main_img">
+                                 <img src="{{asset('admin/img/un.svg')}}" alt="">  
+                               </div>
+                               <div class="main_content">
+                                   <span class="sp">Smith John</span>
+                                   <span class="sp1">India</span>
+                               </div>
+                            </div>
+                            <div class="main_right">
+                            <img src="{{asset('admin/img/vn.svg')}}" alt="">  
+                            </div>
+                         </div>
                     </div>
                 </div>
+            </div>
+            <div class="col-md-9">
+            
+            <span class="such">
+            <canvas class="take" id="myChart"></canvas>
+            </span>
+            
+            
             </div>
         </div>
     @endrole
 </div>
+
