@@ -21,7 +21,7 @@
 <div class="navCont">
 
 
-  <nav>
+  <nav class="navSome">
 
     <img class="navbarImg" src="{{asset('admin/img/summer.svg')}}" alt="">
 

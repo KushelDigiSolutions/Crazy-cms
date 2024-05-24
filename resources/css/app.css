@@ -258,3 +258,18 @@ border: none !important;
     width: 100% !important;
     /* height: 500px !important; */
 }
+
+@media only screen and (max-width:850px){
+    .take{
+        margin-top: 20px !important;
+    }
+    .int p{
+        font-size: 11px !important; 
+    }
+}
+
+@media only screen and (max-width:450px){
+    .small-box{
+        height: 165px !important;
+    }
+}

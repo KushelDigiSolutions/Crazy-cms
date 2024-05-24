@@ -192,6 +192,11 @@ label{
         padding-top: 25px;
     }
 }
+@media only screen and (max-width: 500px){
+    #login-page1 .login-right-form{
+        padding: 50px 10px !important;
+    }
+}
 @media (max-width: 365px){
     #login-page1 .login-button button{
         width: 180px;
