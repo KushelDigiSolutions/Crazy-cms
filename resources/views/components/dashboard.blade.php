@@ -151,12 +151,9 @@
                 </div>
             </div>
             <div class="col-md-9">
-            
-            <span class="such">
-            <canvas class="take" id="myChart"></canvas>
-            </span>
-            
-            
+               <span class="such">
+             <canvas class="take" id="myChart"></canvas>
+               </span>
             </div>
         </div>
     @endrole

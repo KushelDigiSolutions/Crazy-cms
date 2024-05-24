@@ -158,6 +158,12 @@ nav svg {
         left: 20px;
     }
 
+   .navSome{
+    display: flex !important;
+    align-items: center !important;
+   }
+
+
     #sidebar-active:checked~.links-container {
         right: 0;
     }
@@ -175,6 +181,9 @@ nav svg {
 @media (max-width:440px) {
     .navbarImg {
         width: 200px;
+    }
+    #footer .fooText{
+        text-align: center !important;
     }
 }
 
