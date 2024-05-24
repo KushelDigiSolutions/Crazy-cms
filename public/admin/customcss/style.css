@@ -1039,6 +1039,13 @@ img {
     #About_us .row2 {
         padding: 20PX !important;
     }
+
+    #footer .fotItem1{
+        justify-content: center !important;
+    }
+    #login-page1 .login-right-form{
+        padding: 50px 10px !important;
+    }
 }
 
 @media (max-width:350px) {
@@ -1090,4 +1097,5 @@ img {
         margin-left: 10px !important;
     }
 }
+
 
