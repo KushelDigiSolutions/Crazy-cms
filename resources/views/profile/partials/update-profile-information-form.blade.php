@@ -1,12 +1,12 @@
 <section>
     <header>
-        <h2 class="text-lg font-medium text-gray-900">
-            {{ __('Profile Information') }}
+        <h2 class="text-lg sd font-medium text-gray-900">
+            {{ __('Profile') }}
         </h2>
 
-        <p class="mt-1 text-sm text-gray-600">
+        <!-- <p class="mt-1 text-sm text-gray-600">
             {{ __("Update your account's profile information and email address.") }}
-        </p>
+        </p> -->
     </header>
 
     <form id="send-verification" method="post" action="{{ route('verification.send') }}">
@@ -16,9 +16,16 @@
     <form method="post" action="{{ route('admin.profile.update') }}" class="mt-6 space-y-6">
         @csrf
         @method('patch')
+        
+        <div class="mb-3">
+            <div class="img_user">
+                <img src="{{asset('admin/img/userEll.svg')}}" alt="">
+                <button type="button" class="change_avt ml-3">Change Avtar</button>
+            </div>
+        </div>
 
         <div class="mb-3">
-            <x-input-label for="name" class="form-label" :value="__('Name')" />
+            <x-input-label for="name" class="form-label" :value="__('Display Name')" />
             <x-text-input id="name" name="name" type="text" class="form-control" :value="old('name', $user->name)" required
                 autofocus autocomplete="name" />
             <x-input-error class="mt-2" :messages="$errors->get('name')" />
@@ -58,7 +65,7 @@
         </div>
 
         <div class="flex items-center gap-4">
-            <button type="submit" class="btn btn-primary btn-sm">{{ __('Save') }}</button>
+            <button type="submit" class="btn btn-primary btn-sm btn_tn">{{ __('Update Profile') }}</button>
             @if (session('status') === 'profile-updated')
                 <div class="alert alert-success alert-dismissible fade show" role="alert">
                     {{ 'Saved' }}
