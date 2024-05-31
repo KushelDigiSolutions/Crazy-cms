@@ -239,12 +239,39 @@ border: none !important;
 }
 .simi{
     background-color: #ffffff !important;
+    border-radius: 10px !important;
+    box-shadow: none !important;
 }
 .simi h2{
     color: #414141;
 }
+.sd{
+    color: #1B2533;
+    font-weight: 600;
+    font-size: 24px !important;
+    font-family: inter !important;
+}
 .simi p{
     color: #414141;
+}
+.change_avt{
+    background-color: #0F3D5F;
+    width: 170px;
+    height: 50px;
+    border-radius: 10px;
+    color: #FFFFFF;
+    font-weight: 500;
+    font-size: 20px;
+    outline: none !important;
+}
+.img_user{
+    margin-top: 20px !important;
+}
+.img_user img{
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    
 }
 .simi label{
     color: #414141;
@@ -258,6 +285,96 @@ border: none !important;
     width: 100% !important;
     /* height: 500px !important; */
 }
+
+.btn_tn{
+    background-color: #E5E4EC !important;
+    outline: none !important;
+}
+
+/* ===================this=================== */
+.crazy-cms-content{
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+.crazy-cms-icon-name1{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+.crazy-cms-icon-name{
+    display: flex;
+    gap: 10px;
+}
+.crazy-cms-icon-name p{
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 20px;
+}
+.crazy-cms-sidebar{
+    display: flex;
+    justify-content: center;
+    padding-top: 10px;
+    position: absolute;
+    right: 15px;
+    background-color: #ffffff;
+}
+.crazy-cms-settings{
+    width: 250px;
+    border: 1px solid #b5b5b5;
+    border-radius: 15px;
+    padding: 10px;
+    display: none;
+}
+.crazy-cms-plans:hover{
+    background-color: #EBF9F7;
+    border-radius: 6px;
+}
+
+.crazy-cms-plans{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    padding: 10px;
+    
+}
+.crazy-cms-refer span:hover{
+    color: white;
+}
+.crazy-cms-refer span{
+    font-size: 18px;
+    font-weight: 400;
+    color: #160647;
+}
+.crazy-cms-plans:hover span{
+   color: #2C868F !important;
+}
+.crazy-cms-plans:hover svg path{
+    fill: #2C868F !important;
+}
+
+.crazy-cms-settings.show{
+    display: block;
+}
+.nick{
+    color: #0F141C;
+    font-weight: 400;
+    font-size: 14px;
+    font-family: inter !important;
+    margin-top: 3px;
+}
+.jkll{
+    position: absolute;
+    width: 100%;
+    top: 6px;
+    opacity: 0;
+}
+.tyh{
+    cursor: pointer !important;
+}
+/* ======this end========================== */
 
 @media only screen and (max-width:850px){
     .take{

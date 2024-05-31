@@ -1,12 +1,12 @@
 <section>
     <header>
-        <h2 class="text-lg font-medium text-gray-900">
-            {{ __('Update Password') }}
+        <h2 class="text-lg font-medium sd text-gray-900">
+            {{ __('Password') }}
         </h2>
 
-        <p class="mt-1 text-sm text-gray-600">
+        <!-- <p class="mt-1 text-sm text-gray-600">
             {{ __('Ensure your account is using a long, random password to stay secure.') }}
-        </p>
+        </p> -->
     </header>
 
     <form method="post" action="{{ route('password.update') }}" class="mt-6 space-y-6">
@@ -32,12 +32,12 @@
         </div>
 
         <div class="flex items-center gap-4">
-            <button class="btn btn-primary btn-sm" type="submit">{{ __('Save') }}</button>
+            <button class="btn btn-primary btn-sm btn_tn" type="submit">{{ __('Change Password') }}</button>
 
             @if (session('status') === 'password-updated')
             <div class="alert alert-success alert-dismissible fade show" role="alert">
                 {{ 'Saved' }}
-                <button type="button" class="btn btn-sm float-end float-right" data-bs-dismiss="alert"
+                <button type="button" class="btn btn-sm  float-end float-right" data-bs-dismiss="alert"
                     aria-label="Close">&times;</button>
             </div>
             @endif
