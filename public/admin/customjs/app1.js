@@ -46,7 +46,7 @@ function submitForm() {
         data: formData,
         success: function(response) {
             // Handle success
-          //  window.location.href = window.appConfig.apiUrl+'/preview';
+            window.location.href = window.appConfig.baseUrl+'/preview';
             console.log('Success:', response);
         },
         error: function(xhr, status, error) {

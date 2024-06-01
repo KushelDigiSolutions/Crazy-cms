@@ -30,13 +30,45 @@
    <div class="Projects">
     <div class="Projects_con">
         <div id="gjs"></div>
+        <iframe id="content-frame" src="{{ session('webUrlHome') }}" style="display:none;"></iframe>
+       
 
     </div>
 
    </div>
 
+    <script>
+        // Initialize GrapesJS
+        const editor = grapesjs.init({
+            container: '#gjs',
+            fromElement: true,
+            height: '100%',
+            width: 'auto',
+            storageManager: { type: null }, // Disable storage manager for simplicity
+            panels: { defaults: [] }, // Disable default panels
+            blockManager: {
+                appendTo: '#blocks',
+                blocks: []
+            }
+        });
+
+        // Load content from iframe into GrapesJS
+        const iframe = document.getElementById('content-frame');
+        iframe.onload = () => {
+            const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
+            const htmlContent = iframeDoc.documentElement.outerHTML;
+            editor.setComponents(htmlContent);
+        };
+
+        // Add a basic block as an example
+        editor.BlockManager.add('test-block', {
+            label: 'Test Block',
+            content: '<div class="test-block">Test Block</div>',
+        });
+    </script>
+</body>
  
-<script>
+<!-- <script>
     // Initialize GrapeJS
     var editor = grapesjs.init({
         container: '#gjs',
@@ -69,5 +101,5 @@
 
     // Fetch and scrape webpage
     fetchAndScrape('{{ session("webUrlHome") }}');
-</script>
+</script> -->
 @endsection
