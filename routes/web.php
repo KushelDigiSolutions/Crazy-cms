@@ -4,6 +4,8 @@ use App\Http\Controllers\LoginWithOTPController;
 use App\Http\Controllers\SocialiteController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Str;
+use App\Http\Controllers\HomeController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -15,11 +17,18 @@ use Illuminate\Support\Str;
 |
 */
 
-Route::get('/', function () {
-    // $readmePath = base_path('README.md');
 
-    return view('welcome');
+Route::middleware(['web'])->group(function () {
+    // Your routes here
+    Route::get('/', function () {
+        // $readmePath = base_path('README.md');
+    
+        return view('frontend/home');
+    });
+    
+    Route::get('/preview', [HomeController::class, 'preview']);
 });
+
 // Login with OTP Routes
 Route::prefix('/otp')->middleware('guest')->name('otp.')->controller(LoginWithOTPController::class)->group(function(){
     Route::get('/login','login')->name('login');

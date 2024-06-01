@@ -1,0 +1,42 @@
+*{
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+    overflow: hidden;
+    font-family: Inter !important;
+}
+#header{
+    padding: 0px 60px;
+    background-color: white;
+    border-bottom: 1px solid #D9E0E6;
+}
+#header nav{
+    padding: 24px 0px;
+}
+#header .item{
+    text-decoration: none;
+    color: #7E8299;
+}
+#header .preview_btn{
+    border: 1px solid #0F3D5F !important;
+    border-radius: 8px ;
+}
+#header .form-inline{
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+#header.icons_div{
+    border-right: 1px solid #D9E0E6;
+    padding: 12px 16px;
+}
+.Projects{
+    background-color: #f8fafc;
+}
+.Projects_con{
+    padding: 20px;
+    text-align: center;
+}
+.Projects_con img{
+    width: 100%;
+}
