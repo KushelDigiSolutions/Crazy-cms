@@ -264,13 +264,6 @@ nav svg {
     transition: 2s;
 }
 
-.slide img {
-    /* width: 800px; */
-    /* height: 500px;
-   width: 90%; */
-
-}
-
 .navigaWrap {
     width: 100%;
     display: flex;
