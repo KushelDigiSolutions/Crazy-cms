@@ -369,7 +369,21 @@ nav svg {
 /* this is for slider end  */
 
 
-
+#email_section p {
+    font-size: 24px;
+    font-weight: 400;
+    line-height: 34px;
+    color: white;
+    width: 17em;
+}
+#email_section p span {
+    font-weight: 700;
+}
+.web_uri{
+    outline: none;
+    border: none !important;
+    width: 100% !important;
+}
 #email_section {
     background-color: #0F3D5F;
     width: 100%;
@@ -432,8 +446,6 @@ nav svg {
     cursor: pointer;
 }
 
-<<<<<<< Updated upstream
-=======
 #email_section .startBtn:hover{
     background: #43cf76;
 }
@@ -443,9 +455,8 @@ nav svg {
         flex-direction: column;
         gap: 20px;
         height: 100%;
->>>>>>> Stashed changes
 
-
+    
 #email_section .webInput input {
     outline: none;
     border: none;
@@ -470,6 +481,9 @@ nav svg {
     font-weight: 700;
 }
 
+    }
+
+}
 #what_we_do .row1 {
     padding-top: 50px;
 }
@@ -500,10 +514,10 @@ nav svg {
 }
 
 #About_us {
-    background-image: url("../img/tying.svg");
-    background-repeat: no-repeat;
-    background-size: cover;
-    width: 100%;
+    background-image: url("../img/tying.svg") !important;
+    background-repeat: no-repeat !important;
+    background-size: cover !important;
+    width: 100% !important;
 }
 
 #About_us .row1 {
