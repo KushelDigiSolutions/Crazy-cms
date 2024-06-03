@@ -217,8 +217,13 @@
             <div class="row row-3">
                 <div class="col-lg-4">
                    
-                    <div class="card shadow-none" style="width: 18rem;">
-                        <img src="{{asset('admin/img/project_min.svg')}}"  class="card-img-top" alt="...">
+                    <div class="card shadow-none tent" style="width: 18rem;">
+                        <button class="view_dot">View Details</button>
+                        <div class="bs_btn">
+                            <img src="{{asset('admin/img/rest1.svg')}}"  alt="">
+                              <img class="dfl" src="{{asset('admin/img/rest.svg')}}"  alt="">
+                        </div>
+                        <img src="{{asset('admin/img/project_min.svg')}}"  class="card-img-top ekka" alt="...">
                         <div class="card-body bg-white">
                           <h5 class="card-title">Kushel Digi</h5>
                           <p class="card-text">1 Page</p>

@@ -131,7 +131,7 @@
 
     <div class="webInput">
       <img src="{{asset('admin/img/chain.svg')}}" alt="" />
-      <input type="ttextext" id="webUrlInput" placeholder="Enter your website Address" />
+      <input class="web_uri" type="ttextext" id="webUrlInput" placeholder="Enter your website Address" />
     </div>
 
     <div onclick="submitForm()" class="startBtn">Start</div>
