@@ -27,6 +27,7 @@ Route::middleware(['web'])->group(function () {
     });
     
     Route::get('/preview', [HomeController::class, 'preview']);
+    Route::get('/editor', [HomeController::class, 'editor']);
 });
 
 // Login with OTP Routes

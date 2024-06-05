@@ -42,7 +42,7 @@
       <a href="#" class="navSinItem">Pricing</a>
       <!-- <a href="#" class="navSinItem">Offers</a>
       <a href="#"> <button class="navSinBtn"><span>CONTACT</span></button></a> -->
-      <a href="/login"> <button class="navSinBtn"><span>SIGN IN</span></button></a>
+      <a href="{{url('/login')}}"> <button class="navSinBtn"><span>SIGN IN</span></button></a>
 
     </div>
 

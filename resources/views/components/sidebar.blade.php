@@ -34,6 +34,27 @@
                     </p>
                 </a>
             </li>
+
+
+
+            <li class="nav-item">
+                <a href="{{ route('admin.permission.index') }}"
+                    class="nav-link {{ Route::is('admin.permission.index') ? 'actives' : '' }}">
+                    <i class="nav-icon fas fa-hat-cowboy"></i>
+                    <p>Subscription
+                        <span class="badge badge-danger right">{{ $PermissionCount }}</span>
+                    </p>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="{{ route('admin.permission.index') }}"
+                    class="nav-link {{ Route::is('admin.permission.index') ? 'actives' : '' }}">
+                    <i class="nav-icon fas fa-hat-cowboy"></i>
+                    <p>Orders
+                        <span class="badge badge-danger right">{{ $PermissionCount }}</span>
+                    </p>
+                </a>
+            </li>
            <!--  <li class="nav-item">
                 <a href="{{ route('admin.category.index') }}"
                     class="nav-link {{ Route::is('admin.category.index') ? 'active' : '' }}">
@@ -78,6 +99,16 @@
                 <p>Profile</p>
             </a>
         </li>
+
+        <li class="nav-item">
+                <a href="{{ route('admin.permission.index') }}"
+                    class="nav-link {{ Route::is('admin.permission.index') ? 'actives' : '' }}">
+                    <i class="nav-icon fas fa-hat-cowboy"></i>
+                    <p>Settings
+                        <span class="badge badge-danger right">{{ $PermissionCount }}</span>
+                    </p>
+                </a>
+            </li>
 
     </ul>
 </nav>

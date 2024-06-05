@@ -15,6 +15,7 @@
                         <th>Created</th>
                         <th>Action</th>
                         <th></th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -27,6 +28,10 @@
                             <td>
                                 <a href="{{ route('admin.user.edit', encrypt($user->id)) }}"
                                     class="btn btn-sm btn-primary">Edit</a>
+                            </td>
+                            <td>
+                                <a href="{{ route('admin.user.edit', encrypt($user->id)) }}"
+                                    class="btn btn-sm btn-primary">Login</a>
                             </td>
                             <td>
                                 <form action="{{ route('admin.user.destroy', encrypt($user->id)) }}" method="POST"

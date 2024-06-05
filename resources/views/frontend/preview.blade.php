@@ -23,7 +23,7 @@
                             fill="#7E8299" />
                     </svg>
                 </div>
-                <button class="btn preview_btn my-2 my-sm-0" type="submit">Preview</button>
+                <button class="btn preview_btn my-2 my-sm-0" type="submit">Preview</button> <div id="paypal-button-container"></div>
             </form>
         </nav>
     </header>
@@ -68,38 +68,28 @@
     </script>
 </body>
  
-<!-- <script>
-    // Initialize GrapeJS
-    var editor = grapesjs.init({
-        container: '#gjs',
-        storageManager: false, // Disable storage
-        styleManager: { clearProperties: 1 },
-        canvas: {
-            styles: ['styles.css'] // Load external CSS
-        }
-    });
-
-    // Function to fetch and scrape webpage
-    async function fetchAndScrape(url) {
-        try {
-            const response = await fetch(url);
-            const html = await response.text();
-            const parser = new DOMParser();
-            const doc = parser.parseFromString(html, 'text/html');
-            
-            // Extract relevant content to edit
-            const editableContent = doc.getElementById('content'); // Example: Replace 'content' with the ID of the content you want to edit
-            if (editableContent) {
-                editor.setComponents(editableContent.innerHTML);
-            } else {
-                console.error('Content not found');
+<script src="https://www.paypal.com/sdk/js?client-id=AQ1SZk5bKljeyE-sWNoN1LG9qUaJWBAMNmzrxrvyU2BbuHkfyv6Tl2NrhsHqDGF2w5T3AT3O8eJGMEzd&currency=USD"></script>
+    <script>
+        paypal.Buttons({
+            createOrder: function(data, actions) {
+                return actions.order.create({
+                    purchase_units: [{
+                        amount: {
+                            value: '10.00' // Amount to be charged
+                        }
+                    }]
+                });
+            },
+            onApprove: function(data, actions) {
+                return actions.order.capture().then(function(details) {
+                    alert('Transaction completed by ' + details.payer.name.given_name);
+                    // Optionally, you can send details to your server for processing
+                });
+            },
+            onError: function(err) {
+                console.error(err);
+                alert('An error occurred during the transaction.');
             }
-        } catch (error) {
-            console.error('Error:', error);
-        }
-    }
-
-    // Fetch and scrape webpage
-    fetchAndScrape('{{ session("webUrlHome") }}');
-</script> -->
+        }).render('#paypal-button-container'); // Display the PayPal button
+    </script>
 @endsection
