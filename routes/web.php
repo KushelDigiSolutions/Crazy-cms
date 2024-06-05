@@ -28,6 +28,10 @@ Route::middleware(['web'])->group(function () {
     
     Route::get('/preview', [HomeController::class, 'preview']);
     Route::get('/editor', [HomeController::class, 'editor']);
+    Route::get('/page1', [HomeController::class, 'pageone']);
+    Route::get('/page2', [HomeController::class, 'pagetwo']);
+    Route::get('/page3', [HomeController::class, 'pagethree']);
+    Route::get('/page4', [HomeController::class, 'pagefour']);
 });
 
 // Login with OTP Routes

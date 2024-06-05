@@ -15,4 +15,25 @@ class HomeController extends Controller
     {
         return view('frontend/editor');
     }
+
+    public function pageone(Request $request)
+    {
+        return view('frontend/pageone');
+    }
+
+    public function pagetwo(Request $request)
+    {
+        return view('frontend/pagetwo');
+    }
+
+    public function pagethree(Request $request)
+    {
+        return view('frontend/pagethree');
+    }
+
+    public function pagefour(Request $request)
+    {
+        return view('frontend/pagefour');
+    }
+
 }
