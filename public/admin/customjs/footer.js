@@ -6,14 +6,14 @@ document.write(`
   <div class="fotItem">
     <!-- first -->
     <div class="fotItem1">
-      <p class="addBorder">Home</p>
+     <a class="text-decoration-none" href="/"><p class="addBorder">Home</p></a>
       <p class="addBorder">Features</p>
-      <p class="addBorder">Pricing</p>
+     <a class="text-decoration-none" href="/page3"><p class="addBorder">Pricing</p></a>
       <p class="addBorder">Privacy Policy</p>
       <p class="addBorder">Terms Of Service</p>
       <p class="addBorder">Site Map</p>
       <p class="addBorder">Mobile Site</p>
-      <p>Sign In</p>
+     <a class="text-decoration-none" href="/login"> <p>Sign In</p></a>
      
     </div>
   </div>
@@ -38,7 +38,7 @@ document.write(`
   </defs>
   </svg>
 
-  <p class="fooText">info@mycrazysimplecms.com</p>
+ <a class="text-decoration-none" href="mailto:info@mycrazysimplecms.com"><p class="fooText">info@mycrazysimplecms.com</p></a>
   
   </div>
   </div>
