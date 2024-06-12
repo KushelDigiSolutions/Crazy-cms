@@ -1,0 +1,149 @@
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Inter !important;
+}
+
+#crazy-crm-page1 {
+    display: block;
+    margin: auto;
+}
+#crazy-crm-page1 .crazy-crm-banner{
+ height: 1vh;
+}
+#crazy-crm-page1 .crazy-crm-content{
+    display: flex;
+    justify-content: space-between;
+    text-align: center;
+    height: 100vh;
+    position: fixed;
+    width: 100% !important;
+}
+#crazy-crm-page1 .crazy-crm-left-form{
+    background-color: #FAF8FD;
+    padding: 60px 90px;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+}
+#crazy-crm-page1 .crazy-crm-left-form h1{
+    font-size: 32px;
+    font-weight: 600;
+    line-height: 40px;
+    color: #0F3D5F;
+    padding-bottom: 20px;
+}
+#crazy-crm-page1 .crazy-crm-left-form-main{
+    width: 34em;
+    max-width: 100%;
+}
+#crazy-crm-page1 .crazy-crm-left-form-main form{
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+}
+#crazy-crm-page1 .crazy-crm-left-form-main label{
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 24px;
+    padding: 15px 10px;
+}
+#crazy-crm-page1 .crazy-crm-left-form-main input{
+    width: 40em;
+    max-width: 100%;
+    padding: 10px;
+    border: 1px solid #C8C8C8;
+    border-radius: 6px;
+}
+#crazy-crm-page1 .crazy-crm-right-image{
+    background-color: #0F3D5F;
+    width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+#crazy-crm-page1 .crazy-crm-right-image img{
+    max-width: 484px;
+    width: 100%;
+    padding: 20px;
+}
+#crazy-crm-page1 .crazy-crm-button{
+    margin-top: 35px;
+}
+#crazy-crm-page1 .crazy-crm-button button:hover{
+    background-color: #0F3D5F;
+    color: white;   
+}
+#crazy-crm-page1 .crazy-crm-button button{
+    width: 356px;
+    max-width: 100%;
+    padding: 20px;
+    background-color: #C8C8C8;
+    color: white;
+    transition: .5s;
+    border-style: none;
+    border-radius: 6px;
+    display: flex;
+    justify-content: center;
+    font-size: 18px;
+}
+#crazy-crm-page1 .crazy-crm-left-form{
+    overflow-y: auto;
+}
+
+@media(max-width:1075px){
+    #crazy-crm-page1 .crazy-crm-button button{
+        width: 250px;
+        max-width: 100%;
+        padding: 15px;
+    }
+    #crazy-crm-page1 .crazy-crm-left-form{
+        padding: 60px 60px;
+    }
+}
+@media (max-width: 767px){
+    #crazy-crm-page1 .crazy-crm-content{
+        flex-direction: column-reverse;
+    }
+    #crazy-crm-page1 .crazy-crm-left-form{
+         width: 100%;
+        /*padding: 50px 60px; */
+    }
+    #crazy-crm-page1 .crazy-crm-right-image{
+        width: 100%;
+    }
+     .crazy-crm-content{
+        flex-direction: column !important;
+        position: initial !important;
+    }
+}
+@media(max-width:485px){
+    #crazy-crm-page1 .crazy-crm-left-form h1{
+        font-size: 26px;
+    }
+    #crazy-crm-page1 .crazy-crm-content{
+        flex-direction: column !important;
+    }
+}
+@media(max-width: 425px){
+    #crazy-crm-page1 .crazy-crm-right-image{
+        display: none;
+    }
+}
+@media (max-width: 370px){
+    #crazy-crm-page1 .crazy-crm-button button{
+        width: 170px;
+        max-width: 100%;
+    }
+}
+
+
+
+
+
+
+
+
