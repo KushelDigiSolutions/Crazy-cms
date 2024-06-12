@@ -36,10 +36,10 @@
         </svg>
       </label>
 
-      <img class="home-link" src="{{asset('admin/img/summer.svg')}}" alt="">
+    <img class="home-link" src="{{asset('admin/img/summer.svg')}}" alt="">
       <!-- link back to homepage -->
       <a href="#" class="navSinItem">Features</a>
-      <a href="#" class="navSinItem">Pricing</a>
+      <a  href="{{url('/page3')}}" class="navSinItem">Pricing</a>
       <!-- <a href="#" class="navSinItem">Offers</a>
       <a href="#"> <button class="navSinBtn"><span>CONTACT</span></button></a> -->
       <a href="{{url('/login')}}"> <button class="navSinBtn"><span>SIGN IN</span></button></a>
