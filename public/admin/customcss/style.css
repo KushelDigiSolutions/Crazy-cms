@@ -70,7 +70,29 @@ nav {
     line-height: 24px;
     color: white;
 }
-
+.same_hide{
+    color: #0F3D5F !important;
+    font-weight: 600 !important;
+    font-size: 44px !important;
+    line-height: initial !important;
+    text-align: start !important;
+}
+.same_some{
+    text-align: start !important;
+    color: #101729 !important;
+    font-weight: 400 !important;
+    font-family: inter !important;
+    font-size: 20px;
+}
+.song{
+    background-color: #0689A4 !important;
+    border-radius: 50px !important;
+    height: 44px !important;
+}
+.same_some span{
+    font-weight: 700 !important;
+    color: #003A78 !important;
+}
 #what_we_do {
    width: 100%;
    background-image: url('../img/gting.svg');
@@ -184,6 +206,9 @@ nav svg {
     }
     #footer .fooText{
         text-align: center !important;
+    }
+    .hghgk{
+        padding: 0px 30px !important;
     }
 }
 
