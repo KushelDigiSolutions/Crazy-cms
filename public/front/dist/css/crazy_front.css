@@ -40,3 +40,8 @@
 .Projects_con img{
     width: 100%;
 }
+@media only screen and (max-width:450px){
+  #header .form-inline{
+    flex-direction: column !important;
+  }
+}
