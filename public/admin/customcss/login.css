@@ -8,6 +8,10 @@
     height: 100vh;
     width: 100%;
 }
+.ssk{
+    height: auto !important;
+}
+
 .login-box{
     width: 100% !important;
 }
@@ -48,7 +52,7 @@
     justify-content: space-around;
     align-items: center;
     text-align: center;
-    height: 100vh !important;
+    height: 100vh ;
 }
 #login-page1 .login-page-left-content{
     width: 50%;
@@ -59,6 +63,9 @@
    line-height: 44px;
    text-align: start;
    padding-left: 76px;
+}
+.ssk1{
+    height: auto !important;
 }
 #login-page1 .login-page-left-content span{
    font-weight: 600;
