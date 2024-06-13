@@ -146,8 +146,8 @@
                 </div> -->
                 <x-input-error :messages="$errors->get('confirmPassword')" class="mt-2" />
             </div>
-            <div class="row">
-                <div class="col-8">
+            <div class=" d-flex align-items-center justify-content-between">
+                <div class="">
                     <div class="icheck-primary ichk_pm">
                         <input type="checkbox" name="remember" id="remember">
                         <label class="jjj" for="remember">
@@ -156,13 +156,13 @@
                     </div>
                 </div>
                 <!-- /.col -->
-                <div class="col-4">
+                <div class="">
                     <button type="submit" class="btn btn-primary btn-block">Register</button>
                 </div>
                 <!-- /.col -->
             </div>
         </form>
-        <div class="social-auth-links text-center mb-3">
+        <div class="social-auth-links text-center mb-3 simik">
             <p>- OR -</p>
             <a href="{{ route('facebook.login') }}" class="btn btn-block btn-primary">
                
@@ -181,7 +181,7 @@
             <a href="{{ route('password.request') }}">I forgot my password</a>
         </p> -->
         <p class="mb-0">
-            <a href="{{ route('login') }}" class="text-center">Login</a>
+            <a class="text-decoration-none" href="{{ route('login') }}" class="text-center">Login</a>
         </p>
     </div>
     <!-- /.card-body -->
