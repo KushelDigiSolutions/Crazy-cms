@@ -25,5 +25,6 @@ Route::middleware(['web'])->group(function () {
     // Your routes here
     Route::prefix('front-api')->group(function () {
         Route::post('/setWebUrl', [HomeApiController::class, 'setWebUrl']);
+        Route::post('/downloadWeb', [HomeApiController::class, 'downloadWeb']);
     });
 });

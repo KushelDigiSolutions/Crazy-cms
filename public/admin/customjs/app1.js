@@ -41,12 +41,12 @@ function submitForm() {
     });
     // Perform AJAX request
     $.ajax({
-        url: window.appConfig.apiUrl+'/front-api/setWebUrl', // Replace with your server URL
+        url: window.appConfig.apiUrl+'/front-api/downloadWeb', // Replace with your server URL
         type: 'POST',
         data: formData,
         success: function(response) {
             // Handle success
-            window.location.href = window.appConfig.baseUrl+'/preview';
+          //  window.location.href = window.appConfig.baseUrl+'/preview';
             console.log('Success:', response);
         },
         error: function(xhr, status, error) {
