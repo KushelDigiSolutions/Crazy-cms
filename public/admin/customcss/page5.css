@@ -44,4 +44,7 @@
     .mts{
         display: none;
     }
+    .simik a{
+        margin: 10px 10px !important;
+    }
 }
