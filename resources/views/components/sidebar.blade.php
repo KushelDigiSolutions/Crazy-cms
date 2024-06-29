@@ -38,19 +38,28 @@
 
 
             <li class="nav-item">
-                <a href="{{ route('admin.permission.index') }}"
-                    class="nav-link {{ Route::is('admin.permission.index') ? 'actives' : '' }}">
+                <a href="{{ route('admin.subscription.index') }}"
+                    class="nav-link {{ Route::is('admin.subscription.index') ? 'actives' : '' }}">
                     <i class="nav-icon fas fa-hat-cowboy"></i>
-                    <p>Subscription
+                    <p>Subscription 
                         <span class="badge badge-danger right">{{ $PermissionCount }}</span>
                     </p>
                 </a>
             </li>
             <li class="nav-item">
-                <a href="{{ route('admin.permission.index') }}"
-                    class="nav-link {{ Route::is('admin.permission.index') ? 'actives' : '' }}">
+                <a href="{{ route('admin.order.index') }}"
+                    class="nav-link {{ Route::is('admin.order.index') ? 'actives' : '' }}">
                     <i class="nav-icon fas fa-hat-cowboy"></i>
-                    <p>Orders
+                    <p>Active Orders
+                        <span class="badge badge-danger right">{{ $PermissionCount }}</span>
+                    </p>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="{{ route('admin.enquiry.index') }}"
+                    class="nav-link {{ Route::is('admin.enquiry.index') ? 'actives' : '' }}">
+                    <i class="nav-icon fas fa-hat-cowboy"></i>
+                    <p>Active Searches
                         <span class="badge badge-danger right">{{ $PermissionCount }}</span>
                     </p>
                 </a>

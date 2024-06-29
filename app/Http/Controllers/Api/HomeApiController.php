@@ -38,26 +38,23 @@ class HomeApiController extends Controller
 
     public function downloadWeb(Request $request)
     {
-        $url = "https://kusheldigi.com/";
+        $url = $request->all()["url"];
        
         if (filter_var($url, FILTER_VALIDATE_URL) === false) {
             return redirect()->back()->withErrors(['url' => 'Invalid URL provided.']);
         }
-
+ 
         try {
-            $response = Http::get($url);
+            $publicPath = public_path();
+           // Path to the Python script
+            $scriptPath = $publicPath.'/web.py '.$url.' website';
 
-            if ($response->successful()) {
-                $htmlContent = $response->body();
-                echo $htmlContent;exit;
-                $filename = 'website.html';
-
-                return response($htmlContent)
-                    ->header('Content-Type', 'text/html')
-                    ->header('Content-Disposition', 'attachment; filename="' . $filename . '"');
-            } else {
-                return redirect()->back()->withErrors(['url' => 'Failed to retrieve the website content.']);
-            }
+            // Execute the Python script
+            $output = shell_exec("python3 " . $scriptPath);
+            // Return the output
+            return response()->json([
+                'output' => $output
+            ]);
         } catch (\Exception $e) {
             return redirect()->back()->withErrors(['url' => 'An error occurred: ' . $e->getMessage()]);
         }

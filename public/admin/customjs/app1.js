@@ -46,7 +46,10 @@ function submitForm() {
         data: formData,
         success: function(response) {
             // Handle success
-          //  window.location.href = window.appConfig.baseUrl+'/preview';
+            setTimeout(function(){ 
+                window.location.href = window.appConfig.baseUrl+'/preview';
+            },5000) 
+            
             console.log('Success:', response);
         },
         error: function(xhr, status, error) {

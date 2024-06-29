@@ -30,42 +30,37 @@
    <div class="Projects">
     <div class="Projects_con">
         <div id="gjs"></div>
-        <iframe id="content-frame" src="{{ session('webUrlHome') }}" style="display:none;"></iframe>
        
 
     </div>
 
    </div>
 
-    <script>
-        // Initialize GrapesJS
-        const editor = grapesjs.init({
-            container: '#gjs',
-            fromElement: true,
-            height: '100%',
-            width: 'auto',
-            storageManager: { type: null }, // Disable storage manager for simplicity
-            panels: { defaults: [] }, // Disable default panels
-            blockManager: {
-                appendTo: '#blocks',
-                blocks: []
-            }
-        });
+<script src="https://cdnjs.cloudflare.com/ajax/libs/grapesjs/0.19.5/grapes.min.js"></script>
+<script>
+    const editor = grapesjs.init({
+        container: '#gjs',
+        fromElement: true,
+        height: '100vh',
+        width: 'auto',
+        storageManager: false,
+    });
 
-        // Load content from iframe into GrapesJS
-        const iframe = document.getElementById('content-frame');
-        iframe.onload = () => {
-            const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
-            const htmlContent = iframeDoc.documentElement.outerHTML;
-            editor.setComponents(htmlContent);
-        };
+    // Function to fetch URL content and load into editor
+    async function loadUrlContent(url) {
+        try {
+            const response = await fetch(url);
+            const text = await response.text();
+            editor.setComponents(text);
+        } catch (error) {
+            console.error('Error fetching the URL:', error);
+        }
+    }
 
-        // Add a basic block as an example
-        editor.BlockManager.add('test-block', {
-            label: 'Test Block',
-            content: '<div class="test-block">Test Block</div>',
-        });
-    </script>
+    // Example URL to load
+    const urlToEdit = '{{ url('/website/index.html') }}';
+    loadUrlContent(urlToEdit);
+</script>
 </body>
  
 <script src="https://www.paypal.com/sdk/js?client-id=AQ1SZk5bKljeyE-sWNoN1LG9qUaJWBAMNmzrxrvyU2BbuHkfyv6Tl2NrhsHqDGF2w5T3AT3O8eJGMEzd&currency=USD"></script>
