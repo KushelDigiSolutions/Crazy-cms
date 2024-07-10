@@ -47,19 +47,72 @@
     });
 
     // Function to fetch URL content and load into editor
-    async function loadUrlContent(url) {
-        try {
-            const response = await fetch(url);
-            const text = await response.text();
-            editor.setComponents(text);
-        } catch (error) {
-            console.error('Error fetching the URL:', error);
-        }
+    // Function to load jQuery and then execute scripts
+function loadjQueryAndScripts(url) {
+    // Load jQuery from a CDN
+    var script = document.createElement('script');
+    script.src = "https://code.jquery.com/jquery-3.6.0.min.js"; // Replace with the version you need
+    script.onload = function() {
+        // jQuery loaded, now execute your scripts
+        loadUrlContent(url); // Call your function after jQuery is loaded
+    };
+    document.head.appendChild(script);
+}
+
+// Function to fetch URL content and inject into Grape.js
+async function loadUrlContent(url) {
+    try {
+        const response = await fetch(url);
+        const text = await response.text();
+        
+        // Create a temporary container to parse the fetched HTML
+        const tempContainer = document.createElement('div');
+        tempContainer.innerHTML = text;
+        
+        // Extract CSS and inject it into Grape.js
+        const stylesheets = tempContainer.querySelectorAll('link[rel="stylesheet"]');
+        stylesheets.forEach(link => {
+            editor.CssComposer.add(link.outerHTML);
+        });
+        
+        // Set the main content (excluding scripts and possibly other elements)
+        editor.DomComponents.getWrapper().set('content', tempContainer.innerHTML);
+
+        // Inject and execute scripts within the Grape.js environment after jQuery is loaded
+        const scripts = tempContainer.querySelectorAll('script');
+        scripts.forEach(script => {
+            const newScript = document.createElement('script');
+            newScript.textContent = script.textContent;
+            newScript.onload = function() {
+                // Script executed successfully
+                console.log('Script loaded:', script.src);
+            };
+            newScript.onerror = function() {
+                // Handle script loading error
+                console.error('Error loading script:', script.src);
+            };
+            editor.Canvas.getFrameEl().contentDocument.body.appendChild(newScript);
+        });
+        
+    } catch (error) {
+        console.error('Error fetching the URL:', error);
     }
+}
+
+
+
+
 
     // Example URL to load
     const urlToEdit = '{{ url('/website/index.html') }}';
-    loadUrlContent(urlToEdit);
+ // Load jQuery from a CDN
+var script = document.createElement('script');
+script.src = "https://code.jquery.com/jquery-3.6.0.min.js"; // Replace with the version you need
+script.onload = function() {
+    // jQuery loaded, now execute your scripts
+    loadUrlContent(urlToEdit); // Call your function after jQuery is loaded
+};
+document.head.appendChild(script);
 </script>
 </body>
  
