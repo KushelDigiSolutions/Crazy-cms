@@ -4,7 +4,9 @@
 @section('title', 'Preview Page')
 
 @section('content')
-<header id="header">
+<link href="https://unpkg.com/cropperjs/dist/cropper.css" rel="stylesheet">
+<script src="https://unpkg.com/cropperjs/dist/cropper.js"></script>
+<header id="header" class="mainHeader">
         <nav class="navbar navbar-light  justify-content-between">
             <div>
                 <a class="navbar-brand">Pages</a>
@@ -12,132 +14,112 @@
             </div>
             <form class="form-inline">
                 <div class="icons_div">
-                    <svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <svg id="undoButton" class="urbtn" width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path
                             d="M6.25559 7.34897L8.73657 9.82996L7.35279 11.2137L2.50952 6.37049L7.35279 1.52722L8.73657 2.91102L6.25559 5.392H13.2729C17.5961 5.392 21.1008 8.89666 21.1008 13.2199C21.1008 17.5431 17.5961 21.0478 13.2729 21.0478H4.46649V19.0909H13.2729C16.5153 19.0909 19.1438 16.4624 19.1438 13.2199C19.1438 9.97747 16.5153 7.34897 13.2729 7.34897H6.25559Z"
                             fill="#7E8299" />
                     </svg>
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <svg id="redoButton" class="urbtn" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path
                             d="M17.3547 7.34897L14.8737 9.82996L16.2575 11.2137L21.1008 6.37049L16.2575 1.52722L14.8737 2.91102L17.3547 5.392H10.3374C6.01417 5.392 2.50952 8.89666 2.50952 13.2199C2.50952 17.5431 6.01417 21.0478 10.3374 21.0478H19.1438V19.0909H10.3374C7.09501 19.0909 4.4665 16.4624 4.4665 13.2199C4.4665 9.97747 7.09501 7.34897 10.3374 7.34897H17.3547Z"
                             fill="#7E8299" />
                     </svg>
                 </div>
-                <button class="btn preview_btn my-2 my-sm-0" type="submit">Preview</button> <div id="paypal-button-container"></div>
+                <button class="btn preview_btn my-2 my-sm-0" id="toggleEditingButton" type="button">Enable Editing</button>
             </form>
         </nav>
     </header>
    <div class="Projects">
-    <div class="Projects_con">
-        <div id="gjs"></div>
-       
-
+   <div id="inlineToolbar">
+    <button class="inlineToolbarButton" data-command="bold"><strong>B</strong></button>
+    <button class="inlineToolbarButton" data-command="italic"><em>I</em></button>
+    <button class="inlineToolbarButton" data-command="underline"><u>U</u></button>
+</div>
+    <div id="secondDiv">
+        {!! $htmlContent !!}
     </div>
-
    </div>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/grapesjs/0.19.5/grapes.min.js"></script>
-<script>
-    const editor = grapesjs.init({
-        container: '#gjs',
-        fromElement: true,
-        height: '100vh',
-        width: 'auto',
-        storageManager: false,
-    });
+   <!-- Modal for Image Upload -->
+   <div class="modal fade" id="imageUploadModal" tabindex="-1" role="dialog" aria-labelledby="imageUploadModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="imageUploadModalLabel">Upload New Image</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <input type="file" id="imageInput" accept="image/*">
+                <div>
+                    <img id="imagePreview" style="max-width: 100%; display: none;">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" id="uploadImageButton">Upload Image</button>
+            </div>
+        </div>
+    </div>
+</div>
 
-    // Function to fetch URL content and load into editor
-    // Function to load jQuery and then execute scripts
-function loadjQueryAndScripts(url) {
-    // Load jQuery from a CDN
-    var script = document.createElement('script');
-    script.src = "https://code.jquery.com/jquery-3.6.0.min.js"; // Replace with the version you need
-    script.onload = function() {
-        // jQuery loaded, now execute your scripts
-        loadUrlContent(url); // Call your function after jQuery is loaded
-    };
-    document.head.appendChild(script);
-}
+<div id="imageUploadModal" class="modal">
+    <div class="modal-content">
+        <input type="file" id="imageInput">
+        <button id="uploadImageButton">Upload</button>
+    </div>
+</div>
 
-// Function to fetch URL content and inject into Grape.js
-async function loadUrlContent(url) {
-    try {
-        const response = await fetch(url);
-        const text = await response.text();
-        
-        // Create a temporary container to parse the fetched HTML
-        const tempContainer = document.createElement('div');
-        tempContainer.innerHTML = text;
-        
-        // Extract CSS and inject it into Grape.js
-        const stylesheets = tempContainer.querySelectorAll('link[rel="stylesheet"]');
-        stylesheets.forEach(link => {
-            editor.CssComposer.add(link.outerHTML);
-        });
-        
-        // Set the main content (excluding scripts and possibly other elements)
-        editor.DomComponents.getWrapper().set('content', tempContainer.innerHTML);
-
-        // Inject and execute scripts within the Grape.js environment after jQuery is loaded
-        const scripts = tempContainer.querySelectorAll('script');
-        scripts.forEach(script => {
-            const newScript = document.createElement('script');
-            newScript.textContent = script.textContent;
-            newScript.onload = function() {
-                // Script executed successfully
-                console.log('Script loaded:', script.src);
-            };
-            newScript.onerror = function() {
-                // Handle script loading error
-                console.error('Error loading script:', script.src);
-            };
-            editor.Canvas.getFrameEl().contentDocument.body.appendChild(newScript);
-        });
-        
-    } catch (error) {
-        console.error('Error fetching the URL:', error);
-    }
-}
+<!-- Link Edit Modal -->
+<div class="modal fade" id="linkEditModal" tabindex="-1" role="dialog" aria-labelledby="linkEditModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="linkEditModalLabel">Edit Link</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="linkText">Text:</label>
+                    <input type="text" class="form-control" id="linkText" placeholder="Enter Link Text">
+                </div>
+                <div class="form-group">
+                    <label for="linkUrl">URL:</label>
+                    <input type="text" class="form-control" id="linkUrl" placeholder="Enter URL">
+                </div>
+                <div class="form-group">
+                    <label for="linkTarget">Target:</label>
+                    <select class="form-control" id="linkTarget">
+                        <option value="_self">Same Window/Tab</option>
+                        <option value="_blank">New Window/Tab</option>
+                    </select>
+                </div>
+                <div id="imageUploadSection" style="display: none;">
+                    <hr>
+                    <h5>Upload Image</h5>
+                    <input type="file" id="imageInput" accept="image/*">
+                    <div>
+                        <img id="imagePreview" src="#" alt="Preview" style="max-width: 100%; max-height: 300px; display: none;">
+                    </div>
+                    <button type="button" class="btn btn-primary mt-2" id="uploadImageButton">Upload Image</button>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" id="saveLinkButton">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
 
 
 
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
 
-
-    // Example URL to load
-    const urlToEdit = '{{ url('/website/index.html') }}';
- // Load jQuery from a CDN
-var script = document.createElement('script');
-script.src = "https://code.jquery.com/jquery-3.6.0.min.js"; // Replace with the version you need
-script.onload = function() {
-    // jQuery loaded, now execute your scripts
-    loadUrlContent(urlToEdit); // Call your function after jQuery is loaded
-};
-document.head.appendChild(script);
-</script>
+<script src="{{asset('admin/customjs/editor.js')}}"></script>
 </body>
- 
-<script src="https://www.paypal.com/sdk/js?client-id=AQ1SZk5bKljeyE-sWNoN1LG9qUaJWBAMNmzrxrvyU2BbuHkfyv6Tl2NrhsHqDGF2w5T3AT3O8eJGMEzd&currency=USD"></script>
-    <script>
-        paypal.Buttons({
-            createOrder: function(data, actions) {
-                return actions.order.create({
-                    purchase_units: [{
-                        amount: {
-                            value: '10.00' // Amount to be charged
-                        }
-                    }]
-                });
-            },
-            onApprove: function(data, actions) {
-                return actions.order.capture().then(function(details) {
-                    alert('Transaction completed by ' + details.payer.name.given_name);
-                    // Optionally, you can send details to your server for processing
-                });
-            },
-            onError: function(err) {
-                console.error(err);
-                alert('An error occurred during the transaction.');
-            }
-        }).render('#paypal-button-container'); // Display the PayPal button
-    </script>
 @endsection

@@ -9,7 +9,21 @@ class HomeController extends Controller
 {
     public function preview(Request $request)
     {
-        return view('frontend/preview');
+        // Define the path to your HTML file in the public folder
+        $filePath = public_path('website/index.html');
+
+        // Check if the file exists
+        if (file_exists($filePath)) {
+            // Get the content of the file
+            $htmlContent = file_get_contents($filePath);
+
+             // Pass the content to the view
+             return view('frontend/preview', ['htmlContent' => $htmlContent]);
+        } else {
+            return response()->json([
+                'error' => 'File not found.'
+            ], 404);
+        }
     }
     public function editor(Request $request)
     {
