@@ -787,6 +787,6 @@
     var loader = document.getElementById("preloader");
     setTimeout(()=>{
       loader.style.display = "none";
-    },2000)
+    },3000)
 </script>
 @endsection
