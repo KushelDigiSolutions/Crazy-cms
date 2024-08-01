@@ -5,6 +5,10 @@
 
 @section('content')
 
+<div id="preloader">
+
+</div>
+
     <section id="navbar">
 
 <div class="navCont">
@@ -778,4 +782,11 @@
   </div>
 </div>
 </section>
+
+<script>
+    var loader = document.getElementById("preloader");
+    setTimeout(()=>{
+      loader.style.display = "none";
+    },2000)
+</script>
 @endsection
