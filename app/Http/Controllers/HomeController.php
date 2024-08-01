@@ -56,6 +56,11 @@ class HomeController extends Controller
     {
         return view('frontend/pagefive');
     }
+    public function pagesix(Request $request)
+    {
+        return view('frontend/pagesix');
+    }
+    
 
 
 }
