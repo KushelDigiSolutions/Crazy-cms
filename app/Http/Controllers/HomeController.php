@@ -7,11 +7,10 @@ use Session;
 
 class HomeController extends Controller
 {
-    public function preview(Request $request)
+    public function preview($variable)
     {
         // Define the path to your HTML file in the public folder
-        $filePath = public_path('website/index.html');
-
+        $filePath = public_path('previews/'.$variable.'/index.html');
         // Check if the file exists
         if (file_exists($filePath)) {
             // Get the content of the file

@@ -10,7 +10,7 @@ class Enquiry extends Model
     use SoftDeletes;
 
     protected $fillable = [
-        'id', 'name'
+        'id', 'name','url','location','status','user_id'
     ];
 
 }

@@ -12,13 +12,22 @@
     min-height: 0px !important;
 }
 .Projects{
-    height: 100%;
-    width: 100%;
-    position: absolute;
-    overflow-y: scroll;
-    margin-top: 88px;
-    top: 0;
+    display: flex;
+    height: 100vh; /* Full viewport height */
 }
+.Projects .mainHeader{
+    width: 200px;
+    background-color: #f4f4f4;
+    padding: 10px;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+}
+.Projects #secondDiv{
+    flex: 1;
+    padding: 20px;
+    position: relative; /* Allows absolute positioning of child elements */
+    background-color: #fff;
+    overflow: auto; 
+} 
 #secondDiv p, #secondDiv span {
     position: relative; /* Ensure positioning context for absolute child */
     display: inline-block; /* Ensure inline block to wrap content */

@@ -6,7 +6,9 @@
 @section('content')
 <link href="https://unpkg.com/cropperjs/dist/cropper.css" rel="stylesheet">
 <script src="https://unpkg.com/cropperjs/dist/cropper.js"></script>
-<header id="header" class="mainHeader">
+
+   <div class="Projects">
+   <header id="header" class="mainHeader">
         <nav class="navbar navbar-light  justify-content-between">
             <div>
                 <a class="navbar-brand">Pages</a>
@@ -23,20 +25,15 @@
                         <path
                             d="M17.3547 7.34897L14.8737 9.82996L16.2575 11.2137L21.1008 6.37049L16.2575 1.52722L14.8737 2.91102L17.3547 5.392H10.3374C6.01417 5.392 2.50952 8.89666 2.50952 13.2199C2.50952 17.5431 6.01417 21.0478 10.3374 21.0478H19.1438V19.0909H10.3374C7.09501 19.0909 4.4665 16.4624 4.4665 13.2199C4.4665 9.97747 7.09501 7.34897 10.3374 7.34897H17.3547Z"
                             fill="#7E8299" />
-                    </svg>
+                            </svg>
                 </div>
                 <button class="btn preview_btn my-2 my-sm-0" id="toggleEditingButton" type="button">Enable Editing</button>
             </form>
         </nav>
     </header>
-   <div class="Projects">
-   <div id="inlineToolbar">
-    <button class="inlineToolbarButton" data-command="bold"><strong>B</strong></button>
-    <button class="inlineToolbarButton" data-command="italic"><em>I</em></button>
-    <button class="inlineToolbarButton" data-command="underline"><u>U</u></button>
-</div>
     <div id="secondDiv">
-        {!! $htmlContent !!}
+     <!--    xczzss$htmlContent !!} -->
+         <iframe src="http://localhost:8081/crazycms/public/previews/firstchoicediningcom/" id="baba" name="baba"  width="100%" height="100%">
     </div>
    </div>
 

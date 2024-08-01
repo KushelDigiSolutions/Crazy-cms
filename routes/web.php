@@ -26,7 +26,7 @@ Route::middleware(['web'])->group(function () {
         return view('frontend/home');
     });
     
-    Route::get('/preview', [HomeController::class, 'preview']);
+    Route::get('/preview/{variable}', [HomeController::class, 'preview']);
     Route::get('/editor', [HomeController::class, 'editor']);
     Route::get('/editor1', [HomeController::class, 'editor1']);
     Route::get('/page1', [HomeController::class, 'pageone']);

@@ -47,7 +47,7 @@ function submitForm() {
         success: function(response) {
             // Handle success
             setTimeout(function(){ 
-                window.location.href = window.appConfig.baseUrl+'/preview';
+                window.location.href = window.appConfig.baseUrl+'/preview/'+response.url;
             },5000) 
             
             console.log('Success:', response);
