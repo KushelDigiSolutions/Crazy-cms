@@ -5,9 +5,26 @@
 
 @section('content')
 
-<div id="preloader">
+<!-- <div id="preloader">
 
-</div>
+</div> -->
+
+<style>
+    .set{
+      position: fixed;
+      background-color: white;
+      width: 400px;
+      height: 400px;
+      max-width: 100%;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%,-50%);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+</style>
 
     <section id="navbar">
 
@@ -62,10 +79,14 @@
   <div class="row">
     <div class="col-lg-6 col-md-9 banner_left">
       <h1>Welcome to Crazy Simple</h1>
+      
       <p>
         We aren’t Crazy, but we do give you tools galore to easily produce
         your website.
       </p>
+      <div  id="pretight">
+        
+      </div>
       <button type="button" class="btn btn-light">
         <span> GET STARTED</span>
       </button>
@@ -138,7 +159,7 @@
       <input class="web_uri" type="ttextext" id="webUrlInput" placeholder="Enter your website Address" />
     </div>
 
-    <div onclick="submitForm()" class="startBtn">Start</div>
+    <div  onclick="submitForm()" class="startBtn">Start</div>
 
   </div>
 
