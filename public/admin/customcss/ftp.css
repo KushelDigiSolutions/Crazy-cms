@@ -93,7 +93,27 @@
 #crazy-crm-page1 .crazy-crm-left-form{
     overflow-y: auto;
 }
-
+.prot{
+    width: 20em !important;
+}
+.dright{
+    width: 16em !important;
+    /* width: 100% !important; */
+    margin-right: 15px;
+}
+.seb{
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.seb1{
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   height: 100vh;
+   flex-direction: column;
+}
 @media(max-width:1075px){
     #crazy-crm-page1 .crazy-crm-button button{
         width: 250px;

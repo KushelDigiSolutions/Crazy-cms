@@ -35,6 +35,8 @@ Route::middleware(['web'])->group(function () {
     Route::get('/page4', [HomeController::class, 'pagefour']);
     Route::get('/page5', [HomeController::class, 'pagefive']);
     Route::get('/page6', [HomeController::class, 'pagesix']);
+    Route::get('/page7', [HomeController::class, 'pageseven']);
+    Route::get('/page8', [HomeController::class, 'pageeight']);
 });
 
 // Login with OTP Routes

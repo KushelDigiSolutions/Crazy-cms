@@ -60,7 +60,13 @@ class HomeController extends Controller
     {
         return view('frontend/pagesix');
     }
-    
-
+    public function pageseven(Request $request)
+    {
+        return view('frontend/pageseven');
+    }
+    public function pageeight(Request $request)
+    {
+        return view('frontend/pageeight');
+    }
 
 }
