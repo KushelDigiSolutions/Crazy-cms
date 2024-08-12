@@ -32,7 +32,7 @@ Route::middleware(['web'])->group(function () {
     Route::get('/page1', [HomeController::class, 'pageone']);
     Route::get('/page2', [HomeController::class, 'pagetwo']);
     Route::get('/page3', [HomeController::class, 'pagethree']);
-    Route::get('/page4', [HomeController::class, 'pagefour']);
+    Route::get('/check-ftp', [HomeController::class, 'pagefour']);
     Route::get('/page5', [HomeController::class, 'pagefive']);
     Route::get('/page6', [HomeController::class, 'pagesix']);
 });

@@ -38,10 +38,35 @@ class SubscriptionController extends Controller
         return redirect()->route('admin.subscription.index')->with('success',$msg);
     }
 
+    public function update(Request $request, Subscription $subscription)
+    {
+        // $subscription = new Subscription();
+        $subscription = Subscription::find($request->id);
+        $subscription->name = $request->name;
+        $subscription->mrp = $request->mrp;
+        $subscription->price = $request->sale_price;
+        $subscription->monthly_price = $request->monthly_price;
+        $subscription->status = is_array($request->status) ? $request->status[0] : $request->status;
+        
+        // Encode the description and status arrays as JSON
+        $subscription->items = json_encode([
+            'descriptions' => $request->description,
+            'statuses' => $request->status
+        ]);
+        
+        $subscription->save();
+        
+                return redirect()->route('admin.subscription.index')->with('success', 'Subscription added successfully');
+
+    }
+
+
     public function edit($id)
     {
+        
         $data = Subscription::where('id',decrypt($id))->first();
-        return view('admin.subscription.edit',compact('data'));
+        $items = json_decode($data->items, true);
+        return view('admin.subscription.edit',compact('data','items'));
     }
 
     public function destroy($id)

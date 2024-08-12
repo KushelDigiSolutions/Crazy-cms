@@ -17,6 +17,15 @@
                 </a>
             </li>
             <li class="nav-item">
+                <a href="{{ route('admin.customer') }}"
+                    class="nav-link {{ Route::is('admin.customer') ? 'active' : '' }}">
+                    <i class="nav-icon fas fa-user"></i>
+                    <p>Customer
+                        <span class="badge badge-info right">{{ $userCount }}</span>
+                    </p>
+                </a>
+            </li>
+            <li class="nav-item">
                 <a href="{{ route('admin.role.index') }}"
                     class="nav-link {{ Route::is('admin.role.index') ? 'active' : '' }}">
                     <i class="nav-icon fas fa-user-tag"></i>
@@ -101,6 +110,13 @@
                 </a>
             </li> -->
         @endrole
+        <li class="nav-item">
+            <a href="{{ route('admin.mysites') }}"
+                class="nav-link {{ Route::is('admin.mysites') ? 'active' : '' }}">
+                <i class="nav-icon fas fa-id-card"></i>
+                <p>My Sites</p>
+            </a>
+        </li>
         <li class="nav-item">
             <a href="{{ route('admin.profile.edit') }}"
                 class="nav-link {{ Route::is('admin.profile.edit') ? 'active' : '' }}">

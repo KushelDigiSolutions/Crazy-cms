@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use Session;
 use App\Models\Enquiry;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 
 class HomeApiController extends Controller
@@ -95,4 +96,58 @@ class HomeApiController extends Controller
         // Return the extracted name
         return $name;
     }
+
+
+function checkHtmlContentInIndex($ftpHost, $ftpUser, $ftpPassword, $directory)
+{
+    // Establish FTP connection
+    $connection = ftp_connect($ftpHost);
+    $login = ftp_login($connection, $ftpUser, $ftpPassword);
+
+    if (!$connection || !$login) {
+        return 'Connection failed!';
+    }
+
+    // Navigate to the directory
+    ftp_chdir($connection, $directory);
+
+    // Get the list of files in the directory
+    $files = ftp_nlist($connection, ".");
+    $indexFile = '';
+
+    // Identify the index file
+    foreach ($files as $file) {
+        if (stripos($file, 'index.php') !== false || stripos($file, 'index.html') !== false) {
+            $indexFile = $file;
+            break;
+        }
+    }
+
+    if (!$indexFile) {
+        return 'Index file not found!';
+    }
+
+    // Get the content of the index file
+    $localFile = storage_path("app/{$indexFile}");
+    ftp_get($connection, $localFile, $indexFile, FTP_BINARY);
+
+    $content = file_get_contents($localFile);
+
+    // Analyze content to check HTML ratio
+    $htmlTags = substr_count($content, '<');
+    $phpTags = substr_count($content, '<?php');
+
+    $totalTags = $htmlTags + $phpTags;
+
+    if ($totalTags == 0) {
+        return 'No HTML or PHP tags found in the index file!';
+    }
+
+    $htmlRatio = ($htmlTags / $totalTags) * 100;
+
+    ftp_close($connection);
+
+    return $htmlRatio > 80 ? 'More than 80% HTML' : 'Less than 80% HTML';
+}
+
 }

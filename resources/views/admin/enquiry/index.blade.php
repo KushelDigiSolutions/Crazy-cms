@@ -6,12 +6,26 @@
             <div class="card-tools"><a href="{{ route('admin.enquiry.create') }}" class="btn btn-sm btn-primary">Add</a></div>
         </div>
         <div class="card-body">
-            <table class="table table-striped" id="itemTable">
+            <div class="row">
+            <div class="col-md-3">
+            <select name="status" id="status" class="form-control" required>
+            <option value="">Show All</option>
+            <option value="1">Active</option>
+            <option value="0">Inactive</option>
+        </select>
+    </div>
+        <div class="col-md-9"></div>
+        </div>
+            <table class="table table-striped" id="enquiryTable">
                 <thead>
                     <tr>
                         <th>#</th>
                         <th>Website Address</th>
+                        <th>Website Url</th>
+                        <th>Location</th>
                         <th>Created</th>
+                        <th>Statu</th>
+                        <th>Username</th>
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -20,8 +34,11 @@
                         <tr>
                             <td>{{ $item->id }}</td>
                             <td>{{ $item->name }}</td>
+                            <td>{{ $item->url }}</td>
+                            <td>{{ $item->location }}</td>
                             <td>{{ $item->created_at }}</td>
-                        
+                            <td>{{ $item->status == 1 ? 'Active User' : 'Lead' }}</td>
+                            <td>{{ $item->user ? $item->user->name : 'No User' }}</td>
                             <td>
                                 <form action="{{ route('admin.enquiry.destroy', encrypt($item->id)) }}" method="POST"
                                     onsubmit="return confirm('Are sure want to delete?')">
@@ -37,7 +54,47 @@
         </div>
     </div>
     @section('js')
-        <script>
+
+    <script>
+    $(document).ready(function() {
+        $('#enquiryTable').DataTable({
+            "paging": true,
+            "lengthChange": false,
+            "searching": true,
+            "ordering": true,
+            "info": true,
+            "autoWidth": true,
+        });
+
+    $('#status').change(function() {
+    var status = $(this).val();
+
+    alert(status);
+    $.ajax({
+    url: '{{ route("admin.enquiry.filter") }}',
+    type: 'GET',
+    data: { status: status },
+    success: function(data) {
+        console.log(data);
+        $('tbody').html(data); 
+    },
+    error: function(xhr) {
+        console.log(xhr.responseText); 
+    }
+});
+});
+});
+    </script>
+    <style>
+        td {
+    max-width: 300px; /* Set your desired width */
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    white-space: normal;
+}
+    </style>
+
+        <!-- <script>
             $(function() {
                 $('#itemTable').DataTable({
                     "paging": true,
@@ -46,6 +103,6 @@
                     "responsive": true,
                 });
             });
-        </script>
+        </script> -->
     @endsection
 </x-admin>
