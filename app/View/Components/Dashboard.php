@@ -20,11 +20,20 @@ class Dashboard extends Component
         $user = User::count();
         view()->share('user',$user);
         
-        $category = Category::count();
-        view()->share('category',$category);
-        
-        $product = Product::count();
-        view()->share('product',$product);
+        // $category = Category::count();
+        // view()->share('category',$category);
+
+        $userStandardPlan = User::where('user_type', 1)->count();
+        view()->share('userStandardPlan',$userStandardPlan);
+
+        $userProfessionPlan = User::where('user_type', 2)->count();
+        view()->share('userProfessionPlan',$userProfessionPlan);
+
+        $userPrimiumPlan = User::where('user_type', 3)->count();
+        view()->share('userPrimiumPlan',$userPrimiumPlan);
+
+        // $product = Product::count();
+        // view()->share('product',$product);
         
         $collection = Collection::count();
         view()->share('collection',$collection);

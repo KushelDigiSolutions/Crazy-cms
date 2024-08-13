@@ -29,7 +29,7 @@
                 <div class="inner int">
                 <img src="{{asset('admin/img/sipup.svg')}}" alt="">
                     <p>Standard Plan Users</p>
-                    <h3>{{ $category }}</h3>
+                    <h3>{{ $userStandardPlan }}</h3>
                 </div>
                 <!-- <div class="icon">
                     <i class="fas fa-list-alt"></i>
@@ -43,7 +43,7 @@
                 <div class="inner int">
                 <img src="{{asset('admin/img/umi.svg')}}" alt="">
                     <p>Professional Plan Users</p>
-                    <h3>{{ $product }}</h3>
+                    <h3>{{ $userProfessionPlan }}</h3>
                 </div>
                 <!-- <div class="icon">
                     <i class="fas fas fa-th"></i>
@@ -57,7 +57,7 @@
                 <div class="inner int">
                 <img src="{{asset('admin/img/lime.svg')}}" alt="">
                     <p>Premium Plan Users</p>
-                    <h3>{{ $collection }}</h3>
+                    <h3>{{ $userPrimiumPlan }}</h3>
                 </div>
                 <!-- <div class="icon">
                     <i class="fas fas fa-file-pdf"></i>
@@ -228,18 +228,12 @@
                           <h5 class="card-title">Kushel Digi</h5>
                           <p class="card-text">1 Page</p>
                         </div>
-                        
-                     
                       </div>
                 </div>
-
             </div>
         </div>
     </div>
     @endrole
-    </div>
-
-   
-    
+    </div>    
 </div>
 
