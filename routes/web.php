@@ -5,6 +5,7 @@ use App\Http\Controllers\SocialiteController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Str;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,6 +30,7 @@ Route::middleware(['web'])->group(function () {
     Route::get('/preview/{variable}', [HomeController::class, 'preview']);
     Route::get('/check-ftp', [HomeController::class, 'checkFtp']);
     Route::get('/sign-up', [HomeController::class, 'signup'])->name('front.signup');
+    Route::post('/logout', [UserController::class, 'logout'])->name('logout');
     Route::get('/editor', [HomeController::class, 'editor']);
     Route::get('/editor1', [HomeController::class, 'editor1']);
     Route::get('/page1', [HomeController::class, 'pageone']);

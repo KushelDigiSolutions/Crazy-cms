@@ -24,8 +24,9 @@
                         <th>Website Url</th>
                         <th>Location</th>
                         <th>Created</th>
-                        <th>Statu</th>
-                        <th>Username</th>
+                        <th>Status</th>
+                        <th>Email</th>
+                        <th>Help</th>
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -37,9 +38,13 @@
                             <td>{{ $item->url }}</td>
                             <td>{{ $item->location }}</td>
                             <td>{{ $item->created_at }}</td>
-                            <td>{{ $item->status == 1 ? 'Active User' : 'Lead' }}</td>
-                            <td>{{ $item->user ? $item->user->name : 'No User' }}</td>
+                            <td>{{ $item->status == 1 ? 'Paid User' : 'Not Paid' }}</td>
+                            <td>{{ $item->email }}</td>
+                            <td><a  class="btn btn-sm btn-danger" href="{{ route('admin.loginAsUser', $item->id) }}" target="_blank">
+    Login as {{ $item->name }}
+</a></td>
                             <td>
+                            
                                 <form action="{{ route('admin.enquiry.destroy', encrypt($item->id)) }}" method="POST"
                                     onsubmit="return confirm('Are sure want to delete?')">
                                     @method('DELETE')

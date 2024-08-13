@@ -128,7 +128,7 @@
                 <p>Profile</p>
             </a>
         </li>
-
+        @role('admin')
         <li class="nav-item">
             <a href="{{ route('admin.setting.edit') }}"
                 class="nav-link {{ Route::is('admin.setting.edit') ? 'active' : '' }}">
@@ -136,7 +136,15 @@
                 <p>Settings</p>
             </a>
         </li>
-
-
+        @endrole
+        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+    @csrf
+</form>
+<li class="nav-item">
+<a href="#"   class="nav-link {{ Route::is('admin.setting.edit') ? 'active' : '' }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+<i class="nav-icon fas fa-wrench"></i>
+<p>Logout</p>
+</a>
+</li>
     </ul>
 </nav>

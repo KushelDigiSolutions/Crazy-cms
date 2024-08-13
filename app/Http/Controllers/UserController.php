@@ -7,6 +7,9 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Validation\Rule;
 use Spatie\Permission\Models\Role;
+use App\Models\Subscription;
+use Illuminate\Support\Facades\Validator;
+use App\Providers\RouteServiceProvider;
 use DB;
 
 class UserController extends Controller
@@ -67,6 +70,25 @@ class UserController extends Controller
         return redirect()->back()->with('success','User deleted successfully.');
     }
 
+    public function customer(){
+        $data = User::where('user_type',3)->get();
+       
+       return view('admin.enquiry.customer',compact('data')); 
+   }
+
+    public function loginAsUser($userId)
+    {
+        $user = User::find($userId);
+
+        if (!$user) {
+            return redirect()->back()->with('error', 'User not found.');
+        }
+
+        Auth::login($user);
+
+        return redirect(RouteServiceProvider::HOME); // or any route you want to redirect to
+    }
+
     public function userLogin(Request $request)
     {
         try {
@@ -82,6 +104,18 @@ class UserController extends Controller
         } catch (\Throwable $e) {
             return back();
         }
+    }
+    public function logout(Request $request)
+    {
+        Auth::logout(); // Logs the user out
+
+        // Invalidate the user's session
+        $request->session()->invalidate();
+
+        // Regenerate the session to avoid session fixation attacks
+        $request->session()->regenerateToken();
+
+        return redirect('/'); // Redirect the user to the home page or login page
     }
 
     public function addMySite()
@@ -139,7 +173,7 @@ class UserController extends Controller
         $validator = Validator::make($request->all(), [
             'name' => 'required|string|max:255',
             'email' => 'required|email|unique:users,email',
-            'password' => 'required|string|min:8|confirmed',
+            'password' => 'required|string|min:8',
             'plan' => 'required|integer|exists:subscriptions,id',
         ]);
         dd($validator);

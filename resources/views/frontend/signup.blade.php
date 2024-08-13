@@ -223,7 +223,7 @@
         
         </div>
 
-       <button type="submit" class="btn btn-primary brn-sm">Signup And Pay</button>
+       <button type="button" onclick="customerRegistrationBtn()" class="btn btn-primary brn-sm">Signup And Pay</button>
         </div>
 </section>
 </form>
@@ -246,16 +246,24 @@
     st.classList.add("song");
 </script>
 <script>
-    $(document).ready(function() {
-        $('#customerRegistration').on('submit', function(event) {
+        function customerRegistrationBtn(){
             event.preventDefault(); // Prevent default form submission
 
             let formData = $(this).serialize(); // Serialize form data
-
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
             $.ajax({
                 url: '{{ route('customerRegister') }}', // URL for the route
                 type: 'POST',
-                data: formData,
+                data: {
+                    name: $('input[name="name"]').val(),
+                    email: $('input[name="email"]').val(),
+                    password: $('input[name="password"]').val(),
+                    plan: $('input[name="plan"]').val(),
+                },
                 success: function(response) {
                     if (response.success) {
                         if (response.exists) {
@@ -273,8 +281,7 @@
                     alert('An error occurred: ' + xhr.status + ' ' + xhr.statusText);
                 }
             });
-        });
-    });
+        }
 </script>
 
 @endsection

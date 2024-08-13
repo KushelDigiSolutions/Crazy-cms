@@ -87,11 +87,5 @@ class EnquiryController extends Controller
    
     }
 
-    public function customer(){
-         $data = Enquiry::where('user_id',3)->get();
-         $user = Enquiry::with('user')->get();
-        // $data = Enquiry::orderBy('id','DESC')->get();
-        //dd($data);
-        return view('admin.enquiry.customer',compact('data','user')); 
-    }
+    
 }

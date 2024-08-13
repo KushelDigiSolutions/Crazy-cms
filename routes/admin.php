@@ -15,6 +15,7 @@ use App\Http\Controllers\SubCateoryController;
 use Illuminate\Support\Facades\Route;
 
 Route::prefix('admin')->name('admin.')->middleware(['auth', 'verified'])->group(function () {
+    Route::get('/admin/login-as-user/{id}', [UserController::class, 'loginAsUser'])->name('loginAsUser');
     Route::get('/dashboard',[ProfileController::class,'dashboard'])->name('dashboard');
     Route::put('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');   
@@ -40,7 +41,7 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'verified'])->group(
         Route::put('/subscription', [SubscriptionController::class, 'update'])->name('subscription.update');
         Route::get('/enquiry/filter', [EnquiryController::class, 'filter'])->name('enquiry.filter');
         Route::resource('enquiries', EnquiryController::class)->except(['show']);
-        Route::get('customer', [EnquiryController::class,'customer'])->name('customer');
+        Route::get('customer', [UserController::class,'customer'])->name('customer');
         Route::post('/user/login', [UserController::class,'userLogin'])->name('user.login');
     });
 });
