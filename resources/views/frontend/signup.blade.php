@@ -253,7 +253,7 @@
             let formData = $(this).serialize(); // Serialize form data
 
             $.ajax({
-                url: '{{ route('admin.customerRegister') }}', // URL for the route
+                url: '{{ route('customerRegister') }}', // URL for the route
                 type: 'POST',
                 data: formData,
                 success: function(response) {
@@ -262,11 +262,12 @@
                             alert('User already exists. Please log in.');
                         } else {
                             // Open PayPal payment gateway with the plan price
-                            window.location.href = response.paypal_url;
+                          //  window.location.href = response.paypal_url;
                         }
                     } else {
                         alert('An error occurred. Please try again.');
                     }
+                      alert(' Please log in.');
                 },
                 error: function(xhr) {
                     alert('An error occurred: ' + xhr.status + ' ' + xhr.statusText);

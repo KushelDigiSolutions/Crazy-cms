@@ -5,10 +5,16 @@
 
 @section('content')
 
-<!-- <div id="preloader">
+@php
+    use Illuminate\Support\Facades\DB;
 
-</div> -->
+    // Fetch setting data
+    $setting = DB::table('settings')->first();
+@endphp
 
+@if ($setting && $setting->status === 0)
+    <h1 style="background: yellow;">This is under Maintenance</h1>
+@else
 
 
     <section id="navbar">
@@ -58,20 +64,16 @@
 
 
 </section>
-
+@endif
 <section id="banner_first">
 <div class=" com1">
   <div class="row">
     <div class="col-lg-6 col-md-9 banner_left">
       <h1>Welcome to Crazy Simple</h1>
-      
       <p>
         We aren’t Crazy, but we do give you tools galore to easily produce
         your website.
       </p>
-      <div  id="pretight">
-        
-      </div>
       <button type="button" class="btn btn-light">
         <span> GET STARTED</span>
       </button>
@@ -144,7 +146,7 @@
       <input class="web_uri" type="ttextext" id="webUrlInput" placeholder="Enter your website Address" />
     </div>
 
-    <div  onclick="submitForm()" class="startBtn">Start</div>
+    <div onclick="submitForm()" class="startBtn">Start</div>
 
   </div>
 
@@ -788,11 +790,4 @@
   </div>
 </div>
 </section>
-
-<script>
-    var loader = document.getElementById("preloader");
-    setTimeout(()=>{
-      loader.style.display = "none";
-    },3000)
-</script>
 @endsection

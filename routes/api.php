@@ -28,6 +28,6 @@ Route::middleware(['web'])->group(function () {
         Route::post('/setWebUrl', [HomeApiController::class, 'setWebUrl']);
         Route::post('/downloadWeb', [HomeApiController::class, 'downloadWeb']);
         Route::post('/verify-ftp', [HomeApiController::class, 'analyzeFtp'])->name('analyze.ftp');
-        Route::post('/admin/customer-register', [UserController::class, 'customerRegister'])->name('admin.customerRegister');
+        Route::post('/admin/customer-register', [UserController::class, 'customerRegister'])->name('customerRegister');
     });
 });
