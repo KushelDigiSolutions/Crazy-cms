@@ -126,14 +126,13 @@
         </li>
 
         <li class="nav-item">
-                <a href="{{ route('admin.permission.index') }}"
-                    class="nav-link {{ Route::is('admin.permission.index') ? 'actives' : '' }}">
-                    <i class="nav-icon fas fa-hat-cowboy"></i>
-                    <p>Settings
-                        <span class="badge badge-danger right">{{ $PermissionCount }}</span>
-                    </p>
-                </a>
-            </li>
+            <a href="{{ route('admin.setting.edit') }}"
+                class="nav-link {{ Route::is('admin.setting.edit') ? 'active' : '' }}">
+                <i class="nav-icon fas fa-id-card"></i>
+                <p>Settings</p>
+            </a>
+        </li>
+
 
     </ul>
 </nav>

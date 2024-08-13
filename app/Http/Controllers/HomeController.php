@@ -27,6 +27,13 @@ class HomeController extends Controller
             ], 404);
         }
     }
+
+    public function checkFtp(Request $request)
+    {
+
+        return view('frontend/check-ftp');
+    }
+
     public function editor(Request $request)
     {
         return view('frontend/editor');

@@ -9,22 +9,7 @@
 
 </div> -->
 
-<style>
-    .set{
-      position: fixed;
-      background-color: white;
-      width: 400px;
-      height: 400px;
-      max-width: 100%;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%,-50%);
-      border-radius: 8px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-</style>
+
 
     <section id="navbar">
 

@@ -3,6 +3,7 @@
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CollectionController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\SettingController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\PermissionController;
@@ -15,9 +16,10 @@ use Illuminate\Support\Facades\Route;
 
 Route::prefix('admin')->name('admin.')->middleware(['auth', 'verified'])->group(function () {
     Route::get('/dashboard',[ProfileController::class,'dashboard'])->name('dashboard');
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::put('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');   
-    Route::patch('/settings', [ProfileController::class, 'setting'])->name('settings');
+    Route::put('/settings', [SettingController::class, 'update'])->name('setting.update');
+    Route::get('/settings', [SettingController::class, 'edit'])->name('setting.edit');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::get('/mysites', [UserController::class,'mySite'])->name('mysites');
     Route::get('/addmysites', [UserController::class,'addMySite'])->name('addmysites');
