@@ -28,13 +28,12 @@ Route::middleware(['web'])->group(function () {
     
     Route::get('/preview/{variable}', [HomeController::class, 'preview']);
     Route::get('/check-ftp', [HomeController::class, 'checkFtp']);
-    Route::get('/verify-ftp', [HomeController::class, 'verifyFtp']);
+    Route::get('/sign-up', [HomeController::class, 'signup'])->name('front.signup');
     Route::get('/editor', [HomeController::class, 'editor']);
     Route::get('/editor1', [HomeController::class, 'editor1']);
     Route::get('/page1', [HomeController::class, 'pageone']);
     Route::get('/page2', [HomeController::class, 'pagetwo']);
     Route::get('/page3', [HomeController::class, 'pagethree']);
-    Route::get('/page5', [HomeController::class, 'pagefive']);
     Route::get('/page6', [HomeController::class, 'pagesix']);
 });
 

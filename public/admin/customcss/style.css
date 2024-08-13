@@ -752,6 +752,12 @@ img {
     background-color: #0F3D5F;
 
 }
+.planWhitewrap .chooseBtn2active {
+    background-color: #0F3D5F !important;
+}
+.planWhitewrap .chooseBtn2active span{
+    color: white !important;
+}
 
 .planWhitewrap .chooseBtn2 span {
     font-family: Inter;

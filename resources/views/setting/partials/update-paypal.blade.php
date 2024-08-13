@@ -9,32 +9,32 @@
         </p> -->
     </header>
 
-    <form method="post" action="{{ route('password.update') }}" class="mt-6 space-y-6">
+    <form method="post" action="{{ route('admin.settings.update') }}" class="mt-6 space-y-6">
         @csrf
         @method('put')
         
         <div class="mb-3">
-            <x-input-label for="current_password" :value="__('Production Secret Key')" />
-            <x-text-input id="current_password" name="current_password" type="password" class="form-control" autocomplete="current-password" />
-            <x-input-error :messages="$errors->updatePassword->get('current_password')" class="mt-2 text-danger" />
+            <x-input-label for="production_secret_key" :value="__('Production Secret Key')" />
+            <x-text-input id="production_secret_key" name="production_secret_key" type="text" class="form-control" autocomplete="production_secret_key" />
+            <x-input-error :messages="$errors->updatePassword->get('production_secret_key')" class="mt-2 text-danger" />
         </div>
 
         <div class="mb-3">
             <x-input-label for="password" :value="__('Production Secret Password')" />
-            <x-text-input id="password" name="password" type="password" class="form-control" autocomplete="new-password" />
-            <x-input-error :messages="$errors->updatePassword->get('password')" class="mt-2 text-danger" />
+            <x-text-input id="production_secret_password" name="production_secret_password" type="text" class="form-control" autocomplete="production_secret_password" />
+            <x-input-error :messages="$errors->updatePassword->get('production_secret_password')" class="mt-2 text-danger" />
         </div>
 
         <div class="mb-3">
             <x-input-label for="current_password" :value="__('Testing Secret Key')" />
-            <x-text-input id="current_password" name="current_password" type="password" class="form-control" autocomplete="current-password" />
-            <x-input-error :messages="$errors->updatePassword->get('current_password')" class="mt-2 text-danger" />
+            <x-text-input id="testing_secret_key" name="testing_secret_key" type="text" class="form-control" autocomplete="testing_secret_password" />
+            <x-input-error :messages="$errors->updatePassword->get('testing_secret_key')" class="mt-2 text-danger" />
         </div>
 
         <div class="mb-3">
             <x-input-label for="password" :value="__('Testing Secret Password')" />
-            <x-text-input id="password" name="password" type="password" class="form-control" autocomplete="new-password" />
-            <x-input-error :messages="$errors->updatePassword->get('password')" class="mt-2 text-danger" />
+            <x-text-input id="testing_secret_password" name="testing_secret_password" type="text" class="form-control" autocomplete="testing_secret_password" />
+            <x-input-error :messages="$errors->updatePassword->get('testing_secret_password')" class="mt-2 text-danger" />
         </div>
 
         <div class="flex items-center gap-4">

@@ -60,6 +60,14 @@
     border: 1px solid #C8C8C8;
     border-radius: 6px;
 }
+#crazy-crm-page1 .crazy-crm-left-form-main select{
+    width: 40em;
+    max-width: 100%;
+    padding: 10px;
+    border: 1px solid #C8C8C8;
+    border-radius: 6px;
+    background: #fff;
+}
 #crazy-crm-page1 .crazy-crm-right-image{
     background-color: #0F3D5F;
     width: 50%;

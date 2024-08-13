@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rule;
 use App\User;
+use App\Models\Subscription;
 use Session;
 use DB;
 class HomeController extends Controller
@@ -32,6 +33,15 @@ class HomeController extends Controller
     {
 
         return view('frontend/check-ftp');
+    }
+
+    public function signup(Request $request)
+    {
+        if(session('validFtpSite') == ""){
+            dd("redirecting 404");
+        }
+        $subscriptions = Subscription::orderBy('id','ASC')->get();
+        return view('frontend/signup',compact('subscriptions'));
     }
 
     public function editor(Request $request)
@@ -63,10 +73,7 @@ class HomeController extends Controller
 
         return view('frontend/pagefour');
     }
-    public function pagefive(Request $request)
-    {
-        return view('frontend/pagefive');
-    }
+ 
     public function pagesix(Request $request)
     {
         return view('frontend/pagesix');

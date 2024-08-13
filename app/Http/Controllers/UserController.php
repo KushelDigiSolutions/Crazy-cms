@@ -131,4 +131,67 @@ class UserController extends Controller
         // return redirect()->route('admin.user.mysites',compact('results'));
         return view('mysites', compact('results'));
     }
+
+    
+    public function customerRegister(Request $request)
+    {
+        // Validate the form data
+        $validator = Validator::make($request->all(), [
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|unique:users,email',
+            'password' => 'required|string|min:8|confirmed',
+            'plan' => 'required|integer|exists:subscriptions,id',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json(['success' => false, 'errors' => $validator->errors()]);
+        }
+
+        // Check if user already exists
+        $user = User::where('email', $request->input('email'))->first();
+
+        if ($user) {
+            if ($user->payment_done) {
+                return response()->json(['success' => false, 'exists' => true]);
+            }
+
+            // Get the plan price and id
+            $subscription = Subscription::find($request->input('plan'));
+
+            // Return the plan price and user id for PayPal
+            return response()->json([
+                'success' => true,
+                'paypal_url' => $this->getPayPalUrl($subscription->price, $user->id),
+                'price' => $subscription->price,
+                'user_id' => $user->id,
+                'user_type' => 3
+            ]);
+        }
+
+        // Create a new user
+        $user = User::create([
+            'name' => $request->input('name'),
+            'email' => $request->input('email'),
+            'password' => bcrypt($request->input('password')),
+        ]);
+
+        // Get the plan price
+        $subscription = Subscription::find($request->input('plan'));
+
+        // Return the plan price and user id for PayPal
+        return response()->json([
+            'success' => true,
+            'paypal_url' => $this->getPayPalUrl($subscription->price, $user->id),
+            'price' => $subscription->price,
+            'user_id' => $user->id
+        ]);
+    }
+
+    private function getPayPalUrl($price, $userId)
+    {
+        // Generate the PayPal payment URL with the price and userId
+        // You will need to implement this based on your PayPal integration
+        // For example:
+        return 'https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=YOUR_PAYPAL_EMAIL&amount=' . $price . '&currency_code=USD&item_name=Subscription&custom=' . $userId;
+    }
 }
