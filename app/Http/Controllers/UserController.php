@@ -176,7 +176,6 @@ class UserController extends Controller
             'password' => 'required|string|min:8',
             'plan' => 'required|integer|exists:subscriptions,id',
         ]);
-        dd($validator);
         if ($validator->fails()) {
             return response()->json(['success' => false, 'errors' => $validator->errors()]);
         }

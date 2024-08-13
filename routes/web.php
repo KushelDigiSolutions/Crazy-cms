@@ -28,6 +28,7 @@ Route::middleware(['web'])->group(function () {
     });
     
     Route::get('/preview/{variable}', [HomeController::class, 'preview']);
+    Route::get('/editsite/{variable}', [HomeController::class, 'editsite']);
     Route::get('/check-ftp', [HomeController::class, 'checkFtp']);
     Route::get('/sign-up', [HomeController::class, 'signup'])->name('front.signup');
     Route::post('/logout', [UserController::class, 'logout'])->name('logout');

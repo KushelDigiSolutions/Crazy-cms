@@ -112,7 +112,7 @@
                 </a>
             </li> -->
         @endrole
-        @role('user')
+
         <li class="nav-item">
             <a href="{{ route('admin.mysites') }}"
                 class="nav-link {{ Route::is('admin.mysites') ? 'active' : '' }}">
@@ -120,7 +120,6 @@
                 <p>My Sites</p>
             </a>
         </li>
-        @endrole
         <li class="nav-item">
             <a href="{{ route('admin.profile.edit') }}"
                 class="nav-link {{ Route::is('admin.profile.edit') ? 'active' : '' }}">
@@ -136,6 +135,7 @@
                 <p>Settings</p>
             </a>
         </li>
+        
         @endrole
         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
     @csrf

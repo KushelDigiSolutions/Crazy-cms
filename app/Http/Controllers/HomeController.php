@@ -29,6 +29,25 @@ class HomeController extends Controller
         }
     }
 
+    public function editsite($variable)
+    {
+        // Define the path to your HTML file in the public folder
+        $filePath = public_path('editsite/'.$variable.'/index.html');
+        // Check if the file exists
+        if (file_exists($filePath)) {
+            // Get the content of the file
+            $htmlContent = file_get_contents($filePath);
+
+             // Pass the content to the view
+             return view('frontend/editsite', ['htmlContent' => $htmlContent]);
+        } else {
+            /* return response()->json([
+                'error' => 'File not found.'
+            ], 404); */
+            return view('frontend/editsite', ['htmlContent' => ""]);
+        }
+    }
+
     public function checkFtp(Request $request)
     {
 

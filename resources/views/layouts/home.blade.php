@@ -26,8 +26,8 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 </head>
 
+<div id="pretight"></div>
 <body class="hold-transition login-page">
-
     <!-- Content-box -->
     @yield('content')
     <!-- jQuery -->
