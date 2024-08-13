@@ -18,7 +18,7 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'verified'])->group(
     Route::get('/dashboard',[ProfileController::class,'dashboard'])->name('dashboard');
     Route::put('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');   
-    Route::put('/settings', [SettingController::class, 'update'])->name('setting.update');
+    Route::put('/settings', [SettingController::class, 'update'])->name('settings.update');
     Route::get('/settings', [SettingController::class, 'edit'])->name('setting.edit');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::get('/mysites', [UserController::class,'mySite'])->name('mysites');
