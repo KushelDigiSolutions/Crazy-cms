@@ -211,7 +211,7 @@
                            
                         </div>
                         @if($subscription->status)  
-                            <button class="chooseBtn2" data-id="{{$subscription->id}}" onclick="setPlan({{$sid}})" id="plan_{{$sid}}"><span>Choose Plan</span></button>
+                            <button class="chooseBtn2" type="button" data-id="{{$subscription->id}}" onclick="setPlan({{$sid}})" id="plan_{{$sid}}"><span>Choose Plan</span></button>
                         @else
                             <p class="notavailable">NOT AVAILABLE NOW</p>
                         @endif
@@ -219,7 +219,7 @@
                 </div>
             </div>
             @endforeach
-            <input type="hidden" name="plan" id="plan" value="0"/>
+            <input type="hidden" T name="plan" id="plan" value="0"/>
         
         </div>
 
