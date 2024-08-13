@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\Rule;
 use App\User;
 use Session;
 use DB;
@@ -66,13 +67,22 @@ class HomeController extends Controller
 
     public function store(Request $request)
     {
+        $request->validate([
+            'user_protocol' => 'required|string|max:255',
+            'user_host' => 'required|string|max:255|min:6',
+            'user_port' => 'required|string|max:255|min:6',
+            'user_name' => 'required|email',
+            'user_password' => 'required|string|max:255|min:6',
+            'url_path' => 'required|url',
+        ]);
+
         $userId = Auth::id();
         //  echo '<pre>'; print_r($userId); die;
        
     //    dd($request);
         $protocol = $request->input('user_protocol');
         $host = $request->input('user_host');
-        $port = $request->input('user_port');
+        $port = $request->input('user_host');
         $user = $request->input('user_name');
         $password = $request->input('user_password');
         $url = $request->input('url_path');
@@ -84,13 +94,42 @@ class HomeController extends Controller
             "password"=> bcrypt($password),
             "url" => $url,
             "user_id" => $userId,
-            "updated_at" => now()
-            
+            "updated_at" => now() 
         );
         DB::table('my_sites')->insert($data);
         return view('frontend/pagefour')->with('success','User created successfully.');
     }
-    
 
+    public function storeAdd(Request $request)
+    {
+        $request->validate([
+            'user_protocol' => 'required|string|max:255',
+            'user_host' => 'required|string|max:255|min:6',
+            'user_port' => 'required|string|max:255|min:6',
+            'user_name' => 'required|email',
+            'user_password' => 'required|string|max:255|min:6',
+            'url_path' => 'required|url',
+        ]);
+
+        $userId = Auth::id();
+        $protocol = $request->input('user_protocol');
+        $host = $request->input('user_host');
+        $port = $request->input('user_host');
+        $user = $request->input('user_name');
+        $password = $request->input('user_password');
+        $url = $request->input('url_path');
+        $data = array(
+            "protocol" => $protocol,
+            "host" => $host,
+            "port" => $port,     
+            "user"=> $user,
+            "password"=> bcrypt($password),
+            "url" => $url,
+            "user_id" => $userId,
+            "updated_at" => now() 
+        );
+        DB::table('my_sites')->insert($data);
+        return view('admin/addmysites')->with('success','User created successfully.');
+    }
 
 }

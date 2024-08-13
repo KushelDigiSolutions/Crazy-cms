@@ -16,9 +16,12 @@ use Illuminate\Support\Facades\Route;
 Route::prefix('admin')->name('admin.')->middleware(['auth', 'verified'])->group(function () {
     Route::get('/dashboard',[ProfileController::class,'dashboard'])->name('dashboard');
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');   
+    Route::patch('/settings', [ProfileController::class, 'setting'])->name('settings');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::get('/mysites', [UserController::class,'mySite'])->name('mysites');
+    Route::get('/addmysites', [UserController::class,'addMySite'])->name('addmysites');
+    // Route::post('/storeAdd', [UserController::class, 'storeAdd'])->name('storeAdd');
     Route::middleware(['role:admin'])->group(function(){
         Route::resource('user',UserController::class);
         Route::resource('role',RoleController::class);
@@ -37,6 +40,5 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'verified'])->group(
         Route::resource('enquiries', EnquiryController::class)->except(['show']);
         Route::get('customer', [EnquiryController::class,'customer'])->name('customer');
         Route::post('/user/login', [UserController::class,'userLogin'])->name('user.login');
-
     });
 });
