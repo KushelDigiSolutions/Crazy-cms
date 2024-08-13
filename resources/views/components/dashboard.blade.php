@@ -77,76 +77,22 @@
                          <p>View All</p>
                     </div>
                     <div class="main_user_card">
+                        @foreach($userlatest as $user )
                          <div class="main_card">
                             <div class="main_left">
                                <div class="main_img">
                                  <img src="{{asset('admin/img/un.svg')}}" alt="">  
                                </div>
                                <div class="main_content">
-                                   <span class="sp">Smith John</span>
-                                   <span class="sp1">India</span>
+                                   <span class="sp">{{ $user->name }}</span>
+                                   <span class="sp1">{{ $user->email }}</span>
                                </div>
                             </div>
                             <div class="main_right">
                             <img src="{{asset('admin/img/vn.svg')}}" alt="">  
                             </div>
                          </div>
-                         <div class="main_card">
-                            <div class="main_left">
-                               <div class="main_img">
-                                 <img src="{{asset('admin/img/un.svg')}}" alt="">  
-                               </div>
-                               <div class="main_content">
-                                   <span class="sp">Smith John</span>
-                                   <span class="sp1">India</span>
-                               </div>
-                            </div>
-                            <div class="main_right">
-                            <img src="{{asset('admin/img/vn.svg')}}" alt="">  
-                            </div>
-                         </div>
-                         <div class="main_card">
-                            <div class="main_left">
-                               <div class="main_img">
-                                 <img src="{{asset('admin/img/un.svg')}}" alt="">  
-                               </div>
-                               <div class="main_content">
-                                   <span class="sp">Smith John</span>
-                                   <span class="sp1">India</span>
-                               </div>
-                            </div>
-                            <div class="main_right">
-                            <img src="{{asset('admin/img/vn.svg')}}" alt="">  
-                            </div>
-                         </div>
-                         <div class="main_card">
-                            <div class="main_left">
-                               <div class="main_img">
-                                 <img src="{{asset('admin/img/un.svg')}}" alt="">  
-                               </div>
-                               <div class="main_content">
-                                   <span class="sp">Smith John</span>
-                                   <span class="sp1">India</span>
-                               </div>
-                            </div>
-                            <div class="main_right">
-                            <img src="{{asset('admin/img/vn.svg')}}" alt="">  
-                            </div>
-                         </div>
-                         <div class="main_card">
-                            <div class="main_left">
-                               <div class="main_img">
-                                 <img src="{{asset('admin/img/un.svg')}}" alt="">  
-                               </div>
-                               <div class="main_content">
-                                   <span class="sp">Smith John</span>
-                                   <span class="sp1">India</span>
-                               </div>
-                            </div>
-                            <div class="main_right">
-                            <img src="{{asset('admin/img/vn.svg')}}" alt="">  
-                            </div>
-                         </div>
+                         @endforeach
                     </div>
                 </div>
             </div>

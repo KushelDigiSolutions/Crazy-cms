@@ -35,6 +35,9 @@ class Dashboard extends Component
         // $product = Product::count();
         // view()->share('product',$product);
         
+        $userlatest = User::orderBy('id', 'DESC')->limit(5)->get();
+        view()->share(['userlatest' => $userlatest]);
+        
         $collection = Collection::count();
         view()->share('collection',$collection);
     }
