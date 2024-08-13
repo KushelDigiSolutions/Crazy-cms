@@ -61,10 +61,12 @@
                                         <th width="15%">Status</th>
                                         <th width="15%" class="text-center">Action</th>
                                     </tr>
-                                    @foreach ($items['descriptions'] as $key => $value)
+                                    
+                                    @foreach ($items as $key => $value)
+                                 
                                     <tr>
                                         <td>
-                                            <input type="text" class="form-control prddocs" name="description[]" style="overflow: hidden;" value="{{ $value }}" required />
+                                            <input type="text" class="form-control prddocs" name="description[]" style="overflow: hidden;" value="{{ $value["descriptions"] }}" required />
                                         </td>
                                         <td>
                                             <select name="statuses[]" id="status" class="form-control" required>
