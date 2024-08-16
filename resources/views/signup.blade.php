@@ -223,13 +223,16 @@
         
         </div>
 
-       <button type="button" onclick="customerRegistrationBtn(event)" class="btn btn-primary brn-sm">Signup And Pay</button>
+       <button type="button" onclick="customerRegistrationBtn()" class="btn btn-primary brn-sm">Signup And Pay</button>
         </div>
 </section>
 </form>
 
 
 </div> 
+
+
+
 
 <script>
     function setPlan(val){
@@ -239,108 +242,46 @@
         $('#plan_'+val+" span").html('Choosed');
         $("#plan").val($('#plan_'+val).attr('data-id'));
     }
-
-    function customerRegistrationBtn(event){
-        event.preventDefault(); 
-
-        // Remove previous error highlights
-        $('input').css('border', ''); 
-
-        // Validate form fields
-        let hasError = false;
-        $('input[required]').each(function() {
-            if ($(this).val().trim() === '') {
-                hasError = true;
-                $(this).css('border', '1px solid red'); // Highlight empty field
-            }
-        });
-
-        if (hasError) {
-            alert('Please fill in all required fields.');
-            return;
-        }
-
-        // If no validation error, proceed with the AJAX request
-        let formData = {
-            name: $('input[name="name"]').val(),
-            email: $('input[name="email"]').val(),
-            password: $('input[name="password"]').val(),
-            plan: $('input[name="plan"]').val(),
-            _token: '{{ csrf_token() }}' // Add CSRF token
-        };
-
-        $.ajax({
-            url: '{{ route('customerRegister') }}', 
-            type: 'POST',
-            data: formData,
-            success: function(response) {
-                if (response.success) {
-                    if (response.exists) {
-                        alert('User already exists. Please log in.');
-                    } else {
-                        // Open PayPal payment gateway with the plan price
-                        // window.location.href = response.paypal_url;
-                        alert('Please log in.');
-                    }
-                } else {
-                    alert('An error occurredd. Please try again.');
-                }
-            },
-            error: function(xhr) {
-                alert('An error occurred: ' + xhr.status + ' ' + xhr.statusText);
-            }
-        });
-    }
+    let st = document.querySelector("#srt");
+    st.classList.add("song");
 </script>
+<script>
+        function customerRegistrationBtn(){
+            event.preventDefault(); // Prevent default form submission
 
-
- <script>
-//     function setPlan(val){
-//         $('.chooseBtn2active').removeClass('chooseBtn2active');
-//         $('.chooseBtn2 span').html('Choose Plan');
-//         $('#plan_'+val).addClass('chooseBtn2active');
-//         $('#plan_'+val+" span").html('Choosed');
-//         $("#plan").val($('#plan_'+val).attr('data-id'));
-//     }
-//     let st = document.querySelector("#srt");
-//     st.classList.add("song");
- </script>
- <script>
-//         function customerRegistrationBtn(){
-//             event.preventDefault(); 
-//             let formData = $(this).serialize();
-//             $.ajaxSetup({
-//                 headers: {
-//                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-//                 }
-//             });
-//             $.ajax({
-//                 url: '{{ route('customerRegister') }}', 
-//                 type: 'POST',
-//                 data: {
-//                     name: $('input[name="name"]').val(),
-//                     email: $('input[name="email"]').val(),
-//                     password: $('input[name="password"]').val(),
-//                     plan: $('input[name="plan"]').val(),
-//                 },
-//                 success: function(response) {
-//                     if (response.success) {
-//                         if (response.exists) {
-//                             alert('User already exists. Please log in.');
-//                         } else {
-//                             // Open PayPal payment gateway with the plan price
-//                           //  window.location.href = response.paypal_url;
-//                         }
-//                     } else {
-//                         alert('An error occurred. Please try again.');
-//                     }
-//                       alert(' Please log in.');
-//                 },
-//                 error: function(xhr) {
-//                     alert('An error occurred: ' + xhr.status + ' ' + xhr.statusText);
-//                 }
-//             });
-//         }
- </script>
+            let formData = $(this).serialize(); // Serialize form data
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+            $.ajax({
+                url: '{{ route('customerRegister') }}', // URL for the route
+                type: 'POST',
+                data: {
+                    name: $('input[name="name"]').val(),
+                    email: $('input[name="email"]').val(),
+                    password: $('input[name="password"]').val(),
+                    plan: $('input[name="plan"]').val(),
+                },
+                success: function(response) {
+                    if (response.success) {
+                        if (response.exists) {
+                            alert('User already exists. Please log in.');
+                        } else {
+                            // Open PayPal payment gateway with the plan price
+                          //  window.location.href = response.paypal_url;
+                        }
+                    } else {
+                        alert('An error occurred. Please try again.');
+                    }
+                      alert(' Please log in.');
+                },
+                error: function(xhr) {
+                    alert('An error occurred: ' + xhr.status + ' ' + xhr.statusText);
+                }
+            });
+        }
+</script>
 
 @endsection

@@ -21,22 +21,22 @@
                             <h1>Please Fill Some Details</h1>
                             <div class="crazy-crm-left-form-main">
                                 <form id="analyzeServerForm">
-                                      @csrf
-                                    <label for="name">Protocol</label>
-                                    <select name="protocol" id="protocol">
-                                        <option value="ftp">Ftp</option>
-                                        <option value="sftp">Sftp</option>
+                                    @csrf
+                                    <label for="protocol">Protocol</label>
+                                    <select name="protocol" id="protocol" required>
+                                        <option value="ftp">FTP</option>
+                                        <option value="sftp">SFTP</option>
                                     </select>
-                                    <label for="name">Host</label>
-                                    <input type="text" id="name" placeholder="Server IP Address" name="host">
-                                    <label for="name">Port</label>
-                                    <input type="text" id="text" placeholder="20/21" name="port">
-                                    <label for="name">User</label>
-                                    <input type="text" placeholder="username" id="name" name="username">
+                                    <label for="host">Host</label>
+                                    <input type="text" id="host" placeholder="Server IP Address" name="host">
+                                    <label for="port">Port</label>
+                                    <input type="text" id="port" placeholder="20/21" name="port" >
+                                    <label for="username">User</label>
+                                    <input type="text" placeholder="Username" id="username" name="username">
                                     <label for="password">Password</label>
-                                    <input type="password" placeholder="password" id="password" name="password" >
-                                    <label for="URL">Path URL</label>
-                                    <input type="text" id="url"  placeholder="website location" name="directory">
+                                    <input type="password" placeholder="Password" id="password" name="password">
+                                    <label for="directory">Path URL</label>
+                                    <input type="text" id="directory" placeholder="Website location" name="directory">
                                     <div class="crazy-crm-button">
                                         <button type="submit">Continue</button>
                                     </div>
@@ -54,21 +54,21 @@
     </section>
 
     <script>
-       $(document).ready(function() {
+    
+    
+    $(document).ready(function() {
     $('#analyzeServerForm').on('submit', function(e) {
         e.preventDefault();
 
-        // Client-side validation
         let hasError = false;
-        $('#result').html(''); // Clear previous results or errors
+        $('#result').html(''); 
 
-        // Iterate through each input field to check if it's empty
-        $('#analyzeServerForm input[required]').each(function() {
-            if ($(this).val() === '') {
+        $('#analyzeServerForm input, #analyzeServerForm select').each(function() {
+            if ($(this).val().trim() === '') {
                 hasError = true;
-                $(this).css('border', '1px solid red'); // Highlight the field
+                $(this).css('border', '1px solid red'); 
             } else {
-                $(this).css('border', ''); // Reset the field border
+                $(this).css('border', ''); 
             }
         });
 
@@ -77,7 +77,6 @@
             return;
         }
 
-        // If no error, proceed with AJAX request
         $.ajax({
             url: "{{ route('analyze.ftp') }}",
             method: 'POST',
@@ -87,20 +86,18 @@
                 password: $('input[name="password"]').val(),
                 directory: $('input[name="directory"]').val(),
                 protocol:  $('select[name="protocol"]').val(),
-                postUrl: $('input[name="postUrl"]').val(),
-                _token: '{{ csrf_token() }}' // for Laravel CSRF protection
+                _token: '{{ csrf_token() }}' 
             },
             success: function(response) {
-               if(response.analysis_result == 1){
-                
-                if (confirm("Congratulation your website is compitable with our platform") == true) {
-                    window.location.href = "{{ route('front.signup') }}";
+                if(response.analysis_result == 1){
+                    if (confirm("Congratulations, your website is compatible with our platform") == true) {
+                        window.location.href = "{{ route('front.signup') }}";
+                    } else {
+                        alert("Thank you.");
+                    }
                 } else {
-                    alert("thankyou");
+                    alert("Sorry, your website does not meet the minimum requirements for our platform.");
                 }
-               }else{
-                alert("Sorry your website does not meet the minimum requirement to of our platform");
-               }
             },
             error: function(xhr) {
                 $('#result').html('<p>An error occurred: ' + xhr.status + ' ' + xhr.statusText + '</p>');
@@ -108,6 +105,59 @@
         });
     });
 });
+    
+//       $(document).ready(function() {
+//     $('#analyzeServerForm').on('submit', function(e) {
+//         e.preventDefault();
+
+//         let hasError = false;
+//         $('#result').html(''); 
+
+//         $('#analyzeServerForm input[required]').each(function() {
+//             // if ($(this).val() === '') {
+//              if ($(this).val().trim() === '') {
+//                 hasError = true;
+//                 $(this).css('border', '1px solid red'); 
+//             } else {
+//                 $(this).css('border', ''); 
+//             }
+//         });
+
+//         if (hasError) {
+//             $('#result').html('<p style="color:red;">Please fill in all required fields.</p>');
+//             return;
+//         }
+
+//         $.ajax({
+//             url: "{{ route('analyze.ftp') }}",
+//             method: 'POST',
+//             data: {
+//                 host: $('input[name="host"]').val(),
+//                 username: $('input[name="username"]').val(),
+//                 password: $('input[name="password"]').val(),
+//                 directory: $('input[name="directory"]').val(),
+//                 protocol:  $('select[name="protocol"]').val(),
+//                 postUrl: $('input[name="postUrl"]').val(),
+//                 _token: '{{ csrf_token() }}' 
+//             },
+//             success: function(response) {
+//               if(response.analysis_result == 1){
+                
+//                 if (confirm("Congratulation your website is compitable with our platform") == true) {
+//                     window.location.href = "{{ route('front.signup') }}";
+//                 } else {
+//                     alert("thankyou");
+//                 }
+//               }else{
+//                 alert("Sorry your website does not meet the minimum requirement to of our platform");
+//               }
+//             },
+//             error: function(xhr) {
+//                 $('#result').html('<p>An error occurred: ' + xhr.status + ' ' + xhr.statusText + '</p>');
+//             }
+//         });
+//     });
+// });
 
     </script>
    <!--  <script>

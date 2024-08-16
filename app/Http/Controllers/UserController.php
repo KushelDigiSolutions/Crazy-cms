@@ -211,16 +211,22 @@ class UserController extends Controller
         $validator = Validator::make($request->all(), [
             'name' => 'required|string|max:255',
             'email' => 'required|email|unique:users,email',
-            'password' => 'required|string|min:8',
+            // 'password' => 'required|string|min:8',
+            'password' => 'min:6|required_with:confirmPassword|same:confirmPassword',
             'plan' => 'required|integer|exists:subscriptions,id',
         ]);
+        
+      
+        
         if ($validator->fails()) {
             return response()->json(['success' => false, 'errors' => $validator->errors()]);
         }
 
         // Check if user already exists
         $user = User::where('email', $request->input('email'))->first();
-
+    
+        echo '<pre>'; print_r($user); die;
+    
         if ($user) {
             if ($user->payment_done) {
                 return response()->json(['success' => false, 'exists' => true]);

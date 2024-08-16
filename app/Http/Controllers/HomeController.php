@@ -92,10 +92,10 @@ class HomeController extends Controller
         $request->validate([
             'user_protocol' => 'required|string|max:255',
             'user_host' => 'required|string|max:255|min:6',
-            'user_port' => 'required|string|max:255|min:6',
-            'user_name' => 'required|email',
+            'user_port' => 'required|string',
+            'user_name' => 'required|string',
             'user_password' => 'required|string|max:255|min:6',
-            'url_path' => 'required|url',
+            'url_path' => 'required|string',
         ]);
 
         $userId = Auth::id();
@@ -116,7 +116,8 @@ class HomeController extends Controller
             "password"=> bcrypt($password),
             "url" => $url,
             "user_id" => $userId,
-            "updated_at" => now() 
+            "updated_at" => now(),
+            "user_type" => 3 
         );
         DB::table('my_sites')->insert($data);
         return view('frontend/pagefour')->with('success','User created successfully.');

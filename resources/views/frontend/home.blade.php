@@ -69,14 +69,11 @@
 <div class=" com1">
   <div class="row">
     <div class="col-lg-6 col-md-9 banner_left">
-      <h1>Welcome to Crazy Simple</h1>
-      <p>
-        We aren’t Crazy, but we do give you tools galore to easily produce
-        your website.
-      </p>
-      <button type="button" class="btn btn-light">
+      <h1>Simple Website Edit Tool</h1>
+      <p>Nothing to buy or install - Try it right now.</p>
+      <!--<button type="button" class="btn btn-light">
         <span> GET STARTED</span>
-      </button>
+      </button>-->
     </div>
 
     <!-- this is right slider banner  -->
@@ -136,7 +133,7 @@
 <section id="email_section">
 <div class=" com1 webAdWrap">
   <div class="row">
-    <p>Empower Yourself to Easily <span> Modify Your Website</span></p>
+    <p>Just put  <span> Your Website</span> address here.</p>
   </div>
 
   <div class="websiteAdd">
@@ -522,12 +519,12 @@
 
         <div class="planWhitewrap">
           <p class="dollorHead">
-            <span class="span1">$60</span>
-            <span class="span2">/Yearly</span>
+            <span class="span1">$5</span>
+            <span class="span2">/Month</span>
             <img class="suy" src="{{asset('admin/img/chose.svg')}}" alt="">
           </p>
 
-          <span class="only">(Only $5 per month)</span>
+          <span class="only">($60 per year)</span>
 
           <!-- scond part  -->
           <div class="planPoint">
@@ -572,12 +569,12 @@
 
         <div class="planWhitewrap">
           <p class="dollorHead">
-            <span class="span1">$96</span>
-            <span class="span2">/Yearly</span>
+            <span class="span1">$8</span>
+            <span class="span2">/Month</span>
             <img class="suy" src="{{asset('admin/img/chose1.svg')}}" alt="">
           </p>
 
-          <span class="only">(Only $5 per month)</span>
+          <span class="only">($96 per year)</span>
 
           <!-- scond part  -->
           <div class="planPoint">
@@ -622,12 +619,12 @@
 
         <div class="planWhitewrap">
           <p class="dollorHead">
-            <span class="span1">$192</span>
-            <span class="span2">/Yearly</span>
+            <span class="span1">$16</span>
+            <span class="span2">/Month</span>
             <img class="suy" src="{{asset('admin/img/chose2.svg')}}" alt="">
           </p>
 
-          <span class="only">(Only $5 per month)</span>
+          <span class="only">($192 per year)</span>
 
           <!-- scond part  -->
           <div class="planPoint">
@@ -657,7 +654,7 @@
             </div>
           </div>
 
-          <p class="notavailable">NOT AVAILABLE NOW</p>
+          <p class="notavailable">COMING SOON</p>
         </div>
       </div>
     </div>
@@ -674,6 +671,20 @@
   </div>
 
   <div class="row2">
+    <div class="faq">
+      <div class="question">
+        <h3>Q. What is MyCrazySimpleCMS?</h3>
+
+        <img src="{{asset('admin/img/plus.png')}}" class="plus1" alt="" />
+      </div>
+
+      <div class="answer">
+        <p>
+        MyCrazySimple is an online website editor that simplifies the process of making updates to your HTML website. It provides you with an intuitive interface, making it easy to edit text or images.
+        </p>
+      </div>
+    </div>
+
     <div class="faq">
       <div class="question">
         <h3>Q. How Does MyCrazySimple Work?</h3>

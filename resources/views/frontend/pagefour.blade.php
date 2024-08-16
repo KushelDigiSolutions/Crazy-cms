@@ -23,17 +23,35 @@
                                 <form class="needs-validation" novalidate method="POST" action="{{ route('store') }}">
                                       @csrf
                                     <label for="name">Protocol</label>
-                                    <input type="text" id="protocol" name="user_protocol">
+                                    <input type="text" id="user_protocol" name="user_protocol">
+                                    @error('user_protocol')
+                                        <span class="text-danger">{{ $message }}</span>
+                                    @enderror
                                     <label for="name">Host</label>
-                                    <input type="text" id="name" name="user_host">
+                                    <input type="text" id="user_host" name="user_host">
+                                    @error('user_host')
+                                        <span class="text-danger">{{ $message }}</span>
+                                    @enderror
                                     <label for="name">Port</label>
-                                    <input type="text" id="text" name="user_port">
+                                    <input type="text" id="user_port" name="user_port">
+                                    @error('user_port')
+                                        <span class="text-danger">{{ $message }}</span>
+                                    @enderror
                                     <label for="name">User</label>
-                                    <input type="text" id="name" name="user_name">
+                                    <input type="text" id="user_name" name="user_name">
+                                    @error('user_name')
+                                        <span class="text-danger">{{ $message }}</span>
+                                    @enderror
                                     <label for="password">Password</label>
-                                    <input type="password" id="password" name="user_password" >
+                                    <input type="password" id="user_password" name="user_password" >
+                                    @error('user_password')
+                                        <span class="text-danger">{{ $message }}</span>
+                                    @enderror
                                     <label for="URL">Path URL</label>
-                                    <input type="url" id="url" name="url_path" placeholder="enter URL here">
+                                    <input type="url" id="url_path" name="url_path" placeholder="enter URL here">
+                                    @error('url_path')
+                                        <span class="text-danger">{{ $message }}</span>
+                                    @enderror
                                     <div class="crazy-crm-button">
                                         <button type="submit">Continue</button>
                                     </div>
