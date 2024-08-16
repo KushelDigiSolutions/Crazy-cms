@@ -21,14 +21,14 @@
                 <tbody>
                     @foreach ($results as $user)
                         <tr>
-                        <td>{{ $user->id }}</td>
+                        <td>{{ $user->id }} {{ $user->name }}</td>
                             <td>{{ $user->protocol }}</td>
                             <td>{{ $user->host }}</td>
                             <td>{{ $user->port }}</td>
                             <td>{{ $user->user }}</td>
                             <td>{{ $user->url }}</td>
                             <td>
-                                <a href="{{ url('editsite').'/'.$user->id }}"
+                                <a href="{{ url('admin/editsite').'/'.$user->name }}"
                                     class="btn btn-sm btn-primary">Edit</a>
                             </td>
                             <td>

@@ -121,6 +121,7 @@
 }
 .first_preview{
     display: flex;
+    margin-left:-20%;
     align-items: center;
 }
 .first_preview .a_one{
@@ -149,7 +150,7 @@
 .preview_btn{
     margin-left: 25px;
 }
-.preview_btn button{
+.preview_btn button, .preview_btn select{
     width: auto;
     height: 38px;
     padding: 0 20px;

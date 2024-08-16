@@ -5,15 +5,18 @@ namespace App\Http\Controllers;
 use Auth;
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\MySite;
 use Illuminate\Validation\Rule;
 use Spatie\Permission\Models\Role;
 use App\Models\Subscription;
 use Illuminate\Support\Facades\Validator;
 use App\Providers\RouteServiceProvider;
+use App\Services\FTPService;
 use DB;
 
 class UserController extends Controller
 {
+    protected $ftpService;
     public function __construct()
     {
         $roles = Role::all();
@@ -123,6 +126,41 @@ class UserController extends Controller
         return view('addmysites');
     }
 
+    public function editsite($variable)
+    {
+
+        $data = MySite::where('user_id',Auth::id())->where('name',$variable)->first();
+        if(empty($data)){
+            return response()->json([
+                'error' => 'Website not available'
+            ], 404);
+            exit;
+        }
+        
+        $this->ftpService = new FTPService(
+            $data->protocol,
+            $data->port,
+            $data->host,
+            $data->user,
+            $data->password,
+            $data->location
+        );
+        $files = $this->ftpService->listFiles();
+        
+        if (!empty($files)) {
+            // Get the content of the file
+            //dd($files);
+            $htmlContent = $this->ftpService->getFileContent($files[0],$data->url);
+//dd($htmlContent);
+             // Pass the content to the view
+             return view('admin.user.editsite', ['htmlContent' => $htmlContent["html_content"],'seo'=>$htmlContent["meta_data"],'files'=>$files,'filename'=>$files[0]]);
+        } else {
+            return response()->json([
+                'error' => 'Website not downloaded'
+            ], 404);
+        }
+    }
+
     // public function storeAdd(Request $request)
     // {
     //     $request->validate([
@@ -159,7 +197,7 @@ class UserController extends Controller
         $userId = Auth::id();
         $results = DB::table('my_sites')
             ->join('users', 'my_sites.user_id', '=', 'users.id')
-            ->select('my_sites.*', 'users.name') 
+            ->select('my_sites.*', 'users.name as uname') 
             ->where('my_sites.user_id', $userId)
             ->get();
         // return redirect()->route('admin.user.mysites',compact('results'));
