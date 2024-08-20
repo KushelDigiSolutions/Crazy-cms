@@ -12,6 +12,7 @@ use App\Models\Subscription;
 use Illuminate\Support\Facades\Validator;
 use App\Providers\RouteServiceProvider;
 use App\Services\FTPService;
+use Illuminate\Support\Facades\Http;
 use DB;
 
 class UserController extends Controller
@@ -240,29 +241,42 @@ class UserController extends Controller
             'name' => 'required|string|max:255',
             'email' => 'required|email|unique:users,email',
             // 'password' => 'required|string|min:8',
-            'password' => 'min:6|required_with:confirmPassword|same:confirmPassword',
+            'password' => 'min:8|required_with:confirmPassword|same:confirmPassword',
             'plan' => 'required|integer|exists:subscriptions,id',
         ]);
-        
-      
-        
+          
         if ($validator->fails()) {
-            return response()->json(['success' => false, 'errors' => $validator->errors()]);
+
+            $errors = $validator->errors();
+
+            $errorMessages = [];
+
+            foreach ($errors->messages() as $field => $messages) {
+                foreach ($messages as $message) {
+                    $errorMessages[] = $message;
+                }
+            }
+
+            $commonErrorString = "Sorry, " . implode(', and also ', $errorMessages);
+
+
+            return response()->json(['success' => false, 'errors' => $commonErrorString]);
         }
 
         // Check if user already exists
         $user = User::where('email', $request->input('email'))->first();
     
-        echo '<pre>'; print_r($user); die;
+       
     
-        if ($user) {
-            if ($user->payment_done) {
+        /* if ($user) {
+            dd($user);
+            if (!$user->payment_done) {
                 return response()->json(['success' => false, 'exists' => true]);
             }
 
             // Get the plan price and id
             $subscription = Subscription::find($request->input('plan'));
-
+            dd($subscription);
             // Return the plan price and user id for PayPal
             return response()->json([
                 'success' => true,
@@ -271,7 +285,7 @@ class UserController extends Controller
                 'user_id' => $user->id,
                 'user_type' => 3
             ]);
-        }
+        } */
 
         // Create a new user
         $user = User::create([
@@ -284,19 +298,38 @@ class UserController extends Controller
         $subscription = Subscription::find($request->input('plan'));
 
         // Return the plan price and user id for PayPal
-        return response()->json([
+        /* return response()->json([
             'success' => true,
-            'paypal_url' => $this->getPayPalUrl($subscription->price, $user->id),
             'price' => $subscription->price,
             'user_id' => $user->id
-        ]);
+        ]); */
+        $resp = new \stdClass();
+        $resp->id = $user->id;
+        $resp->price = $subscription->price;
+        $this->initiatePayment($resp);
     }
 
-    private function getPayPalUrl($price, $userId)
+    public function initiatePayment($resp)
     {
-        // Generate the PayPal payment URL with the price and userId
-        // You will need to implement this based on your PayPal integration
-        // For example:
-        return 'https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=YOUR_PAYPAL_EMAIL&amount=' . $price . '&currency_code=USD&item_name=Subscription&custom=' . $userId;
+        // Define the necessary parameters
+        $amount = $resp->price; // Example amount
+        $userId = $resp->id; // Example user ID
+        $siteId = 12345; // Example site ID
+
+        // Send a POST request to the payment.create route
+        $response = Http::post(route('payment.create'), [
+            'amount' => $amount,
+            'userId' => $userId,
+            'siteId' => $siteId,
+        ]);
+dd($response);
+        // Handle the response if needed
+        if ($response->successful()) {
+            // If the request was successful, perhaps redirect to the PayPal approval link
+            return redirect()->away($response['approval_link']);
+        }
+
+        // Handle any errors
+        return back()->withErrors(['msg' => 'Error processing payment']);
     }
 }

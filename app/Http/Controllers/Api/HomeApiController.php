@@ -119,9 +119,9 @@ class HomeApiController extends Controller
         // Call the function to analyze and send the data
         $response = $this->analyzeAndPostData($host, $username, $password, $directory, $protocol, '');
         if($response["analysis_result"]){
-             if(!empty(Auth::id())){
+            /*  if(!empty(Auth::id())){
                 dd(Auth::id());
-            }
+            } */
             session(['validFtpSite' => $host]);
         }else{
             session(['validFtpSite' => ""]);

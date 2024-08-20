@@ -30,6 +30,7 @@ Route::middleware(['web'])->group(function () {
     Route::get('/preview/{variable}', [HomeController::class, 'preview']);
     Route::get('/error', [HomeController::class, 'error']);
     Route::get('/check-ftp', [HomeController::class, 'checkFtp'])->name('check.ftp');
+
     Route::get('/sign-up', [HomeController::class, 'signup'])->name('front.signup');
     Route::post('/logout', [UserController::class, 'logout'])->name('logout');
     Route::get('/editor', [HomeController::class, 'editor']);
@@ -38,6 +39,10 @@ Route::middleware(['web'])->group(function () {
     Route::get('/page2', [HomeController::class, 'pagetwo']);
     Route::get('/page3', [HomeController::class, 'pagethree']);
     Route::get('/page6', [HomeController::class, 'pagesix']);
+    Route::post('/pay-with-paypal', [PaymentController::class, 'createPayment'])->name('payment.create');
+    Route::get('/payment-success', [PaymentController::class, 'paymentSuccess'])->name('payment.success');
+    Route::get('/payment-cancel', [PaymentController::class, 'paymentCancel'])->name('payment.cancel');
+
 });
 
 // Login with OTP Routes

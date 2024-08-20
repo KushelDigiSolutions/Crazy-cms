@@ -219,10 +219,10 @@
                 </div>
             </div>
             @endforeach
-            <input type="hidden" T name="plan" id="plan" value="0"/>
+            <input type="hidden" name="plan" id="selectedplan" value="0"/>
         
         </div>
-
+        <div class="respError"></div>
        <button type="button" onclick="customerRegistrationBtn(event)" class="btn btn-primary brn-sm">Signup And Pay</button>
         </div>
 </section>
@@ -230,19 +230,49 @@
 
 
 </div> 
+<script src="https://www.paypal.com/sdk/js?client-id=Ab9fUDw9DAjpGg1CbtS66FdSWnzg17U2eWO5l5nJVhNAMyNhBokZnd5KLdsV_ymQqSm86if24bXEKGV1
+&currency=USD"></script>
+<div id="paypal-button-container">sss</div>
 
+<script>
+    paypal.Buttons({
+        createOrder: function(data, actions) {
+            return fetch('/api/payment/create', {
+                method: 'post',
+                headers: {
+                    'content-type': 'application/json',
+                    'x-csrf-token': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+                },
+                body: JSON.stringify({
+                    amount: 100, // Example amount
+                    userId: 1,   // Example user ID
+                    siteId: 1    // Example site ID
+                })
+            }).then(function(res) {
+                return res.json();
+            }).then(function(data) {
+                return data.id; // Return the order ID
+            });
+        },
+        onApprove: function(data, actions) {
+            return actions.order.capture().then(function(details) {
+                alert('Transaction completed by ' + details.payer.name.given_name);
+            });
+        }
+    }).render('#paypal-button-container'); // Display PayPal button
+</script>
 <script>
     function setPlan(val){
         $('.chooseBtn2active').removeClass('chooseBtn2active');
         $('.chooseBtn2 span').html('Choose Plan');
         $('#plan_'+val).addClass('chooseBtn2active');
         $('#plan_'+val+" span").html('Choosed');
-        $("#plan").val($('#plan_'+val).attr('data-id'));
+        $("#selectedplan").val($('#plan_'+val).attr('data-id'));
     }
 
     function customerRegistrationBtn(event){
         event.preventDefault(); 
-
+        $(".respError").remove
         // Remove previous error highlights
         $('input').css('border', ''); 
 
@@ -255,8 +285,13 @@
             }
         });
 
+
+
         if (hasError) {
             alert('Please fill in all required fields.');
+            return;
+        }else if($("#selectedplan").val() == 0){
+            alert('Please select one of the Plan first.');
             return;
         }
 
@@ -265,6 +300,7 @@
             name: $('input[name="name"]').val(),
             email: $('input[name="email"]').val(),
             password: $('input[name="password"]').val(),
+            confirmPassword: $('input[name="confirmPassword"]').val(),
             plan: $('input[name="plan"]').val(),
             _token: '{{ csrf_token() }}' // Add CSRF token
         };
@@ -283,7 +319,7 @@
                         alert('Please log in.');
                     }
                 } else {
-                    alert('An error occurredd. Please try again.');
+                    $(".respError").html("<p class=\"rpErr\">"+response.errors+"</p>");
                 }
             },
             error: function(xhr) {

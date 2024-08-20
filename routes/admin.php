@@ -29,6 +29,7 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'verified'])->group(
     Route::post('/addSite', [UserController::class, 'addSite'])->name('addSite');
     
     
+
     Route::middleware(['role:admin'])->group(function(){
         Route::resource('user',UserController::class);
         Route::resource('role',RoleController::class);

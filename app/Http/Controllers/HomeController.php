@@ -37,16 +37,12 @@ class HomeController extends Controller
         return view('frontend/error');
     }
 
-    // public function checkFtp(Request $request)
-    // {
-
-    //     return view('frontend/check-ftp');
-    // }
     
-        public function checkFtp(Request $request)
-        {
-            return view('frontend.check-ftp');
-        }
+    public function checkFtp(Request $request)
+    {
+        return view('frontend.check-ftp');
+    }
+
 
     public function signup(Request $request)
     {
