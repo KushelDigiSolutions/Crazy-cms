@@ -37,11 +37,16 @@ class HomeController extends Controller
         return view('frontend/error');
     }
 
-    public function checkFtp(Request $request)
-    {
+    // public function checkFtp(Request $request)
+    // {
 
-        return view('frontend/check-ftp');
-    }
+    //     return view('frontend/check-ftp');
+    // }
+    
+        public function checkFtp(Request $request)
+        {
+            return view('frontend.check-ftp');
+        }
 
     public function signup(Request $request)
     {
@@ -61,10 +66,10 @@ class HomeController extends Controller
         return view('frontend/editor1');
     }
 
-    public function pageone(Request $request)
-    {
-        return view('frontend/pageone');
-    }
+    // public function pageone(Request $request)
+    // {
+    //     return view('frontend/pageone');
+    // }
 
     public function pagetwo(Request $request)
     {
@@ -125,16 +130,18 @@ class HomeController extends Controller
 
     public function storeAdd(Request $request)
     {
+        echo "Dileep"; die; 
         $request->validate([
             'user_protocol' => 'required|string|max:255',
             'user_host' => 'required|string|max:255|min:6',
-            'user_port' => 'required|string|max:255|min:6',
+            'user_port' => 'required|string',
             'user_name' => 'required|email',
             'user_password' => 'required|string|max:255|min:6',
-            'url_path' => 'required|url',
+            'url_path' => 'required',
         ]);
 
         $userId = Auth::id();
+        echo $userId; die;
         $protocol = $request->input('user_protocol');
         $host = $request->input('user_host');
         $port = $request->input('user_host');

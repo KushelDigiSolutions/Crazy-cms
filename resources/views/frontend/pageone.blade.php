@@ -18,17 +18,26 @@
                     <div class="crazy-crm-content">
                         <div class="crazy-crm-left-form">
                             <h1>Create a Website </h1>
-                            <div class="crazy-crm-left-form-main">
+                            <form action="{{ route('admin.addSite') }}" method="post">
+                                @csrf
+                                <div class="crazy-crm-left-form-main">
                                     <label for="name">Project Name</label>
-                                    <input type="name" id="name" name="Project_name">
-                            </div>
-                            <div class="crazy-crm-left-form-main">
+                                    <input type="name" id="project_name" name="project_name">
+                                    @error('project_name')
+                                        <span class="text-danger">{{ $message }}</span>
+                                    @enderror 
+                                </div>
+                                <div class="crazy-crm-left-form-main">
                                     <label for="name">Enter full website URL</label>
-                                    <input type="url" id="name" name="user_url">
-                            </div>
-                            <div class="crazy-crm-button">
+                                    <input type="url" id="user_url" name="user_url">
+                                    @error('user_url')
+                                        <span class="text-danger">{{ $message }}</span>
+                                    @enderror
+                                </div>
+                                <div class="crazy-crm-button">
                                 <button type="submit">Create Project</button>
-                            </div>
+                                </div>
+                            </form>
                         </div>
                        <div class="crazy-crm-right-image">
                         <img src="{{asset('admin/img/new-project.png')}}" alt="">

@@ -3,11 +3,7 @@
     <div class="card canting">
         <div class="card-header">
             <h3 class="card-title cd_tit">My Site</h3>
-<<<<<<< Updated upstream
-            <div class="card-tools"><a href="{{ route('admin.user.create') }}" class="btn btn-sm btn-primary">Add</a></div>
-=======
-             <div class="card-tools"><a href="{{ route('admin.addmysites.create') }}" class="btn btn-sm btn-primary">Add</a></div>
->>>>>>> Stashed changes
+            <div class="card-tools"><a href="{{ route('admin.addmysites') }}" class="btn btn-sm btn-primary">Add</a></div>
         </div>
         <div class="card-body">
             <table class="table table-striped" id="userTable">

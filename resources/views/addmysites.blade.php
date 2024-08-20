@@ -6,7 +6,7 @@
             <div class="card-tools"><a href="{{ route('admin.user.index') }}" class="btn btn-sm btn-dark">Back</a></div>
         </div>
         <div class="card-body">
-        <form method="POST" action="{{ route('store') }}">
+        <form method="POST" action="{{ route('admin.storeAdd') }}">
                 @csrf
                 <div class="row">
                     <div class="col-lg-6">

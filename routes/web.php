@@ -29,7 +29,7 @@ Route::middleware(['web'])->group(function () {
     
     Route::get('/preview/{variable}', [HomeController::class, 'preview']);
     Route::get('/error', [HomeController::class, 'error']);
-    Route::get('/check-ftp', [HomeController::class, 'checkFtp']);
+    Route::get('/check-ftp', [HomeController::class, 'checkFtp'])->name('check.ftp');
     Route::get('/sign-up', [HomeController::class, 'signup'])->name('front.signup');
     Route::post('/logout', [UserController::class, 'logout'])->name('logout');
     Route::get('/editor', [HomeController::class, 'editor']);

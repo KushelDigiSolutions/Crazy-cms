@@ -123,7 +123,9 @@ class UserController extends Controller
 
     public function addMySite()
     {
-        return view('addmysites');
+        // return view('addmysites');
+        // return view('page1');
+        return view('frontend/pageone');
     }
 
     public function editsite($variable)
@@ -161,36 +163,62 @@ class UserController extends Controller
         }
     }
 
-    // public function storeAdd(Request $request)
-    // {
-    //     $request->validate([
-    //         'user_protocol' => 'required|string|max:255',
-    //         'user_host' => 'required|string|max:255|min:6',
-    //         'user_port' => 'required|string|max:255|min:6',
-    //         'user_name' => 'required|email',
-    //         'user_password' => 'required|string|max:255|min:6',
-    //         'url_path' => 'required|url',
-    //     ]);
-    //     $userId = Auth::id();
-    //     $protocol = $request->input('user_protocol');
-    //     $host = $request->input('user_host');
-    //     $port = $request->input('user_host');
-    //     $user = $request->input('user_name');
-    //     $password = $request->input('user_password');
-    //     $url = $request->input('url_path');
-    //     $data = array(
-    //         "protocol" => $protocol,
-    //         "host" => $host,
-    //         "port" => $port,     
-    //         "user"=> $user,
-    //         "password"=> bcrypt($password),
-    //         "url" => $url,
-    //         "user_id" => $userId,
-    //         "updated_at" => now() 
-    //     );
-    //     DB::table('my_sites')->insert($data);
-    //     return view('admin.addmysites')->with('success', 'User created successfully.');
-    // }
+    public function storeAdd(Request $request)
+    {
+        $request->validate([
+            'user_protocol' => 'required|string|max:255',
+            'user_host' => 'required|string|max:255|min:6',
+            'user_port' => 'required',
+            'user_name' => 'required|email',
+            'user_password' => 'required|string|max:255|min:6',
+            'url_path' => 'required',
+        ]);
+        $userId = Auth::id();
+        // echo $userId; die; 
+        $protocol = $request->input('user_protocol');
+        $host = $request->input('user_host');
+        $port = $request->input('user_host');
+        $user = $request->input('user_name');
+        $password = $request->input('user_password');
+        $url = $request->input('url_path');
+        $data = array(
+            "protocol" => $protocol,
+            "host" => $host,
+            "port" => $port,     
+            "user"=> $user,
+            "password"=> bcrypt($password),
+            "url" => $url,
+            "user_id" => $userId,
+            "updated_at" => now() 
+        );
+        DB::table('my_sites')->insert($data);
+        return view('addmysites')->with('success', 'User created successfully.');
+    }
+    
+    
+        public function addSite(Request $request)
+    {
+        $request->validate([
+            'project_name' => 'required|string|max:255',
+            'user_url' => 'required'
+        ]);
+        $userId = Auth::id();
+        $projectname = $request->input('project_name');
+        $url = $request->input('user_url');
+        $data = array(
+            "name" => $projectname,
+            "url" => $url,
+            "user_id" => $userId,
+            "updated_at" => now() 
+        );
+        DB::table('my_sites')->insert($data);
+        $lastId = DB::table('my_sites')->latest('id')->value('id');
+        // dd($lastId);
+        session(['my_sites_lastid' => $lastId]);
+        return redirect()->route('check.ftp');
+        // return view('admin.mysites')->with('success', 'Sites created successfully.');
+
+    }
 
     public function mySite()
     {
