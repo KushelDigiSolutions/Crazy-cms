@@ -13,7 +13,7 @@ class MySite extends Model
     use SoftDeletes;
 
     protected $fillable = [
-        'id', 'name','protocol','host','port','url','user'.'password','location','status','user_id'
+       'name','protocol','host','port','url','user','password','location','status','user_id'
     ];
 
     public function user(): BelongsTo

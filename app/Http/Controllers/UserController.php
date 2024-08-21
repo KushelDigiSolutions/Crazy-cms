@@ -129,10 +129,11 @@ class UserController extends Controller
         return view('frontend/pageone');
     }
 
-    public function editsite($variable)
+    public function editsite(Request $request,$variable)
     {
 
         $data = MySite::where('user_id',Auth::id())->where('name',$variable)->first();
+        
         if(empty($data)){
             return response()->json([
                 'error' => 'Website not available'
@@ -153,10 +154,11 @@ class UserController extends Controller
         if (!empty($files)) {
             // Get the content of the file
             //dd($files);
-            $htmlContent = $this->ftpService->getFileContent($files[0],$data->url);
+            $page = !empty($request->query('page')) ? $request->query('page') : $files[0];
+            $htmlContent = $this->ftpService->getFileContent($page,$data->url);
 //dd($htmlContent);
              // Pass the content to the view
-             return view('admin.user.editsite', ['htmlContent' => $htmlContent["html_content"],'seo'=>$htmlContent["meta_data"],'files'=>$files,'filename'=>$files[0]]);
+             return view('admin.user.editsite', ['htmlContent' => $htmlContent["html_content"],'seo'=>$htmlContent["meta_data"],'files'=>$files,'filename'=>$files[0],'variable'=>$variable,'subs_id'=>$data->subscription_id]);
         } else {
             return response()->json([
                 'error' => 'Website not downloaded'
@@ -294,8 +296,8 @@ class UserController extends Controller
             'password' => bcrypt($request->input('password')),
         ]);
 
-        // Get the plan price
-        $subscription = Subscription::find($request->input('plan'));
+  
+        $validFtpSiteData = session('validFtpSiteData');
 
         // Return the plan price and user id for PayPal
         /* return response()->json([
@@ -303,33 +305,43 @@ class UserController extends Controller
             'price' => $subscription->price,
             'user_id' => $user->id
         ]); */
-        $resp = new \stdClass();
-        $resp->id = $user->id;
-        $resp->price = $subscription->price;
-        $this->initiatePayment($resp);
+        // Extract request data
+        $host = $validFtpSiteData['host'];
+        $username = $validFtpSiteData['username'];
+        $password = $validFtpSiteData['password'];
+        $directory = $validFtpSiteData['directory'];
+        $url = $validFtpSiteData['url'];
+        $protocol = $validFtpSiteData['protocol'];
+       
+        $mysite = MySite::create([
+            'name' => $this->__getWebsiteName($url), // Assuming the host is used as the name
+            'protocol' => $protocol,
+            'host' => $host,
+            'url' => $url,
+            'user' => $username,
+            'password' => $password,
+            'location' => $directory,
+            'status' => 0, // or any default status you want
+            'user_id' => $user->id,
+            'subscription_id' => $request->input('plan'),
+        ]);
+        session(['validUserCreate' => ['id'=>$user->id,'plan'=>$request->input('plan'),'my_site'=>$mysite->id]]);
+        return response()->json(['success' => true, 'message' => "congratulations"]);
     }
 
-    public function initiatePayment($resp)
-    {
-        // Define the necessary parameters
-        $amount = $resp->price; // Example amount
-        $userId = $resp->id; // Example user ID
-        $siteId = 12345; // Example site ID
+    private function __getWebsiteName($url) {
+        
+        $url = str_replace("www.","",$url);
+         // Parse the URL to get the host
+        $host = parse_url($url, PHP_URL_HOST);
 
-        // Send a POST request to the payment.create route
-        $response = Http::post(route('payment.create'), [
-            'amount' => $amount,
-            'userId' => $userId,
-            'siteId' => $siteId,
-        ]);
-dd($response);
-        // Handle the response if needed
-        if ($response->successful()) {
-            // If the request was successful, perhaps redirect to the PayPal approval link
-            return redirect()->away($response['approval_link']);
-        }
+        // Remove the subdomain (if any) and top-level domain (TLD)
+        $parts = explode('.', $host);
 
-        // Handle any errors
-        return back()->withErrors(['msg' => 'Error processing payment']);
+        // Join the parts excluding the TLD
+        $name = $parts[0];
+
+        // Return the extracted name
+        return $name;
     }
 }

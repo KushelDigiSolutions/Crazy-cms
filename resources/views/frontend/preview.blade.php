@@ -121,7 +121,7 @@
 
 <script>
     function gotoFtp(){
-        window.location.href = "<?= url('check-ftp') ?>";
+        window.location.href = "<?= url('check-ftp/?site=') ?>{{$variable}}";
     }
 </script>
 

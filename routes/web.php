@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Str;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\PayPalController;
 
 /*
 |--------------------------------------------------------------------------
@@ -39,9 +40,14 @@ Route::middleware(['web'])->group(function () {
     Route::get('/page2', [HomeController::class, 'pagetwo']);
     Route::get('/page3', [HomeController::class, 'pagethree']);
     Route::get('/page6', [HomeController::class, 'pagesix']);
-    Route::post('/pay-with-paypal', [PaymentController::class, 'createPayment'])->name('payment.create');
-    Route::get('/payment-success', [PaymentController::class, 'paymentSuccess'])->name('payment.success');
-    Route::get('/payment-cancel', [PaymentController::class, 'paymentCancel'])->name('payment.cancel');
+   
+    Route::get('pay', [PayPalController::class, 'createPayment'])->name('paypal.pay');
+    Route::get('success', [PayPalController::class, 'success'])->name('paypal.success');
+    Route::get('cancel', [PayPalController::class, 'cancel'])->name('paypal.cancel');
+    Route::get('success-page', [HomeController::class, 'successPage'])->name('success.page');
+    Route::get('failure-page', [HomeController::class, 'failurePage'])->name('failure.page');
+
+
 
 });
 

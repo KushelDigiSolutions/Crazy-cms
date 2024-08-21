@@ -78,7 +78,8 @@
   </div> -->
 
 
-
+  @auth
+  @else
         <div id="login-page1" class="ekl">
 <div class="login-page-banner ssk">
     <div class="login-page-container ssk2">
@@ -150,7 +151,8 @@
 <!-- /.card -->
 
 </div>
-                </div>
+@endauth
+</div>
             </div>
         </div>
     </div>
@@ -223,44 +225,18 @@
         
         </div>
         <div class="respError"></div>
-       <button type="button" onclick="customerRegistrationBtn(event)" class="btn btn-primary brn-sm">Signup And Pay</button>
-        </div>
+        @auth
+        <button type="button" onclick="customerRegistrationBtn(event)" class="btn btn-primary brn-sm">Select and Pay</button>
+        @else
+        <button type="button" onclick="customerRegistrationBtn(event)" class="btn btn-primary brn-sm">Signup And Pay</button>
+        @endauth    
+    </div>
 </section>
 </form>
 
 
 </div> 
-<script src="https://www.paypal.com/sdk/js?client-id=Ab9fUDw9DAjpGg1CbtS66FdSWnzg17U2eWO5l5nJVhNAMyNhBokZnd5KLdsV_ymQqSm86if24bXEKGV1
-&currency=USD"></script>
-<div id="paypal-button-container">sss</div>
 
-<script>
-    paypal.Buttons({
-        createOrder: function(data, actions) {
-            return fetch('/api/payment/create', {
-                method: 'post',
-                headers: {
-                    'content-type': 'application/json',
-                    'x-csrf-token': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
-                },
-                body: JSON.stringify({
-                    amount: 100, // Example amount
-                    userId: 1,   // Example user ID
-                    siteId: 1    // Example site ID
-                })
-            }).then(function(res) {
-                return res.json();
-            }).then(function(data) {
-                return data.id; // Return the order ID
-            });
-        },
-        onApprove: function(data, actions) {
-            return actions.order.capture().then(function(details) {
-                alert('Transaction completed by ' + details.payer.name.given_name);
-            });
-        }
-    }).render('#paypal-button-container'); // Display PayPal button
-</script>
 <script>
     function setPlan(val){
         $('.chooseBtn2active').removeClass('chooseBtn2active');
@@ -316,7 +292,7 @@
                     } else {
                         // Open PayPal payment gateway with the plan price
                         // window.location.href = response.paypal_url;
-                        alert('Please log in.');
+                        window.location.href = "{{url('/pay')}}";
                     }
                 } else {
                     $(".respError").html("<p class=\"rpErr\">"+response.errors+"</p>");

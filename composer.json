@@ -16,6 +16,7 @@
         "paypal/rest-api-sdk-php": "^1.6",
         "phpseclib/phpseclib": "^3.0",
         "spatie/laravel-permission": "^6.0",
+        "srmklive/paypal": "^3.0",
         "twilio/sdk": "^7.14",
         "zalanihir/country-state-city": "^1.0"
     },

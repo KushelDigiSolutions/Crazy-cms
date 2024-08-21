@@ -55,7 +55,7 @@
     
     </div>
 
-
+        @if($subs_id == 2)
     <div class="offcanvas offcanvas-start" tabindex="-1" id="seoSidebar" aria-labelledby="seoSidebarLabel">
         <div class="offcanvas-header">
             <h5 id="seoSidebarLabel">SEO Elements</h5>
@@ -85,14 +85,14 @@
             <div id="healthMeter" class="text-danger">Health: <span id="healthStatus">Bad</span></div>
         </div>
     </div>
-
+        @endif
 
     <div class="preview_sect">
    <div class="test_sect">
 
         <div class="preview_btn">
-            
-            <button  type="button" data-bs-toggle="offcanvas" data-bs-target="#seoSidebar" aria-controls="seoSidebar">Seo Settings</button>
+            @if($subs_id == 2)
+            <button  type="button" data-bs-toggle="offcanvas" data-bs-target="#seoSidebar" aria-controls="seoSidebar">Seo Settings</button> @endif
             <select name="history_updated" id="history_updated">
   <option value="">History Page</option>
   <option value="volvo">Update 16-08-24 12:10AM</option>
@@ -368,6 +368,37 @@ $(document).ready(function() {
 
     // Update health meter on load
     updateHealthMeter();
+});
+
+$(document).ready(function() {
+    $('#history_updated').on('change', function() {
+        // Get the value of the selected option
+        var selectedValue = $(this).val();
+        
+        // Optionally, you can get the text of the selected option
+        var selectedText = $(this).find('option:selected').text();
+        
+        // Do something with the selected value or text
+        console.log('Selected Value: ' + selectedValue);
+        console.log('Selected Text: ' + selectedText);
+    });
+});
+
+$(document).ready(function() {
+    $('#pages').on('change', function() {
+        // Get the value of the selected option
+        var selectedValue = $(this).val();
+        
+        // Optionally, you can get the text of the selected option
+        var selectedText = $(this).find('option:selected').text();
+        
+        // Do something with the selected value or text
+        console.log('Selected Value: ' + selectedValue);
+        console.log('Selected Text: ' + selectedText);
+        url =  "{{ url('/admin/editsite').'/'.$variable.'/' }}?page="+selectedValue;
+        console.log(url);
+        window.location.href = url;
+    });
 });
 
 </script>

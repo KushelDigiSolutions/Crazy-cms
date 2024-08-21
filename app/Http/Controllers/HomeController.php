@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rule;
 use App\User;
+use App\Models\Enquiry;
 use App\Models\Subscription;
 use Session;
 use DB;
@@ -13,6 +14,7 @@ class HomeController extends Controller
 {
     public function preview($variable)
     {
+
         // Define the path to your HTML file in the public folder
         $filePath = public_path('previews/'.$variable.'/index.html');
         // Check if the file exists
@@ -21,7 +23,7 @@ class HomeController extends Controller
             $htmlContent = file_get_contents($filePath);
 
              // Pass the content to the view
-             return view('frontend/preview', ['htmlContent' => $htmlContent]);
+             return view('frontend/preview', ['htmlContent' => $htmlContent,'variable'=>$variable]);
         } else {
             return response()->json([
                 'error' => 'File not found.'
@@ -40,7 +42,12 @@ class HomeController extends Controller
     
     public function checkFtp(Request $request)
     {
-        return view('frontend.check-ftp');
+        $sitename = $request->query('site');
+        $site = Enquiry::where('name', $sitename)->first('url');
+        $siteurl = "";
+        if(!empty($site->url)){
+        $siteurl = $site->url;}
+        return view('frontend.check-ftp',compact('siteurl'));
     }
 
 
@@ -158,4 +165,13 @@ class HomeController extends Controller
         return view('admin/addmysites')->with('success','User created successfully.');
     }
 
+      public function successPage()
+    {
+        return view('success');
+    }
+
+    public function failurePage()
+    {
+        return view('failure');
+    }
 }

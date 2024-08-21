@@ -1,1 +1,5 @@
-<h1>Payment Canceled!</h1>
+<!-- failure.blade.php -->
+@if (session('status'))
+    <p>{{ session('status') }}</p>
+    <p>{{ session('user_verification_data') }}</p>
+@endif

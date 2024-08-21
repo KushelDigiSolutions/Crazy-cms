@@ -37,6 +37,8 @@
                                     <input type="password" placeholder="Password" id="password" name="password">
                                     <label for="directory">Path URL</label>
                                     <input type="text" id="directory" placeholder="Website location" name="directory">
+                                    <label for="directory">Website URL</label>
+                                    <input type="text" id="url" value="@if(!empty($siteurl)){{$siteurl}}@endif" @if(!empty($siteurl)) disabled @endif placeholder="Website URL" name="url">
                                     <div class="crazy-crm-button">
                                         <button type="submit">Continue</button>
                                     </div>
@@ -85,6 +87,7 @@
                 username: $('input[name="username"]').val(),
                 password: $('input[name="password"]').val(),
                 directory: $('input[name="directory"]').val(),
+                url: $('input[name="url"]').val(),
                 protocol:  $('select[name="protocol"]').val(),
                 _token: '{{ csrf_token() }}' 
             },

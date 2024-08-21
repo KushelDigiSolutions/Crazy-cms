@@ -270,12 +270,11 @@
                             alert('User already exists. Please log in.');
                         } else {
                             // Open PayPal payment gateway with the plan price
-                          //  window.location.href = response.paypal_url;
+                            window.location.href = "{{url('/pay')}}";
                         }
                     } else {
                         alert('An error occurred. Please try again.');
                     }
-                      alert(' Please log in.');
                 },
                 error: function(xhr) {
                     alert('An error occurred: ' + xhr.status + ' ' + xhr.statusText);

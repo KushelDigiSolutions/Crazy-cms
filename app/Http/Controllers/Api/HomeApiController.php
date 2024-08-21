@@ -100,12 +100,14 @@ class HomeApiController extends Controller
 
     public function analyzeFtp(Request $request)
     {
+
         // Validate incoming request data
-        $request->validate([
+        $validatedData = $request->validate([
             'host' => 'required|string',
             'username' => 'required|string',
             'password' => 'required|string',
             'directory' => 'required|string',
+            'url' => 'required|string',
             'protocol' => 'required|string|in:ftp,sftp',
         ]);
 
@@ -114,6 +116,7 @@ class HomeApiController extends Controller
         $username = $request->input('username');
         $password = $request->input('password');
         $directory = $request->input('directory');
+        $url        = $request->input('url');
         $protocol = $request->input('protocol');
 
         // Call the function to analyze and send the data
@@ -123,6 +126,7 @@ class HomeApiController extends Controller
                 dd(Auth::id());
             } */
             session(['validFtpSite' => $host]);
+            session(['validFtpSiteData' => $validatedData]);
         }else{
             session(['validFtpSite' => ""]);
         }
