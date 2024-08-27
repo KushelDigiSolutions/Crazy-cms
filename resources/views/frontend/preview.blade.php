@@ -34,7 +34,7 @@
            </div>
 
            <div class="preview_btn">
-               <button onclick="gotoFtp()">Subscribe & Save</button>
+               <button onclick="gotoFtp()">Save Changes</button>
            </div>
       </div>
    </div>

@@ -46,7 +46,11 @@ class HomeController extends Controller
         $site = Enquiry::where('name', $sitename)->first('url');
         $siteurl = "";
         if(!empty($site->url)){
-        $siteurl = $site->url;}
+        $siteurl = $site->url;}else{
+            if(!empty(session('my_sites_create')['url'])){
+                $siteurl = session('my_sites_create')['url'];
+            }
+        }
         return view('frontend.check-ftp',compact('siteurl'));
     }
 

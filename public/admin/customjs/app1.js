@@ -31,13 +31,15 @@ function submitForm() {
 
     setTimeout(() => {
 
-        pretight.innerHTML = ``
+        
 
         if (webUrlInput == "") {
+            pretight.innerHTML = ``
             $("#errorMsg").html("website URL cannot be empty.");
             $("#errorModal").modal("show");
             return;
         } else if (!isValidURL(webUrlInput)) {
+            pretight.innerHTML = ``
             $("#errorMsg").html("Pleae enter valid URL.");
             $("#errorModal").modal("show");
             return;
@@ -61,12 +63,14 @@ function submitForm() {
                 // Handle success
                 setTimeout(function () {
                     window.location.href = window.appConfig.baseUrl + '/preview/' + response.url;
-                }, 2000)
+                    pretight.innerHTML = ``
+                }, 200)
 
                 console.log('Success:', response);
             },
             error: function (xhr, status, error) {
                 // Handle error
+                pretight.innerHTML = ``
                 $("#errorMsg").html("Pleae enter valid URL.");
                 $("#errorModal").modal("show");
                 return;
@@ -89,13 +93,15 @@ function verifyFtp() {
 
     setTimeout(() => {
 
-        pretight.innerHTML = ``
+        
 
         if (webUrlInput == "") {
+            pretight.innerHTML = ``
             $("#errorMsg").html("website URL cannot be empty.");
             $("#errorModal").modal("show");
             return;
         } else if (!isValidURL(webUrlInput)) {
+            pretight.innerHTML = ``
             $("#errorMsg").html("Pleae enter valid URL.");
             $("#errorModal").modal("show");
             return;
@@ -119,12 +125,14 @@ function verifyFtp() {
                 // Handle success
                 setTimeout(function () {
                     window.location.href = window.appConfig.baseUrl + '/preview/' + response.url;
-                }, 2000)
+                    pretight.innerHTML = ``
+                }, 200)
 
                 console.log('Success:', response);
             },
             error: function (xhr, status, error) {
                 // Handle error
+                pretight.innerHTML = ``
                 $("#errorMsg").html("Pleae enter valid URL.");
                 $("#errorModal").modal("show");
                 return;

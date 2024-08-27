@@ -29,5 +29,6 @@ Route::middleware(['web'])->group(function () {
         Route::post('/downloadWeb', [HomeApiController::class, 'downloadWeb']);
         Route::post('/verify-ftp', [HomeApiController::class, 'analyzeFtp'])->name('analyze.ftp');
         Route::post('/admin/customer-register', [UserController::class, 'customerRegister'])->name('customerRegister');
+        Route::post('/admin/customer-site-register', [UserController::class, 'customerSiteRegister'])->name('customerSiteRegister');
     });
 });

@@ -94,17 +94,17 @@
             @if($subs_id == 2)
             <button  type="button" data-bs-toggle="offcanvas" data-bs-target="#seoSidebar" aria-controls="seoSidebar">Seo Settings</button> @endif
             <select name="history_updated" id="history_updated">
-  <option value="">History Page</option>
-  <option value="volvo">Update 16-08-24 12:10AM</option>
-  <option value="volvo">Update 15-08-24 18:10PM</option>
-  <option value="volvo">Update 15-08-24 10:10AM</option>
-</select>
+                <option value="">History Page</option>
+                @foreach($histories as $history)
+                <option value="{{$history['id']}}">{{$history["name"]}}</option>
+                @endforeach
+            </select>
             <select name="pages" id="pages">
-  <option value="">Select Page</option>
-  @foreach($files as $mfile)
-  <option @if($filename == $mfile) selected @endif value="{{$mfile}}">{{$mfile}}</option>
-  @endforeach
-</select>
+                <option value="">Select Page</option>
+                @foreach($files as $mfile)
+                <option @if($filename == $mfile) selected @endif value="{{$mfile}}">{{$mfile}}</option>
+                @endforeach
+            </select>
         </div>
       <div class="first_preview">
           <span>{{$filename}} Page</span>
@@ -370,19 +370,45 @@ $(document).ready(function() {
     updateHealthMeter();
 });
 
+
 $(document).ready(function() {
     $('#history_updated').on('change', function() {
-        // Get the value of the selected option
+        // Get the value of the selected option (assuming this is the slug like 'sell-your-home.html')
         var selectedValue = $(this).val();
         
         // Optionally, you can get the text of the selected option
         var selectedText = $(this).find('option:selected').text();
+
+        // Ask for confirmation
+        var isConfirmed = confirm("Are you sure you want to go back to " + selectedText + " history page?");
         
-        // Do something with the selected value or text
-        console.log('Selected Value: ' + selectedValue);
-        console.log('Selected Text: ' + selectedText);
+        if (isConfirmed) {
+            // Get the current URL
+            var currentUrl = new URL(window.location.href);
+            
+            // Get the URLSearchParams object
+            var searchParams = new URLSearchParams(currentUrl.search);
+            var url = "";
+            if (searchParams.has('page')) {
+                // Set the value of 'page' to the selectedValue
+                //searchParams.set('page', selectedValue);
+                url = "{{ url('/admin/editsite').'/'.$variable.'/'.$site_id }}?page=" + searchParams.get('page')+ "&history_id="+selectedValue;
+                
+            } else {
+                // If 'page' does not exist, remove it (in case it was there previously)
+                url = "{{ url('/admin/editsite').'/'.$variable.'/'.$site_id }}?history_id="+selectedValue;
+            }
+            console.log(url);
+            window.location.href = url;
+        } else {
+            // User canceled the action
+            console.log('Page change canceled.');
+        }
     });
 });
+
+
+
 
 $(document).ready(function() {
     $('#pages').on('change', function() {
@@ -391,15 +417,26 @@ $(document).ready(function() {
         
         // Optionally, you can get the text of the selected option
         var selectedText = $(this).find('option:selected').text();
+
+        // Ask for confirmation
+        var isConfirmed = confirm("Are you sure you want to change the page?");
         
-        // Do something with the selected value or text
-        console.log('Selected Value: ' + selectedValue);
-        console.log('Selected Text: ' + selectedText);
-        url =  "{{ url('/admin/editsite').'/'.$variable.'/' }}?page="+selectedValue;
-        console.log(url);
-        window.location.href = url;
+        if (isConfirmed) {
+            // Do something with the selected value or text
+            console.log('Selected Value: ' + selectedValue);
+            console.log('Selected Text: ' + selectedText);
+            
+            // Construct the URL and navigate to the page
+            var url = "{{ url('/admin/editsite').'/'.$variable.'/'.$site_id.'/' }}?page=" + selectedValue;
+            console.log(url);
+            window.location.href = url;
+        } else {
+            // User canceled the action
+            console.log('Page change canceled.');
+        }
     });
 });
+
 
 </script>
 

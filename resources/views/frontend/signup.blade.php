@@ -226,7 +226,7 @@
         </div>
         <div class="respError"></div>
         @auth
-        <button type="button" onclick="customerRegistrationBtn(event)" class="btn btn-primary brn-sm">Select and Pay</button>
+        <button type="button" onclick="saveAndPay(event)" class="btn btn-primary brn-sm">Select and Pay</button>
         @else
         <button type="button" onclick="customerRegistrationBtn(event)" class="btn btn-primary brn-sm">Signup And Pay</button>
         @endauth    
@@ -307,52 +307,42 @@
 
 
  <script>
-//     function setPlan(val){
-//         $('.chooseBtn2active').removeClass('chooseBtn2active');
-//         $('.chooseBtn2 span').html('Choose Plan');
-//         $('#plan_'+val).addClass('chooseBtn2active');
-//         $('#plan_'+val+" span").html('Choosed');
-//         $("#plan").val($('#plan_'+val).attr('data-id'));
-//     }
-//     let st = document.querySelector("#srt");
-//     st.classList.add("song");
- </script>
- <script>
-//         function customerRegistrationBtn(){
-//             event.preventDefault(); 
-//             let formData = $(this).serialize();
-//             $.ajaxSetup({
-//                 headers: {
-//                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-//                 }
-//             });
-//             $.ajax({
-//                 url: '{{ route('customerRegister') }}', 
-//                 type: 'POST',
-//                 data: {
-//                     name: $('input[name="name"]').val(),
-//                     email: $('input[name="email"]').val(),
-//                     password: $('input[name="password"]').val(),
-//                     plan: $('input[name="plan"]').val(),
-//                 },
-//                 success: function(response) {
-//                     if (response.success) {
-//                         if (response.exists) {
-//                             alert('User already exists. Please log in.');
-//                         } else {
-//                             // Open PayPal payment gateway with the plan price
-//                           //  window.location.href = response.paypal_url;
-//                         }
-//                     } else {
-//                         alert('An error occurred. Please try again.');
-//                     }
-//                       alert(' Please log in.');
-//                 },
-//                 error: function(xhr) {
-//                     alert('An error occurred: ' + xhr.status + ' ' + xhr.statusText);
-//                 }
-//             });
-//         }
+  function saveAndPay(event){
+        event.preventDefault(); 
+       
+        if($("#selectedplan").val() == 0){
+            alert('Please select one of the Plan first.');
+            return;
+        }
+
+        // If no validation error, proceed with the AJAX request
+        let formData = {
+            plan: $('input[name="plan"]').val(),
+            _token: '{{ csrf_token() }}' // Add CSRF token
+        };
+
+        $.ajax({
+            url: '{{ route('customerSiteRegister') }}', 
+            type: 'POST',
+            data: formData,
+            success: function(response) {
+                if (response.success) {
+                    if (response.exists) {
+                        alert('User already exists. Please log in.');
+                    } else {
+                        // Open PayPal payment gateway with the plan price
+                        // window.location.href = response.paypal_url;
+                        window.location.href = "{{url('/pay')}}";
+                    }
+                } else {
+                    $(".respError").html("<p class=\"rpErr\">"+response.errors+"</p>");
+                }
+            },
+            error: function(xhr) {
+                alert('An error occurred: ' + xhr.status + ' ' + xhr.statusText);
+            }
+        });
+    }
  </script>
 
 @endsection

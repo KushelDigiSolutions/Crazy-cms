@@ -24,9 +24,10 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'verified'])->group(
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::get('/mysites', [UserController::class,'mySite'])->name('mysites');
     Route::get('/addmysites', [UserController::class,'addMySite'])->name('addmysites');
-    Route::get('/editsite/{variable}', [UserController::class, 'editsite'])->name('editWebsite');
+    Route::get('/editsite/{variable}/{id}', [UserController::class, 'editsite'])->name('editWebsite');
     Route::post('/storeAdd', [UserController::class, 'storeAdd'])->name('storeAdd');
     Route::post('/addSite', [UserController::class, 'addSite'])->name('addSite');
+    Route::post('/createWebsite', [UserController::class, 'createWebsite'])->name('createWebsite');
     
     
 

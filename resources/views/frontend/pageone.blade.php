@@ -18,18 +18,18 @@
                     <div class="crazy-crm-content">
                         <div class="crazy-crm-left-form">
                             <h1>Create a Website </h1>
-                            <form action="{{ route('admin.addSite') }}" method="post">
+                            <form action="{{ route('admin.createWebsite') }}" method="post">
                                 @csrf
                                 <div class="crazy-crm-left-form-main">
                                     <label for="name">Project Name</label>
-                                    <input type="name" id="project_name" name="project_name">
+                                    <input type="name" placeholder="Project Name" id="project_name" name="project_name">
                                     @error('project_name')
                                         <span class="text-danger">{{ $message }}</span>
                                     @enderror 
                                 </div>
                                 <div class="crazy-crm-left-form-main">
                                     <label for="name">Enter full website URL</label>
-                                    <input type="url" id="user_url" name="user_url">
+                                    <input type="url" placeholder="https://www.mycrazycms.com" id="user_url" name="user_url">
                                     @error('user_url')
                                         <span class="text-danger">{{ $message }}</span>
                                     @enderror

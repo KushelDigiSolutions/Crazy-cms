@@ -6,6 +6,7 @@ use Auth;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\MySite;
+use App\Models\History;
 use Illuminate\Validation\Rule;
 use Spatie\Permission\Models\Role;
 use App\Models\Subscription;
@@ -13,6 +14,7 @@ use Illuminate\Support\Facades\Validator;
 use App\Providers\RouteServiceProvider;
 use App\Services\FTPService;
 use Illuminate\Support\Facades\Http;
+use Carbon\Carbon;
 use DB;
 
 class UserController extends Controller
@@ -129,10 +131,10 @@ class UserController extends Controller
         return view('frontend/pageone');
     }
 
-    public function editsite(Request $request,$variable)
+    public function editsite(Request $request,$variable,$id)
     {
-
-        $data = MySite::where('user_id',Auth::id())->where('name',$variable)->first();
+        $data = MySite::where('id',$id)->where('user_id',Auth::id())->first();
+        
         
         if(empty($data)){
             return response()->json([
@@ -155,15 +157,102 @@ class UserController extends Controller
             // Get the content of the file
             //dd($files);
             $page = !empty($request->query('page')) ? $request->query('page') : $files[0];
-            $htmlContent = $this->ftpService->getFileContent($page,$data->url);
-//dd($htmlContent);
+            if(!empty($request->query('history_id'))){
+                $lastHistory = History::where('id',$request->query('history_id'))
+                              ->where('my_site_id', $id)
+                              ->where('user_id', Auth::id())
+                              ->latest('created_at')
+                              ->first();
+              
+                $htmlContent = json_decode($lastHistory->content,true);
+           
+            }else{
+                
+                $htmlContent = $this->ftpService->getFileContent($page,$data->url);
+            }
+            $saveData["mysite_id"] =$id;
+            $saveData["user_id"] =Auth::id();
+            $saveData["pagename"] =$page;
+            $saveData["content"] =json_encode($htmlContent);
+            $saved = $this->saveHistory($saveData);
+            $histories = $this->getHistory($id,Auth::id(),$page);
+        
              // Pass the content to the view
-             return view('admin.user.editsite', ['htmlContent' => $htmlContent["html_content"],'seo'=>$htmlContent["meta_data"],'files'=>$files,'filename'=>$files[0],'variable'=>$variable,'subs_id'=>$data->subscription_id]);
+             return view('admin.user.editsite', ['htmlContent' => $htmlContent["html_content"],'seo'=>$htmlContent["meta_data"],'files'=>$files,'filename'=>$files[0],'variable'=>$variable,'subs_id'=>$data->subscription_id,'pagename'=>$page,'histories'=>$histories,'site_id'=>$id]);
         } else {
             return response()->json([
                 'error' => 'Website not downloaded'
             ], 404);
         }
+    }
+
+
+    public function saveHistory($request)
+    {
+        $mysiteId = $request["mysite_id"];
+        $userId = $request["user_id"];
+        $pagename = $request["pagename"];
+        $content = $request["content"];
+        
+        // Get the last created history record for the same my_site_id and user_id
+        $lastHistory = History::where('my_site_id', $mysiteId)
+                              ->where('user_id', $userId)
+                              ->latest('created_at')
+                              ->first();
+        
+        $canSave = true;
+        
+        // Check if the last history record was created within the last 10 seconds
+        if ($lastHistory) {
+            $createdAt = $lastHistory->created_at;
+            $canSave = Carbon::now()->diffInSeconds($createdAt) > 10;
+        }
+        
+        if ($canSave) {
+            // Insert new history record
+            History::create([
+                'my_site_id' => $mysiteId,
+                'user_id' => $userId,
+                'pagename' => $pagename,
+                'content' => $content,
+            ]);
+        
+            // Limit history records to 10
+            $historyCount = History::where('my_site_id', $mysiteId)
+                                   ->where('user_id', $userId)
+                                   ->count();
+        
+            if ($historyCount > 10) {
+                $oldestHistory = History::where('my_site_id', $mysiteId)
+                                        ->where('user_id', $userId)
+                                        ->oldest()
+                                        ->first();
+        
+                $oldestHistory->delete();
+            }
+        
+            return response()->json(['message' => 'History saved successfully']);
+        }
+        
+        return response()->json(['message' => 'History was not saved due to recent activity'], 429);        
+    }
+
+    public function getHistory($mysiteId, $userId, $pagename)
+    {
+        $history = History::where('my_site_id', $mysiteId)
+                        ->where('user_id', $userId)
+                        ->where('pagename', $pagename)
+                        ->get();
+    
+        return $history->map(function ($record) {
+            // Format created_at as 'Y-m-d H:i:s'
+            $formattedDate = Carbon::parse($record->created_at)->format('Y-m-d-H:i');
+    
+            return [
+                'id' => $record->id,
+                'name' => $record->pagename . '-' . $formattedDate, // pagename-created_date_with_time
+            ];
+        });
     }
 
     public function storeAdd(Request $request)
@@ -222,84 +311,28 @@ class UserController extends Controller
         // return view('admin.mysites')->with('success', 'Sites created successfully.');
 
     }
-    
-        public function mySite()
-    {
 
-        $oneYearAgo = now()->subYear();
-        $userId = Auth::id();
-        $results = DB::table('my_sites')
-            ->join('users', 'my_sites.user_id', '=', 'users.id')
-            ->select(
-                'my_sites.*',           
-                'users.name as user_name', 
-                'my_sites.id',          
-                'my_sites.protocol',    
-                'my_sites.host',        
-                'my_sites.port',        
-                'my_sites.url'          
-            )
-            ->where(function($query) use ($userId) {
-                $query->whereNotNull('my_sites.user_id')
-                      ->orWhere('my_sites.user_id', '=', $userId);
-            })
-            ->get();
-     $data = DB::table('my_sites')
-     ->join('users', 'my_sites.user_id', '=', 'users.id')
-     ->select(
-         'my_sites.*',           
-         'users.name as user_name', 
-         'my_sites.id',          
-         'my_sites.protocol',    
-         'my_sites.host',        
-         'my_sites.port',        
-         'my_sites.url', 
-         'my_sites.created_at'         
-     )
-    // ->where('user_id', $userId)
-
-    ->where(function($query) use ($userId, $oneYearAgo) {
-        $query->whereNotNull('my_sites.user_id')
-                    ->where('my_sites.created_at', '<', $oneYearAgo);
-              })
-        ->get();
-    // echo '<pre>'; print_r($data); die;
-        return view('mysites', compact('results','data'));
+    public function createWebsite(Request $request){
+        $request->validate([
+            'project_name' => 'required|string|max:255',
+            'user_url' => 'required'
+        ]);
+        $projectname = $request->input('project_name');
+        $url = $request->input('user_url');
+        session(['my_sites_create' => ["projectname"=>$projectname,"url"=>$url]]);
+        return redirect()->route('check.ftp');
     }
 
-public function mySite270824()
+    public function mySite()
     {
         $userId = Auth::id();
         $results = DB::table('my_sites')
             ->join('users', 'my_sites.user_id', '=', 'users.id')
-            ->select(
-                'my_sites.*',           
-                'users.name as user_name', 
-                'my_sites.id',          
-                'my_sites.protocol',    
-                'my_sites.host',        
-                'my_sites.port',        
-                'my_sites.url'          
-            )
-            ->where(function($query) use ($userId) {
-                $query->whereNotNull('my_sites.user_id')
-                      ->orWhere('my_sites.user_id', '=', $userId);
-            })
+            ->select('my_sites.*', 'users.name as uname') 
+            ->where('my_sites.user_id', $userId)
             ->get();
-     $data = DB::table('my_sites')
-     ->join('users', 'my_sites.user_id', '=', 'users.id')
-     ->select(
-         'my_sites.*',           
-         'users.name as user_name', 
-         'my_sites.id',          
-         'my_sites.protocol',    
-         'my_sites.host',        
-         'my_sites.port',        
-         'my_sites.url'          
-     )
-    ->where('user_id', $userId)
-    ->get();
-        return view('mysites', compact('results','data'));
+        // return redirect()->route('admin.user.mysites',compact('results'));
+        return view('mysites', compact('results'));
     }
 
     
@@ -336,26 +369,6 @@ public function mySite270824()
         $user = User::where('email', $request->input('email'))->first();
     
        
-    
-        /* if ($user) {
-            dd($user);
-            if (!$user->payment_done) {
-                return response()->json(['success' => false, 'exists' => true]);
-            }
-
-            // Get the plan price and id
-            $subscription = Subscription::find($request->input('plan'));
-            dd($subscription);
-            // Return the plan price and user id for PayPal
-            return response()->json([
-                'success' => true,
-                'paypal_url' => $this->getPayPalUrl($subscription->price, $user->id),
-                'price' => $subscription->price,
-                'user_id' => $user->id,
-                'user_type' => 3
-            ]);
-        } */
-
         // Create a new user
         $user = User::create([
             'name' => $request->input('name'),
@@ -366,13 +379,6 @@ public function mySite270824()
   
         $validFtpSiteData = session('validFtpSiteData');
 
-        // Return the plan price and user id for PayPal
-        /* return response()->json([
-            'success' => true,
-            'price' => $subscription->price,
-            'user_id' => $user->id
-        ]); */
-        // Extract request data
         $host = $validFtpSiteData['host'];
         $username = $validFtpSiteData['username'];
         $password = $validFtpSiteData['password'];
@@ -393,6 +399,41 @@ public function mySite270824()
             'subscription_id' => $request->input('plan'),
         ]);
         session(['validUserCreate' => ['id'=>$user->id,'plan'=>$request->input('plan'),'my_site'=>$mysite->id]]);
+        return response()->json(['success' => true, 'message' => "congratulations"]);
+    }
+    
+    public function customerSiteRegister(Request $request)
+    {
+        // Validate the form data
+        $validator = Validator::make($request->all(), [
+            'plan' => 'required|integer|exists:subscriptions,id',
+        ]);
+          
+        $projectName = session('my_sites_create')['projectname'];
+
+  
+        $validFtpSiteData = session('validFtpSiteData');
+
+        $host = $validFtpSiteData['host'];
+        $username = $validFtpSiteData['username'];
+        $password = $validFtpSiteData['password'];
+        $directory = $validFtpSiteData['directory'];
+        $url = $validFtpSiteData['url'];
+        $protocol = $validFtpSiteData['protocol'];
+       
+        $mysite = MySite::create([
+            'name' => $projectName, // Assuming the host is used as the name
+            'protocol' => $protocol,
+            'host' => $host,
+            'url' => $url,
+            'user' => $username,
+            'password' => $password,
+            'location' => $directory,
+            'status' => 0, // or any default status you want
+            'user_id' => Auth::id(),
+            'subscription_id' => $request->input('plan'),
+        ]);
+        session(['validUserCreate' => ['id'=>Auth::id(),'plan'=>$request->input('plan'),'my_site'=>$mysite->id]]);
         return response()->json(['success' => true, 'message' => "congratulations"]);
     }
 

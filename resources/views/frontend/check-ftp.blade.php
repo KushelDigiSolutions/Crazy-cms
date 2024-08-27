@@ -18,7 +18,9 @@
                 <div class="crazy-crm-container">
                     <div class="crazy-crm-content">
                         <div class="crazy-crm-left-form">
-                            <h1>Please Fill Some Details</h1>
+                            <h1 class="text-start">We Need Some Information to Save Your Changes</h1>
+                            <p class="text-start">Before proceeding, we need to first test the compatibility of your website with MyCrazySimpleCMS. To ensure your changes can be saved, please grant access to your hosting account. By providing FTP access, MyCrazySimpleCMS will be able to apply your edits directly to your website. Click <b  data-bs-toggle="modal" data-bs-target="#exampleModal">HERE</b> to find out how to locate and provide this information.</p>
+      
                             <div class="crazy-crm-left-form-main">
                                 <form id="analyzeServerForm">
                                     @csrf
@@ -109,84 +111,21 @@
     });
 });
     
-//       $(document).ready(function() {
-//     $('#analyzeServerForm').on('submit', function(e) {
-//         e.preventDefault();
-
-//         let hasError = false;
-//         $('#result').html(''); 
-
-//         $('#analyzeServerForm input[required]').each(function() {
-//             // if ($(this).val() === '') {
-//              if ($(this).val().trim() === '') {
-//                 hasError = true;
-//                 $(this).css('border', '1px solid red'); 
-//             } else {
-//                 $(this).css('border', ''); 
-//             }
-//         });
-
-//         if (hasError) {
-//             $('#result').html('<p style="color:red;">Please fill in all required fields.</p>');
-//             return;
-//         }
-
-//         $.ajax({
-//             url: "{{ route('analyze.ftp') }}",
-//             method: 'POST',
-//             data: {
-//                 host: $('input[name="host"]').val(),
-//                 username: $('input[name="username"]').val(),
-//                 password: $('input[name="password"]').val(),
-//                 directory: $('input[name="directory"]').val(),
-//                 protocol:  $('select[name="protocol"]').val(),
-//                 postUrl: $('input[name="postUrl"]').val(),
-//                 _token: '{{ csrf_token() }}' 
-//             },
-//             success: function(response) {
-//               if(response.analysis_result == 1){
-                
-//                 if (confirm("Congratulation your website is compitable with our platform") == true) {
-//                     window.location.href = "{{ route('front.signup') }}";
-//                 } else {
-//                     alert("thankyou");
-//                 }
-//               }else{
-//                 alert("Sorry your website does not meet the minimum requirement to of our platform");
-//               }
-//             },
-//             error: function(xhr) {
-//                 $('#result').html('<p>An error occurred: ' + xhr.status + ' ' + xhr.statusText + '</p>');
-//             }
-//         });
-//     });
-// });
-
     </script>
-   <!--  <script>
 
-//Ab9fUDw9DAjpGg1CbtS66FdSWnzg17U2eWO5l5nJVhNAMyNhBokZnd5KLdsV_ymQqSm86if24bXEKGV1
 
-//key : EBJxtM9acxnh05C5Gl0svVzbupTpD9CGCNqoNK9u4WIIz4KcDHUtHxIjy0_AGFEuUje8ShY7nehqGbmb
-        paypal.Buttons({ 
-            createOrder: function(data, actions) {
-                return actions.order.create({
-                    purchase_units: [{
-                        amount: {
-                            value: '10.00' // Amount to be charged
-                        }
-                    }]
-                });
-            },
-            onApprove: function(data, actions) {
-                return actions.order.capture().then(function(details) {
-                    alert('Transaction completed by ' + details.payer.name.given_name);
-                    // Optionally, you can send details to your server for processing
-                });
-            },
-            onError: function(err) {
-                console.error(err);
-             //   alert('An error occurred during the transaction.');
-            }
-        }).render('#paypal-button-container'); // Display the PayPal button
-    </script> -->
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-xl">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Instructions</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+      <iframe src="{{url('/crazy-faq.pdf')}}" width="100%" height="600px" style="border: none;"></iframe>
+      </div>
+    </div>
+  </div>
+</div>
