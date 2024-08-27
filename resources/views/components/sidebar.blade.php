@@ -129,9 +129,8 @@
         </li>
         @role('admin')
         <li class="nav-item">
-            <a href="{{ route('admin.setting.edit') }}"
-                class="nav-link {{ Route::is('admin.setting.edit') ? 'active' : '' }}">
-                <i class="nav-icon fas fa-wrench"></i>
+            <a href="{{ route('admin.setting.edit') }}" class="nav-link {{ Route::is('admin.setting.edit') ? 'active' : '' }}">
+            <i class="nav-icon fas fa-wrench"></i>
                 <p>Settings</p>
             </a>
         </li>
@@ -141,10 +140,10 @@
     @csrf
 </form>
 <li class="nav-item">
-<a href="#"   class="nav-link {{ Route::is('admin.setting.edit') ? 'active' : '' }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-<i class="nav-icon fas fa-wrench"></i>
-<p>Logout</p>
-</a>
+    <a href="#" class="nav-link" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+        <i class="nav-icon fas fa-sign-out-alt"></i> <!-- Changed the icon for better representation -->
+        <p>Logout</p>
+    </a>
 </li>
     </ul>
 </nav>

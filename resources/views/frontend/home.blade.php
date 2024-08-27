@@ -69,14 +69,11 @@
 <div class=" com1">
   <div class="row">
     <div class="col-lg-6 col-md-9 banner_left">
-      <h1>Welcome to Crazy Simple</h1>
-      <p>
-        We aren’t Crazy, but we do give you tools galore to easily produce
-        your website.
-      </p>
-      <button type="button" class="btn btn-light">
+      <h1>Try For FREE</h1>
+      <p>Simple website editor. Change the text and images on your website right now.  Just put your website address below.</p>
+      <!--<button type="button" class="btn btn-light">
         <span> GET STARTED</span>
-      </button>
+      </button>-->
     </div>
 
     <!-- this is right slider banner  -->
@@ -136,7 +133,8 @@
 <section id="email_section">
 <div class=" com1 webAdWrap">
   <div class="row">
-    <p>Empower Yourself to Easily <span> Modify Your Website</span></p>
+    <p>What is your <span> Website</span> address?</p>
+
   </div>
 
   <div class="websiteAdd">
@@ -146,7 +144,7 @@
       <input class="web_uri" type="ttextext" id="webUrlInput" placeholder="Enter your website Address" />
     </div>
 
-    <div onclick="submitForm()" class="startBtn">Start</div>
+    <div onclick="submitForm()" class="startBtn">Edit Website</div>
 
   </div>
 
@@ -522,12 +520,12 @@
 
         <div class="planWhitewrap">
           <p class="dollorHead">
-            <span class="span1">$60</span>
-            <span class="span2">/Yearly</span>
+            <span class="span1">$5</span>
+            <span class="span2">/Month</span>
             <img class="suy" src="{{asset('admin/img/chose.svg')}}" alt="">
           </p>
 
-          <span class="only">(Only $5 per month)</span>
+          <span class="only">($60 per year)</span>
 
           <!-- scond part  -->
           <div class="planPoint">
@@ -572,12 +570,12 @@
 
         <div class="planWhitewrap">
           <p class="dollorHead">
-            <span class="span1">$96</span>
-            <span class="span2">/Yearly</span>
+            <span class="span1">$8</span>
+            <span class="span2">/Month</span>
             <img class="suy" src="{{asset('admin/img/chose1.svg')}}" alt="">
           </p>
 
-          <span class="only">(Only $5 per month)</span>
+          <span class="only">($96 per year)</span>
 
           <!-- scond part  -->
           <div class="planPoint">
@@ -622,12 +620,12 @@
 
         <div class="planWhitewrap">
           <p class="dollorHead">
-            <span class="span1">$192</span>
-            <span class="span2">/Yearly</span>
+            <span class="span1">$16</span>
+            <span class="span2">/Month</span>
             <img class="suy" src="{{asset('admin/img/chose2.svg')}}" alt="">
           </p>
 
-          <span class="only">(Only $5 per month)</span>
+          <span class="only">($192 per year)</span>
 
           <!-- scond part  -->
           <div class="planPoint">

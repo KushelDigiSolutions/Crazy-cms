@@ -5,6 +5,7 @@ use App\Http\Controllers\SocialiteController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Str;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\PageController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\PayPalController;
 
@@ -40,6 +41,12 @@ Route::middleware(['web'])->group(function () {
     Route::get('/page2', [HomeController::class, 'pagetwo']);
     Route::get('/page3', [HomeController::class, 'pagethree']);
     Route::get('/page6', [HomeController::class, 'pagesix']);
+    Route::get('/features', [PageController::class, 'feature']);
+    Route::get('/pricing', [PageController::class, 'pricing']);
+    Route::get('/privacy_policy',[PageController::class,'privacyPolicy']);
+    Route::get('/terms_services',[PageController::class,'terms']);
+    Route::get('/site',[PageController::class,'siteMap']);
+    Route::get('/mobile_site',[PageController::class,'mobileSite']);
    
     Route::get('pay', [PayPalController::class, 'createPayment'])->name('paypal.pay');
     Route::get('success', [PayPalController::class, 'success'])->name('paypal.success');

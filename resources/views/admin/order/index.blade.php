@@ -9,40 +9,48 @@
             <table class="table table-striped" id="itemTable">
                 <thead>
                     <tr>
-                        <th>#</th>
-                        <th>Name</th>
-                        <th>Plan</th>
+                        <th>Sr.</th>
+                        <th>Order ID</th>
+                        <th>Website(Url)</th>
                         <th>Subscription start</th>
-                        <th>Created</th>
-                        <th>Action</th>
+                        <th>Transaction ID</th>
+                        <th>End Date</th>
+                        <!-- <th>Action</th>
                         <th></th>
-                        <th></th>
+                        <th></th> -->
                     </tr>
                 </thead>
                 <tbody>
+                    @php 
+                    $i = 1
+                    @endphp
+
                     @foreach ($data as $item)
                         <tr>
-                            <td>{{ $item->id }}</td>
-                            <td>{{ $item->name }}</td>
-                            <td>{{ $item->name }}</td>
-                            <td>{{ $item->name }}</td>
-                            <td>{{ $item->created_at }}</td>
+                            <td>{{ $i++ }}</td>
                             <td>
+                            #MCC{{ date('Y') }}{{ $item->id }}
+                            </td>
+                            <td>{{ $item->url }}</td>
+                            <td>{{ $item->created_at }}</td>
+                            <td>{{ $item->transactionId }}</td>
+                            <td> {{ $item->end_date }}</td>
+                            <!-- <td>
                                 <a href="{{ route('admin.subscription.edit', encrypt($item->id)) }}"
                                     class="btn btn-sm btn-primary">Edit</a>
-                            </td>
-                            <td>
+                            </td> -->
+                            <!-- <td>
                                 <a href="{{ route('admin.subscription.edit', encrypt($item->id)) }}"
                                     class="btn btn-sm btn-primary">Login</a>
-                            </td>
-                            <td>
+                            </td> -->
+                            <!-- <td>
                                 <form action="{{ route('admin.subscription.destroy', encrypt($item->id)) }}" method="POST"
                                     onsubmit="return confirm('Are sure want to delete?')">
                                     @method('DELETE')
                                     @csrf
                                     <button type="submit" class="btn btn-sm btn-danger">Delete</button>
                                 </form>
-                            </td>
+                            </td> -->
                         </tr>
                     @endforeach
                 </tbody>

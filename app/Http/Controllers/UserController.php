@@ -222,17 +222,84 @@ class UserController extends Controller
         // return view('admin.mysites')->with('success', 'Sites created successfully.');
 
     }
+    
+        public function mySite()
+    {
 
-    public function mySite()
+        $oneYearAgo = now()->subYear();
+        $userId = Auth::id();
+        $results = DB::table('my_sites')
+            ->join('users', 'my_sites.user_id', '=', 'users.id')
+            ->select(
+                'my_sites.*',           
+                'users.name as user_name', 
+                'my_sites.id',          
+                'my_sites.protocol',    
+                'my_sites.host',        
+                'my_sites.port',        
+                'my_sites.url'          
+            )
+            ->where(function($query) use ($userId) {
+                $query->whereNotNull('my_sites.user_id')
+                      ->orWhere('my_sites.user_id', '=', $userId);
+            })
+            ->get();
+     $data = DB::table('my_sites')
+     ->join('users', 'my_sites.user_id', '=', 'users.id')
+     ->select(
+         'my_sites.*',           
+         'users.name as user_name', 
+         'my_sites.id',          
+         'my_sites.protocol',    
+         'my_sites.host',        
+         'my_sites.port',        
+         'my_sites.url', 
+         'my_sites.created_at'         
+     )
+    // ->where('user_id', $userId)
+
+    ->where(function($query) use ($userId, $oneYearAgo) {
+        $query->whereNotNull('my_sites.user_id')
+                    ->where('my_sites.created_at', '<', $oneYearAgo);
+              })
+        ->get();
+    // echo '<pre>'; print_r($data); die;
+        return view('mysites', compact('results','data'));
+    }
+
+public function mySite270824()
     {
         $userId = Auth::id();
         $results = DB::table('my_sites')
             ->join('users', 'my_sites.user_id', '=', 'users.id')
-            ->select('my_sites.*', 'users.name as uname') 
-            ->where('my_sites.user_id', $userId)
+            ->select(
+                'my_sites.*',           
+                'users.name as user_name', 
+                'my_sites.id',          
+                'my_sites.protocol',    
+                'my_sites.host',        
+                'my_sites.port',        
+                'my_sites.url'          
+            )
+            ->where(function($query) use ($userId) {
+                $query->whereNotNull('my_sites.user_id')
+                      ->orWhere('my_sites.user_id', '=', $userId);
+            })
             ->get();
-        // return redirect()->route('admin.user.mysites',compact('results'));
-        return view('mysites', compact('results'));
+     $data = DB::table('my_sites')
+     ->join('users', 'my_sites.user_id', '=', 'users.id')
+     ->select(
+         'my_sites.*',           
+         'users.name as user_name', 
+         'my_sites.id',          
+         'my_sites.protocol',    
+         'my_sites.host',        
+         'my_sites.port',        
+         'my_sites.url'          
+     )
+    ->where('user_id', $userId)
+    ->get();
+        return view('mysites', compact('results','data'));
     }
 
     
