@@ -23,6 +23,7 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'verified'])->group(
     Route::get('/settings', [SettingController::class, 'edit'])->name('setting.edit');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::get('/mysites', [UserController::class,'mySite'])->name('mysites');
+    Route::delete('/mysites/{id}', [UserController::class, 'delete'])->name('mysites.delete');
     Route::get('/addmysites', [UserController::class,'addMySite'])->name('addmysites');
     Route::get('/editsite/{variable}/{id}', [UserController::class, 'editsite'])->name('editWebsite');
     Route::post('/storeAdd', [UserController::class, 'storeAdd'])->name('storeAdd');

@@ -50,8 +50,8 @@
 
    <a class="ekaa" href="{{ url('/') }}"><img class="home-link" src="{{asset('admin/img/summer.svg')}}" alt=""></a>
       <!-- link back to homepage -->
-      <a href="#" class="navSinItem">Features</a>
-      <a  href="{{url('/page3')}}" class="navSinItem">Pricing</a>
+      <a href="{{url('/features')}}" class="navSinItem">Features</a>
+      <a  href="{{url('/pricing')}}" class="navSinItem">Pricing</a>
       <!-- <a href="#" class="navSinItem">Offers</a>
       <a href="#"> <button class="navSinBtn"><span>CONTACT</span></button></a> -->
       <a href="{{url('/login')}}"> <button class="navSinBtn"><span>SIGN IN</span></button></a>
@@ -64,12 +64,79 @@
 <section id="what_we_do">
 <div class=" com1">
   <div class="row row1 justify-content-md-center">
-    <div class="col-lg-9 text-center">
+    <div class="col-lg-12 text-center">
       <h2>Pricing</h2>
       <!-- <img src="{{asset('admin/img/what.svg')}}" alt=""> -->
+
+      <form id="customerRegistration">
+@csrf
+<section id="Plan">
+    <div>
+    <div class="mt-4">
+    <h2 class="text-center overflow-hidden">Choose Your Plan</h2>
+    <div class="row2 mt-2">
+
+       @foreach($subscriptions as $sid=>$subscription)
+            <!-- ffirst  -->
+            <div class="inner_section">
+                <div class="inner_section_container">
+                    <div class="planImgWrap">
+                        @if($sid == 0)    
+                            <img src="{{asset('admin/img/plan1.png')}}" alt="" />
+                        @elseif($sid == 1)
+                            <img src="{{asset('admin/img/blueColor.png')}}" alt="" />
+                        @elseif($sid == 2)
+                            <img src="{{asset('admin/img/orangeColor.png')}}" alt="" />
+                        @endif
+                        <p>{{$subscription->name}}</p>
+                    </div>
+
+                    <div class="planWhitewrap">
+                        <p class="dollorHead">
+                            <span class="span1">${{$subscription->price}}</span>
+                            <span class="span2">/Yearly</span>
+                            <span><s style="font-size: 30px; font-weight: 100;color: gray;">(${{$subscription->mrp}})</s></span>
+                        </p>
+                        <span class="only">(Only {{$subscription->monthly_price}} per month)</span>
+                        <div class="planPoint">
+
+                        @php
+                            // Decode JSON string to an associative array
+                            $data = json_decode($subscription->items, true);
+                            $items = $data ?? []; // Use empty array if 'items' key is not present
+                        @endphp
+                            @foreach($items as $item)
+                                <div class="singlePoint">
+                                    @if($item["status"] == true)
+                                    <img src="{{asset('admin/img/correct.png')}}" alt="" />
+                                    @else
+                                    <img src="{{asset('admin/img/cancel.png')}}" alt="" />
+                                    @endif
+                                    <p>{{$item["descriptions"]}}</p>
+                                </div>
+                            @endforeach
+                           
+                        </div>
+                        @if($subscription->status)  
+                            <button class="chooseBtn2" type="button" data-id="{{$subscription->id}}" onclick="setPlan({{$sid}})" id="plan_{{$sid}}"><span>Choose Plan</span></button>
+                        @else
+                            <p class="notavailable">NOT AVAILABLE NOW</p>
+                        @endif
+                    </div>
+                </div>
+            </div>
+            @endforeach
+            <input type="hidden" T name="plan" id="plan" value="0"/>
+        
+        </div>
+
+       <!-- <button type="button" onclick="customerRegistrationBtn(event)" class="btn btn-primary brn-sm">Signup And Pay</button> -->
+        </div>
+</section>
+
     </div>
   </div>
-  <div class="row row2 justify-content-md-center">
+  <!-- <div class="row row2 justify-content-md-center">
     <div class="col-lg-9 col-md-12 col-sm-12  -center">
       <p>
         “ Have you ever wished for a simple way to make quick
@@ -112,7 +179,7 @@
         updates at your <span> fingertips. </span>
       </p>
     </div>
-  </div>
+  </div> -->
 </div>
 </section>
 @endsection

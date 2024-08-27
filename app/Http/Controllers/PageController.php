@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Subscription;
 
 class PageController extends Controller
 {
@@ -13,7 +14,8 @@ class PageController extends Controller
 
     public function pricing()
     {
-        return view('frontend/pricing');
+         $subscriptions = Subscription::orderBy('id','ASC')->get();
+        return view('frontend/pricing',compact('subscriptions'));
     }
 
     public function privacyPolicy()

@@ -48,10 +48,10 @@
         </svg>
       </label>
 
-   <a class="ekaa" href="{{ url('/') }}"><img class="home-link" src="{{asset('admin/img/summer.svg')}}" alt=""></a>
+  <a class="ekaa" href="{{ url('/') }}"><img class="home-link" src="{{asset('admin/img/summer.svg')}}" alt=""></a>
       <!-- link back to homepage -->
-      <a href="#" class="navSinItem">Features</a>
-      <a  href="{{url('/page3')}}" class="navSinItem">Pricing</a>
+      <a href="{{url('/features')}}" class="navSinItem">Features</a>
+      <a  href="{{url('/pricing')}}" class="navSinItem">Pricing</a>
       <!-- <a href="#" class="navSinItem">Offers</a>
       <a href="#"> <button class="navSinBtn"><span>CONTACT</span></button></a> -->
       <a href="{{url('/login')}}"> <button class="navSinBtn"><span>SIGN IN</span></button></a>

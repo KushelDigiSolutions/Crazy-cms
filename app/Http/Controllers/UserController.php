@@ -81,6 +81,17 @@ class UserController extends Controller
        
        return view('admin.enquiry.customer',compact('data')); 
    }
+   
+       public function delete($id)
+    {
+        $decryptedId = decrypt($id);
+        $deleted = MySite::where('id', $decryptedId)->delete();
+        if ($deleted) {
+            return redirect()->back()->with('success', 'User deleted successfully.');
+        } else {
+            return redirect()->back()->with('error', 'Failed to delete the user.');
+        }
+    }
 
     public function loginAsUser($userId)
     {
@@ -312,6 +323,7 @@ class UserController extends Controller
 
     }
 
+
     public function createWebsite(Request $request){
         $request->validate([
             'project_name' => 'required|string|max:255',
@@ -342,9 +354,7 @@ class UserController extends Controller
                 $query->whereNotNull('my_sites.user_id')
                       ->orWhere('my_sites.user_id', '=', $userId);
             })
-            ->where(function($query) {
-                $query->whereNull('my_sites.deleted_at'); 
-            })
+
             ->get();
      $data = DB::table('my_sites')
      ->join('users', 'my_sites.user_id', '=', 'users.id')
@@ -365,6 +375,44 @@ class UserController extends Controller
               ->where('my_sites.user_id', '=', $userId);
     })
     ->whereNull('my_sites.deleted_at') // Correctly filter out soft-deleted records
+
+    ->get();
+    //  echo '<pre>'; print_r($data); die;
+        return view('mysites', compact('results','data'));
+    }
+
+public function mySite270824()
+    {
+        $userId = Auth::id();
+        $results = DB::table('my_sites')
+            ->join('users', 'my_sites.user_id', '=', 'users.id')
+            ->select(
+                'my_sites.*',           
+                'users.name as user_name', 
+                'my_sites.id',          
+                'my_sites.protocol',    
+                'my_sites.host',        
+                'my_sites.port',        
+                'my_sites.url'          
+            )
+            ->where(function($query) use ($userId) {
+                $query->whereNotNull('my_sites.user_id')
+                      ->orWhere('my_sites.user_id', '=', $userId);
+            })
+            ->get();
+     $data = DB::table('my_sites')
+     ->join('users', 'my_sites.user_id', '=', 'users.id')
+     ->select(
+         'my_sites.*',           
+         'users.name as user_name', 
+         'my_sites.id',          
+         'my_sites.protocol',    
+         'my_sites.host',        
+         'my_sites.port',        
+         'my_sites.url'          
+     )
+    ->where('user_id', $userId)
+
     ->get();
     
         return view('mysites', compact('results','data'));
