@@ -1,6 +1,10 @@
+@php
+        use Carbon\Carbon;
+    @endphp
 <x-admin>
     @section('title', 'My Site')
     @if(Auth::user()->hasRole('admin'))
+ 
     <div class="card canting">
         <div class="card-header">
             <h3 class="card-title cd_tit">My Site</h3>
@@ -37,6 +41,7 @@
                                     class="btn btn-sm btn-primary">Login</a>
                             </td> -->
                             <td>
+                            @if(empty($user->payment_id))
                                 <form action="" method="POST"
                                     onsubmit="return confirm('Are sure want to delete?')">
                                     @method('DELETE')
@@ -70,12 +75,20 @@
                         <th>Port</th>
                         <th>User</th>
                         <th>Url</th>
+                        <th>Subscription Start</th>
+                        <th>Expiry Start</th>
                         <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach ($data as $user)
-                        
+                            @php
+                            
+                                $cr = Carbon::parse($user->created_at);
+                                $createdAt = Carbon::parse($user->created_at);
+                                $expiryDate = $createdAt->addYear()->subDay();
+                                $isExpired = now()->greaterThan($expiryDate);
+                            @endphp 
                         <tr>
                         <td>{{ $user->id }} </td>
                             <td>{{ $user->protocol }}</td>
@@ -83,14 +96,14 @@
                             <td>{{ $user->port }}</td>
                             <td>{{ $user->user_name }}</td>
                             <td>{{ $user->url }}</td>
+                            <td>{{  $cr->format('d-m-Y') }}</td>
+                            <td>{{  $expiryDate->format('d-m-Y'). $isExpired }}</td>
                             <td>
-                            @php
-                                $isExpired = \Carbon\Carbon::parse($user->created_at)->lt(now());
-                            @endphp                            
+                                                       
                                 @if($isExpired)
                                     <a href="{{ url('admin/editsite').'/'.$user->id }}" class="btn btn-sm btn-primary">Renew</a>
                                 @else
-                                    <a href="{{ url('admin/editsite').'/'.$user->id }}" class="btn btn-sm btn-primary">Edit</a>
+                                    <a href="{{ url('admin/editsite').'/'.$user->name.'/'.$user->id }}" class="btn btn-sm btn-primary">Edit</a>
                                 @endif
                             </td>
                             <!-- <td>

@@ -325,14 +325,49 @@ class UserController extends Controller
 
     public function mySite()
     {
+        $oneYearAgo = now()->subYear();
         $userId = Auth::id();
         $results = DB::table('my_sites')
             ->join('users', 'my_sites.user_id', '=', 'users.id')
-            ->select('my_sites.*', 'users.name as uname') 
-            ->where('my_sites.user_id', $userId)
+            ->select(
+                'my_sites.*',           
+                'users.name as user_name', 
+                'my_sites.id',          
+                'my_sites.protocol',    
+                'my_sites.host',        
+                'my_sites.port',        
+                'my_sites.url'          
+            )
+            ->where(function($query) use ($userId) {
+                $query->whereNotNull('my_sites.user_id')
+                      ->orWhere('my_sites.user_id', '=', $userId);
+            })
+            ->where(function($query) {
+                $query->whereNull('my_sites.deleted_at'); 
+            })
             ->get();
-        // return redirect()->route('admin.user.mysites',compact('results'));
-        return view('mysites', compact('results'));
+     $data = DB::table('my_sites')
+     ->join('users', 'my_sites.user_id', '=', 'users.id')
+     ->select(
+         'my_sites.*',           
+         'users.name as user_name', 
+         'my_sites.id',          
+         'my_sites.protocol',    
+         'my_sites.host',        
+         'my_sites.port',        
+         'my_sites.url', 
+         'my_sites.created_at'         
+     )
+    // ->where('user_id', $userId)
+
+    ->where(function($query) use ($userId) {
+        $query->whereNotNull('my_sites.user_id')
+              ->where('my_sites.user_id', '=', $userId);
+    })
+    ->whereNull('my_sites.deleted_at') // Correctly filter out soft-deleted records
+    ->get();
+    
+        return view('mysites', compact('results','data'));
     }
 
     

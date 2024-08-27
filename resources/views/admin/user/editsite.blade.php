@@ -92,7 +92,7 @@
 
         <div class="preview_btn">
             @if($subs_id == 2)
-            <button  type="button" data-bs-toggle="offcanvas" data-bs-target="#seoSidebar" aria-controls="seoSidebar">Seo Settings</button> @endif
+            <button  type="button" data-bs-toggle="offcanvas" data-bs-target="#seoSidebar" aria-controls="seoSidebar">Meta Tags</button> @endif
             <select name="history_updated" id="history_updated">
                 <option value="">History Page</option>
                 @foreach($histories as $history)
@@ -122,7 +122,9 @@
 
 
            </div>
-
+           <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#uploadModal">
+  Upload Image
+</button>
            <div class="preview_btn">
                <button onclick="savePage()"> Save</button>
            </div>
@@ -371,6 +373,39 @@ $(document).ready(function() {
 });
 
 
+function savePage(){
+    event.preventDefault(); // Prevent default form submission
+
+            let formData = $(this).serialize(); // Serialize form data
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+            $.ajax({
+                url: '{{ route('customerRegister') }}', // URL for the route
+                type: 'POST',
+                data: {
+                    data: $('input[name="plan"]').val(),
+                },
+                success: function(response) {
+                    if (response.success) {
+                        if (response.exists) {
+                            alert('User already exists. Please log in.');
+                        } else {
+                            // Open PayPal payment gateway with the plan price
+                            window.location.href = "{{url('/pay')}}";
+                        }
+                    } else {
+                        alert('An error occurred. Please try again.');
+                    }
+                },
+                error: function(xhr) {
+                    alert('An error occurred: ' + xhr.status + ' ' + xhr.statusText);
+                }
+            });
+}
+
 $(document).ready(function() {
     $('#history_updated').on('change', function() {
         // Get the value of the selected option (assuming this is the slug like 'sell-your-home.html')
@@ -441,5 +476,37 @@ $(document).ready(function() {
 </script>
 
 <script src="{{asset('admin/customjs/editor.js')}}"></script>
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.3/dropzone.min.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.3/min/dropzone.min.js"></script>
+<form action="/file-upload" class="dropzone" id="my-awesome-dropzone"></form>
+<script>
+Dropzone.options.myAwesomeDropzone = {
+  paramName: "file", // The name that will be used to transfer the file
+  maxFilesize: 2, // MB
+  acceptedFiles: 'image/*',
+  success: function(file, response){
+    // Handle successful upload
+  }
+};
+
+</script>
+<div class="modal fade" id="uploadModal" tabindex="-1" aria-labelledby="uploadModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="uploadModalLabel">Upload Image</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form action="/file-upload" class="dropzone" id="my-awesome-dropzone"></form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 </body>
 @endsection
