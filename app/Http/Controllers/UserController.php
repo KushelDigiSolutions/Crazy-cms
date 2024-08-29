@@ -323,7 +323,6 @@ class UserController extends Controller
 
     }
 
-
     public function createWebsite(Request $request){
         $request->validate([
             'project_name' => 'required|string|max:255',

@@ -12,6 +12,7 @@
     <script src="https://www.paypal.com/sdk/js?client-id=Ab9fUDw9DAjpGg1CbtS66FdSWnzg17U2eWO5l5nJVhNAMyNhBokZnd5KLdsV_ymQqSm86if24bXEKGV1
 &currency=USD"></script>
 
+
     <section>
         <div id="crazy-crm-page1">
             <div class="crazy-crm-banner">
@@ -41,6 +42,7 @@
                                     <input type="text" id="directory" placeholder="Website location" name="directory">
                                     <label for="directory">Website URL</label>
                                     <input type="text" id="url" value="@if(!empty($siteurl)){{$siteurl}}@endif" @if(!empty($siteurl)) disabled @endif placeholder="Website URL" name="url">
+                                    <div id="errortxt"></div>
                                     <div class="crazy-crm-button">
                                         <button type="submit">Continue</button>
                                     </div>
@@ -62,6 +64,16 @@
     
     $(document).ready(function() {
     $('#analyzeServerForm').on('submit', function(e) {
+
+        const pretight = document.getElementById("pretight");
+        var webUrlInput = $("#webUrlInput").val();
+
+        var elementdata = `<div class="set">
+        <div class="spinner-border" style="width: 4rem; height: 4rem;" role="status">
+        <span class="visually-hidden">Loading...</span>
+        </div>
+        </div>`;
+
         e.preventDefault();
 
         let hasError = false;
@@ -80,7 +92,7 @@
             $('#result').html('<p style="color:red;">Please fill in all required fields.</p>');
             return;
         }
-
+        pretight.innerHTML = elementdata;
         $.ajax({
             url: "{{ route('analyze.ftp') }}",
             method: 'POST',
@@ -94,7 +106,8 @@
                 _token: '{{ csrf_token() }}' 
             },
             success: function(response) {
-                if(response.analysis_result == 1){
+                pretight.innerHTML = '';
+                if(response.analysis_result == 1){pretight.innerHTML
                     if (confirm("Congratulations, your website is compatible with our platform") == true) {
                         window.location.href = "{{ route('front.signup') }}";
                     } else {
@@ -105,7 +118,17 @@
                 }
             },
             error: function(xhr) {
-                $('#result').html('<p>An error occurred: ' + xhr.status + ' ' + xhr.statusText + '</p>');
+                pretight.innerHTML = '';
+                console.log(xhr);
+            
+            // Extract the error message and show it in an alert
+            let errorMessage = '';
+            if (xhr.responseJSON && xhr.responseJSON.message) {
+                errorMessage =  xhr.responseJSON.message;
+            }
+            alert(errorMessage);
+            
+            $('#errortxt').html('<p>' + errorMessage + '</p>');
             }
         });
     });
@@ -129,3 +152,5 @@
     </div>
   </div>
 </div>
+
+<div id="pretight"></div>

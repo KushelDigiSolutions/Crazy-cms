@@ -117,6 +117,7 @@
                                     @csrf
                                     <button type="submit" class="btn btn-sm btn-danger">Delete</button>
                                 </form>
+                                @endif
                             </td>
                         </tr>
                     @endforeach
