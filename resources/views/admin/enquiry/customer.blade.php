@@ -26,20 +26,22 @@
                         <th>Created</th>
                         <th>Status</th>
                         <th>Email</th>
-                        <th>Help</th>
+                        <!--<th>Help</th>-->
                         <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
+                    @php 
+                        $i = 1;
+                    @endphp
                     @foreach ($data as $item)
                         <tr>
-                            <td>{{ $item->id }}</td>
+                            <td>{{ $i++ }}</td>
                             <td>{{ $item->name }}</td>
                             <td>{{ $item->url }}</td>
-                            <td>{{ $item->location }}</td>
                             <td>{{ $item->created_at }}</td>
                             <td>{{ $item->status == 1 ? 'Paid User' : 'Not Paid' }}</td>
-                            <td>{{ $item->email }}</td>
+                            <td>{{ $item->user_email }}</td>
                             <td><a  class="btn btn-sm btn-danger" href="{{ route('admin.loginAsUser', $item->id) }}" target="_blank">
     Login as {{ $item->name }}
 </a></td>

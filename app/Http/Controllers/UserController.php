@@ -76,11 +76,33 @@ class UserController extends Controller
         return redirect()->back()->with('success','User deleted successfully.');
     }
 
-    public function customer(){
-        $data = User::where('user_type',3)->get();
+//     public function customer(){
+//         $data = User::where('user_type',3)->get();
        
-       return view('admin.enquiry.customer',compact('data')); 
-   }
+//       return view('admin.enquiry.customer',compact('data')); 
+//   }
+
+    public function customer()
+    {
+        
+        $data = DB::table('my_sites')
+            ->join('users', 'my_sites.user_id', '=', 'users.id')
+            ->select(
+                'my_sites.*',           
+                'users.name as user_name',
+                'users.email as user_email', 
+                'my_sites.id',          
+                'my_sites.protocol',    
+                'my_sites.host',        
+                'my_sites.port',        
+                'my_sites.url'          
+            )
+            ->where('my_sites.payment_id', '!=', 'NULL')
+            ->orWhere('my_sites.user_id', '=', 3)
+            ->get();
+            // echo '<pre>'; print_r($data); die;
+        return view('admin.enquiry.customer',compact('data'));
+    }
    
        public function delete($id)
     {

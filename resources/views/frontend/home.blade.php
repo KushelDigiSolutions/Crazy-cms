@@ -69,8 +69,10 @@
 <div class=" com1">
   <div class="row">
     <div class="col-lg-6 col-md-9 banner_left">
-      <h1>Try For FREE</h1>
-      <p>Simple website editor. Change the text and images on your website right now.  Just put your website address below.</p>
+      <h1>Try It Now</h1>
+      <p>Edit your website <span>right now</span> in seconds!</p>
+      <p>Just click on the text and images you want to edit.</p>
+      <p>Please be patient while we work on fixing a few bugs. If you encounter any issues, please try again later.</p>
       <!--<button type="button" class="btn btn-light">
         <span> GET STARTED</span>
       </button>-->
@@ -156,52 +158,22 @@
 <div class=" com1">
   <div class="row row1 justify-content-md-center">
     <div class="col-lg-9 text-center">
-      <!-- <h2>What We Do</h2> -->
-      <img src="{{asset('admin/img/what.svg')}}" alt="">
+      <h2>What Is MyCrazySimpleCMS.com</h2>
+      <!--<img src="{{asset('admin/img/what.svg')}}" alt="">-->
     </div>
   </div>
   <div class="row row2 justify-content-md-center">
     <div class="col-lg-9 col-md-12 col-sm-12  -center">
-      <p>
-        “ Have you ever wished for a simple way to make quick
-        <span> text or image </span> adjustments to your
-        <span> website </span> without the need for a web developer or
-        complex software? Until recently, making minor updates to your
-        website could be a real challenge. Most people would have to rely
-        on developers or learn HTML just to make small changes. But times
-        have changed.
-      </p>
-      <p>
-        As a web developer, I've encountered countless clients who asked,
-        <span>"Can I make changes to my website on my own?"</span> My
-        answer was always <span> "Yes."</span> However, the reality was
-        that without the right software and some
-        <span> HTML </span> knowledge, the majority of website owners
-        found it nearly impossible to edit their sites independently.
-        That's why I decided to come up with a solution.
-      </p>
-      <p>
-        I've developed a <span> user-friendly tool </span> that allows you
-        to effortlessly <span> edit your website.</span> With just a few
-        clicks, you can modify text and images and publish your changes.
-        No need to install any software or learn HTML. It's as simple as
-        using a standard text editor.
-      </p>
-      <p>
-        You can put it to the test right now. Just enter your website
-        address, and within moments, our system will
-        <span> analyze your site,</span> providing you with an editable
-        view using the "What You See Is What You Get" (WYSIWYG) approach.
-        All you need to do is point to the text or image you want to edit,
-        click when the area is highlighted, make your
-        <span> changes,</span> and <span>save.</span>
-      </p>
-      <p>
-        Empower yourself to take control of your website's content
-        <span> without the hassle </span> of technical complexities. Try
-        our user-friendly solution and experience the ease of making
-        updates at your <span> fingertips. </span>
-      </p>
+      <p>Do you wish that you could make <span>simple text and image</span> changes to your website without a web developer or complex software? </p>
+      <p><span>My Crazy Simple CMS does just that!</span></p>
+      <p>There are many reasons why you need to edit your website such as;<br/>
+      <span>+ changing your business hours,<br/>
+      + post holiday specials or greetings,<br/>
+      + add new updated images,<br/>
+      + improve search engine optimization (SEO),<br/>
+      + and many more.</span></p>
+      <p>MyCrazySimpleCMS.com is an on-line website editor that allows you do all of these things and more.  Just provide your website address and start editing.</p>
+      <p>If you like what you see and want to save your changes, simply create an account and provide a few details so your changes can be published.  There are simple instructions provided on how to do that.</p>
     </div>
   </div>
 </div>
