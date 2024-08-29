@@ -110,6 +110,7 @@
                                 <a href=""
                                     class="btn btn-sm btn-primary">Login</a>
                             </td> -->
+                            @if(!empty($user->payment_id))
                             <td>
                                 <form action="" method="POST"
                                     onsubmit="return confirm('Are sure want to delete?')">
@@ -117,8 +118,8 @@
                                     @csrf
                                     <button type="submit" class="btn btn-sm btn-danger">Delete</button>
                                 </form>
-                                @endif
                             </td>
+                            @endif
                         </tr>
                     @endforeach
                 </tbody>
