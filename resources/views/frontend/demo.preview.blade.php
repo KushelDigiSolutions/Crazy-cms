@@ -116,28 +116,4 @@ document.head.appendChild(script);
 </script>
 </body>
  
-<script src="https://www.paypal.com/sdk/js?client-id=AQ1SZk5bKljeyE-sWNoN1LG9qUaJWBAMNmzrxrvyU2BbuHkfyv6Tl2NrhsHqDGF2w5T3AT3O8eJGMEzd&currency=USD"></script>
-    <script>
-        paypal.Buttons({
-            createOrder: function(data, actions) {
-                return actions.order.create({
-                    purchase_units: [{
-                        amount: {
-                            value: '10.00' // Amount to be charged
-                        }
-                    }]
-                });
-            },
-            onApprove: function(data, actions) {
-                return actions.order.capture().then(function(details) {
-                    alert('Transaction completed by ' + details.payer.name.given_name);
-                    // Optionally, you can send details to your server for processing
-                });
-            },
-            onError: function(err) {
-                console.error(err);
-                alert('An error occurred during the transaction.');
-            }
-        }).render('#paypal-button-container'); // Display the PayPal button
-    </script>
 @endsection

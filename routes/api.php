@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\HomeApiController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,5 +27,8 @@ Route::middleware(['web'])->group(function () {
     Route::prefix('front-api')->group(function () {
         Route::post('/setWebUrl', [HomeApiController::class, 'setWebUrl']);
         Route::post('/downloadWeb', [HomeApiController::class, 'downloadWeb']);
+        Route::post('/verify-ftp', [HomeApiController::class, 'analyzeFtp'])->name('analyze.ftp');
+        Route::post('/admin/customer-register', [UserController::class, 'customerRegister'])->name('customerRegister');
+        Route::post('/admin/customer-site-register', [UserController::class, 'customerSiteRegister'])->name('customerSiteRegister');
     });
 });

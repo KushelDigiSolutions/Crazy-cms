@@ -274,4 +274,41 @@ $jQuery1(document).ready(function() {
 
     // Initialize edit history with the initial content
     saveEditHistory();
+
+    // hover toolbar
+    var $floatingToolbar = $jQuery1('#floatingToolbar');
+    var $duplicateButton = $jQuery1('#duplicateButton');
+    var currentElement = null;
+  
+    $jQuery1('#secondDiv').on('mouseenter', 'p, h1, h2, h3', function(event) {
+      currentElement = $jQuery1(this);
+      var offset = currentElement.offset();
+      var height = currentElement.outerHeight();
+      
+      $floatingToolbar.css({
+        top: offset.top,
+        left: offset.left + currentElement.outerWidth() - $floatingToolbar.outerWidth(),
+        display: 'block'
+      });
+    });
+  
+    $jQuery1('#secondDiv').on('mouseleave', 'p, h1, h2, h3', function() {
+      $floatingToolbar.hide();
+    });
+  
+    $floatingToolbar.on('mouseenter', function() {
+      $jQuery1(this).show();
+    });
+  
+    $floatingToolbar.on('mouseleave', function() {
+      $jQuery1(this).hide();
+    });
+  
+    $duplicateButton.on('click', function() {
+      if (currentElement) {
+        var clonedElement = currentElement.clone();
+        clonedElement.insertAfter(currentElement);
+        $floatingToolbar.hide(); // Optionally hide the toolbar after duplication
+      }
+    });
 });

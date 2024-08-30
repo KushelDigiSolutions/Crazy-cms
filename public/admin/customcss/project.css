@@ -52,6 +52,8 @@
     font-weight: 500;
     line-height: 24px;
     padding-top: 10px;
+    width: 100%;
+    text-align: left;
 }
 #crazy-crm-page1 .crazy-crm-left-form-main input{
     width: 40em;

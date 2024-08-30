@@ -8,6 +8,44 @@
         </li>
         @role('admin')
             <li class="nav-item">
+                <a href="{{ route('admin.order.index') }}"
+                    class="nav-link {{ Route::is('admin.order.index') ? 'actives' : '' }}">
+                    <i class="nav-icon fas fa-box"></i>
+                    <p>Orders
+                        <span class="badge badge-danger right">{{ $PermissionCount }}</span>
+                    </p>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="{{ route('admin.customer') }}"
+                    class="nav-link {{ Route::is('admin.customer') ? 'active' : '' }}">
+                    <i class="nav-icon fas fa-users"></i>
+                    <p>Customer
+                        <span class="badge badge-info right">{{ $userCount }}</span>
+                    </p>
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a href="{{ route('admin.enquiry.index') }}"
+                    class="nav-link {{ Route::is('admin.enquiry.index') ? 'actives' : '' }}">
+                    <i class="nav-icon fas fa-search"></i>
+                    <p>Active Searches
+                        <span class="badge badge-danger right">{{ $PermissionCount }}</span>
+                    </p>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="{{ route('admin.subscription.index') }}"
+                    class="nav-link {{ Route::is('admin.subscription.index') ? 'actives' : '' }}">
+                    <i class="nav-icon fas fa-handshake"></i>
+                    <p>Subscription 
+                        <span class="badge badge-danger right">{{ $PermissionCount }}</span>
+                    </p>
+                </a>
+            </li>
+
+            <li class="nav-item">
                 <a href="{{ route('admin.user.index') }}"
                     class="nav-link {{ Route::is('admin.user.index') ? 'active' : '' }}">
                     <i class="nav-icon fas fa-user"></i>
@@ -16,6 +54,7 @@
                     </p>
                 </a>
             </li>
+            
             <li class="nav-item">
                 <a href="{{ route('admin.role.index') }}"
                     class="nav-link {{ Route::is('admin.role.index') ? 'active' : '' }}">
@@ -34,36 +73,8 @@
                     </p>
                 </a>
             </li>
-
-
-
-            <li class="nav-item">
-                <a href="{{ route('admin.subscription.index') }}"
-                    class="nav-link {{ Route::is('admin.subscription.index') ? 'actives' : '' }}">
-                    <i class="nav-icon fas fa-hat-cowboy"></i>
-                    <p>Subscription 
-                        <span class="badge badge-danger right">{{ $PermissionCount }}</span>
-                    </p>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a href="{{ route('admin.order.index') }}"
-                    class="nav-link {{ Route::is('admin.order.index') ? 'actives' : '' }}">
-                    <i class="nav-icon fas fa-hat-cowboy"></i>
-                    <p>Active Orders
-                        <span class="badge badge-danger right">{{ $PermissionCount }}</span>
-                    </p>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a href="{{ route('admin.enquiry.index') }}"
-                    class="nav-link {{ Route::is('admin.enquiry.index') ? 'actives' : '' }}">
-                    <i class="nav-icon fas fa-hat-cowboy"></i>
-                    <p>Active Searches
-                        <span class="badge badge-danger right">{{ $PermissionCount }}</span>
-                    </p>
-                </a>
-            </li>
+            
+            
            <!--  <li class="nav-item">
                 <a href="{{ route('admin.category.index') }}"
                     class="nav-link {{ Route::is('admin.category.index') ? 'active' : '' }}">
@@ -101,6 +112,14 @@
                 </a>
             </li> -->
         @endrole
+
+        <li class="nav-item">
+            <a href="{{ route('admin.mysites') }}"
+                class="nav-link {{ Route::is('admin.mysites') ? 'active' : '' }}">
+                <i class="nav-icon fas fa-server"></i>
+                <p>My Sites</p>
+            </a>
+        </li>
         <li class="nav-item">
             <a href="{{ route('admin.profile.edit') }}"
                 class="nav-link {{ Route::is('admin.profile.edit') ? 'active' : '' }}">
@@ -108,16 +127,23 @@
                 <p>Profile</p>
             </a>
         </li>
-
+        @role('admin')
         <li class="nav-item">
-                <a href="{{ route('admin.permission.index') }}"
-                    class="nav-link {{ Route::is('admin.permission.index') ? 'actives' : '' }}">
-                    <i class="nav-icon fas fa-hat-cowboy"></i>
-                    <p>Settings
-                        <span class="badge badge-danger right">{{ $PermissionCount }}</span>
-                    </p>
-                </a>
-            </li>
-
+            <a href="{{ route('admin.setting.edit') }}" class="nav-link {{ Route::is('admin.setting.edit') ? 'active' : '' }}">
+            <i class="nav-icon fas fa-wrench"></i>
+                <p>Settings</p>
+            </a>
+        </li>
+        
+        @endrole
+        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+    @csrf
+</form>
+<li class="nav-item">
+    <a href="#" class="nav-link" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+        <i class="nav-icon fas fa-sign-out-alt"></i> <!-- Changed the icon for better representation -->
+        <p>Logout</p>
+    </a>
+</li>
     </ul>
 </nav>

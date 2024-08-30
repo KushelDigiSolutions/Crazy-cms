@@ -5,26 +5,17 @@
 
 @section('content')
 
-<!-- <div id="preloader">
+@php
+    use Illuminate\Support\Facades\DB;
 
-</div> -->
+    // Fetch setting data
+    $setting = DB::table('settings')->first();
+@endphp
 
-<style>
-    .set{
-      position: fixed;
-      background-color: white;
-      width: 400px;
-      height: 400px;
-      max-width: 100%;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%,-50%);
-      border-radius: 8px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-</style>
+@if ($setting && $setting->status === 0)
+    <h1 style="background: yellow;">This is under Maintenance</h1>
+@else
+
 
     <section id="navbar">
 
@@ -59,8 +50,8 @@
 
    <a class="ekaa" href="/"><img class="home-link" src="{{asset('admin/img/summer.svg')}}" alt=""></a>
       <!-- link back to homepage -->
-      <a href="#" class="navSinItem">Features</a>
-      <a  href="{{url('/page3')}}" class="navSinItem">Pricing</a>
+      <a href="{{url('/features')}}" class="navSinItem">Features</a>
+      <a  href="{{url('/pricing')}}" class="navSinItem">Pricing</a>
       <!-- <a href="#" class="navSinItem">Offers</a>
       <a href="#"> <button class="navSinBtn"><span>CONTACT</span></button></a> -->
       <a href="{{url('/login')}}"> <button class="navSinBtn"><span>SIGN IN</span></button></a>
@@ -73,23 +64,18 @@
 
 
 </section>
-
+@endif
 <section id="banner_first">
 <div class=" com1">
   <div class="row">
     <div class="col-lg-6 col-md-9 banner_left">
-      <h1>Welcome to Crazy Simple</h1>
-      
-      <p>
-        We aren’t Crazy, but we do give you tools galore to easily produce
-        your website.
-      </p>
-      <div  id="pretight">
-        
-      </div>
-      <button type="button" class="btn btn-light">
+      <h1>Try It Now</h1>
+      <p>Edit your website <span>right now</span> in seconds!</p>
+      <p>Just click on the text and images you want to edit.</p>
+      <p>Please be patient while we work on fixing a few bugs. If you encounter any issues, please try again later.</p>
+      <!--<button type="button" class="btn btn-light">
         <span> GET STARTED</span>
-      </button>
+      </button>-->
     </div>
 
     <!-- this is right slider banner  -->
@@ -149,7 +135,8 @@
 <section id="email_section">
 <div class=" com1 webAdWrap">
   <div class="row">
-    <p>Empower Yourself to Easily <span> Modify Your Website</span></p>
+    <p>What is your <span> Website</span> address?</p>
+
   </div>
 
   <div class="websiteAdd">
@@ -159,7 +146,7 @@
       <input class="web_uri" type="ttextext" id="webUrlInput" placeholder="Enter your website Address" />
     </div>
 
-    <div  onclick="submitForm()" class="startBtn">Start</div>
+    <div onclick="submitForm()" class="startBtn">Edit Website</div>
 
   </div>
 
@@ -171,52 +158,22 @@
 <div class=" com1">
   <div class="row row1 justify-content-md-center">
     <div class="col-lg-9 text-center">
-      <!-- <h2>What We Do</h2> -->
-      <img src="{{asset('admin/img/what.svg')}}" alt="">
+      <h2>What Is MyCrazySimpleCMS.com</h2>
+      <!--<img src="{{asset('admin/img/what.svg')}}" alt="">-->
     </div>
   </div>
   <div class="row row2 justify-content-md-center">
     <div class="col-lg-9 col-md-12 col-sm-12  -center">
-      <p>
-        “ Have you ever wished for a simple way to make quick
-        <span> text or image </span> adjustments to your
-        <span> website </span> without the need for a web developer or
-        complex software? Until recently, making minor updates to your
-        website could be a real challenge. Most people would have to rely
-        on developers or learn HTML just to make small changes. But times
-        have changed.
-      </p>
-      <p>
-        As a web developer, I've encountered countless clients who asked,
-        <span>"Can I make changes to my website on my own?"</span> My
-        answer was always <span> "Yes."</span> However, the reality was
-        that without the right software and some
-        <span> HTML </span> knowledge, the majority of website owners
-        found it nearly impossible to edit their sites independently.
-        That's why I decided to come up with a solution.
-      </p>
-      <p>
-        I've developed a <span> user-friendly tool </span> that allows you
-        to effortlessly <span> edit your website.</span> With just a few
-        clicks, you can modify text and images and publish your changes.
-        No need to install any software or learn HTML. It's as simple as
-        using a standard text editor.
-      </p>
-      <p>
-        You can put it to the test right now. Just enter your website
-        address, and within moments, our system will
-        <span> analyze your site,</span> providing you with an editable
-        view using the "What You See Is What You Get" (WYSIWYG) approach.
-        All you need to do is point to the text or image you want to edit,
-        click when the area is highlighted, make your
-        <span> changes,</span> and <span>save.</span>
-      </p>
-      <p>
-        Empower yourself to take control of your website's content
-        <span> without the hassle </span> of technical complexities. Try
-        our user-friendly solution and experience the ease of making
-        updates at your <span> fingertips. </span>
-      </p>
+      <p>Do you wish that you could make <span>simple text and image</span> changes to your website without a web developer or complex software? </p>
+      <p><span>My Crazy Simple CMS does just that!</span></p>
+      <p>There are many reasons why you need to edit your website such as;<br/>
+      <span>+ changing your business hours,<br/>
+      + post holiday specials or greetings,<br/>
+      + add new updated images,<br/>
+      + improve search engine optimization (SEO),<br/>
+      + and many more.</span></p>
+      <p>MyCrazySimpleCMS.com is an on-line website editor that allows you do all of these things and more.  Just provide your website address and start editing.</p>
+      <p>If you like what you see and want to save your changes, simply create an account and provide a few details so your changes can be published.  There are simple instructions provided on how to do that.</p>
     </div>
   </div>
 </div>
@@ -535,12 +492,12 @@
 
         <div class="planWhitewrap">
           <p class="dollorHead">
-            <span class="span1">$60</span>
-            <span class="span2">/Yearly</span>
+            <span class="span1">$5</span>
+            <span class="span2">/Month</span>
             <img class="suy" src="{{asset('admin/img/chose.svg')}}" alt="">
           </p>
 
-          <span class="only">(Only $5 per month)</span>
+          <span class="only">($60 per year)</span>
 
           <!-- scond part  -->
           <div class="planPoint">
@@ -585,12 +542,12 @@
 
         <div class="planWhitewrap">
           <p class="dollorHead">
-            <span class="span1">$96</span>
-            <span class="span2">/Yearly</span>
+            <span class="span1">$8</span>
+            <span class="span2">/Month</span>
             <img class="suy" src="{{asset('admin/img/chose1.svg')}}" alt="">
           </p>
 
-          <span class="only">(Only $5 per month)</span>
+          <span class="only">($96 per year)</span>
 
           <!-- scond part  -->
           <div class="planPoint">
@@ -635,12 +592,12 @@
 
         <div class="planWhitewrap">
           <p class="dollorHead">
-            <span class="span1">$192</span>
-            <span class="span2">/Yearly</span>
+            <span class="span1">$16</span>
+            <span class="span2">/Month</span>
             <img class="suy" src="{{asset('admin/img/chose2.svg')}}" alt="">
           </p>
 
-          <span class="only">(Only $5 per month)</span>
+          <span class="only">($192 per year)</span>
 
           <!-- scond part  -->
           <div class="planPoint">
@@ -803,11 +760,4 @@
   </div>
 </div>
 </section>
-
-<script>
-    var loader = document.getElementById("preloader");
-    setTimeout(()=>{
-      loader.style.display = "none";
-    },3000)
-</script>
 @endsection

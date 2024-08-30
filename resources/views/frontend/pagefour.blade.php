@@ -8,6 +8,9 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://www.paypal.com/sdk/js?client-id=Ab9fUDw9DAjpGg1CbtS66FdSWnzg17U2eWO5l5nJVhNAMyNhBokZnd5KLdsV_ymQqSm86if24bXEKGV1
+&currency=USD"></script>
 
     <section>
         <div id="crazy-crm-page1">
@@ -17,24 +20,44 @@
                         <div class="crazy-crm-left-form">
                             <h1>Please Fill Some Details</h1>
                             <div class="crazy-crm-left-form-main">
-                                <form>
+                                <form class="needs-validation" novalidate method="POST" action="{{ route('store') }}">
+                                      @csrf
                                     <label for="name">Protocol</label>
-                                    <input type="name" id="name" name="user_protocol">
+                                    <input type="text" id="user_protocol" name="user_protocol">
+                                    @error('user_protocol')
+                                        <span class="text-danger">{{ $message }}</span>
+                                    @enderror
                                     <label for="name">Host</label>
-                                    <input type="name" id="name" name="user_host">
+                                    <input type="text" id="user_host" name="user_host">
+                                    @error('user_host')
+                                        <span class="text-danger">{{ $message }}</span>
+                                    @enderror
                                     <label for="name">Port</label>
-                                    <input type="name" id="name" name="user_port">
+                                    <input type="text" id="user_port" name="user_port">
+                                    @error('user_port')
+                                        <span class="text-danger">{{ $message }}</span>
+                                    @enderror
                                     <label for="name">User</label>
-                                    <input type="text" id="name" name="user_name">
+                                    <input type="text" id="user_name" name="user_name">
+                                    @error('user_name')
+                                        <span class="text-danger">{{ $message }}</span>
+                                    @enderror
                                     <label for="password">Password</label>
-                                    <input type="password" id="password" name="user_password" >
+                                    <input type="password" id="user_password" name="user_password" >
+                                    @error('user_password')
+                                        <span class="text-danger">{{ $message }}</span>
+                                    @enderror
                                     <label for="URL">Path URL</label>
-                                    <input type="url" id="url" name="url_path" placeholder="enter URL here">
+                                    <input type="url" id="url_path" name="url_path" placeholder="enter URL here">
+                                    @error('url_path')
+                                        <span class="text-danger">{{ $message }}</span>
+                                    @enderror
+                                    <div class="crazy-crm-button">
+                                        <button type="submit">Continue</button>
+                                    </div>
                                 </form> 
                             </div>
-                            <div class="crazy-crm-button">
-                                <button type="submit">Continue</button>
-                            </div>
+                            <div id="paypal-button-container"></div>
                         </div>
                        <div class="crazy-crm-right-image">
                         <img src="{{asset('admin/img/ftp.png')}}" alt="the">
@@ -44,3 +67,30 @@
             </div>
         </div>
     </section>
+    <script>
+
+//Ab9fUDw9DAjpGg1CbtS66FdSWnzg17U2eWO5l5nJVhNAMyNhBokZnd5KLdsV_ymQqSm86if24bXEKGV1
+
+//key : EBJxtM9acxnh05C5Gl0svVzbupTpD9CGCNqoNK9u4WIIz4KcDHUtHxIjy0_AGFEuUje8ShY7nehqGbmb
+        paypal.Buttons({ 
+            createOrder: function(data, actions) {
+                return actions.order.create({
+                    purchase_units: [{
+                        amount: {
+                            value: '10.00' // Amount to be charged
+                        }
+                    }]
+                });
+            },
+            onApprove: function(data, actions) {
+                return actions.order.capture().then(function(details) {
+                    alert('Transaction completed by ' + details.payer.name.given_name);
+                    // Optionally, you can send details to your server for processing
+                });
+            },
+            onError: function(err) {
+                console.error(err);
+             //   alert('An error occurred during the transaction.');
+            }
+        }).render('#paypal-button-container'); // Display the PayPal button
+    </script>

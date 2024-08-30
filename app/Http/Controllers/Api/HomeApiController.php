@@ -8,6 +8,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use Session;
 use App\Models\Enquiry;
+use phpseclib3\Net\SFTP;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 
 class HomeApiController extends Controller
@@ -95,4 +97,128 @@ class HomeApiController extends Controller
         // Return the extracted name
         return $name;
     }
+
+    public function analyzeFtp(Request $request)
+    {
+
+        // Validate incoming request data
+        $validatedData = $request->validate([
+            'host' => 'required|string',
+            'username' => 'required|string',
+            'password' => 'required|string',
+            'directory' => 'required|string',
+            'url' => 'required|string',
+            'protocol' => 'required|string|in:ftp,sftp',
+        ]);
+
+        // Extract request data
+        $host = $request->input('host');
+        $username = $request->input('username');
+        $password = $request->input('password');
+        $directory = $request->input('directory');
+        $url        = $request->input('url');
+        $protocol = $request->input('protocol');
+
+        // Call the function to analyze and send the data
+        $response = $this->analyzeAndPostData($host, $username, $password, $directory, $protocol, '');
+        if($response["analysis_result"]){
+            /*  if(!empty(Auth::id())){
+                dd(Auth::id());
+            } */
+            session(['validFtpSite' => $host]);
+            session(['validFtpSiteData' => $validatedData]);
+        }else{
+            session(['validFtpSite' => ""]);
+        }
+        return response()->json($response);
+    }
+
+
+
+    function analyzeAndPostData($host, $username, $password, $directory, $protocol, $postUrl)
+    {
+        $connection = null;
+        $indexFile = null;
+        $content = null;
+    
+        switch (strtolower($protocol)) {
+            case 'ftp':
+                // Connect via FTP
+                $connection = ftp_connect($host);
+                if (!$connection || !ftp_login($connection, $username, $password)) {
+                    return 'FTP Connection Failed!';
+                }
+    
+                ftp_chdir($connection, $directory);
+                $files = ftp_nlist($connection, ".");
+                
+                foreach ($files as $file) {
+                    if (stripos($file, 'index.php') !== false || stripos($file, 'index.html') !== false) {
+                        $indexFile = $file;
+                        break;
+                    }
+                }
+    
+                if (!$indexFile) {
+                    ftp_close($connection);
+                    return 'Index file not found!';
+                }
+    
+                $localFile = tempnam(sys_get_temp_dir(), 'ftp');
+                ftp_get($connection, $localFile, $indexFile, FTP_BINARY);
+                $content = file_get_contents($localFile);
+                unlink($localFile);
+    
+                ftp_close($connection);
+                break;
+    
+            case 'sftp':
+                // Connect via SFTP
+                $sftp = new SFTP($host);
+                if (!$sftp->login($username, $password)) {
+                    return 'SFTP Login Failed!';
+                }
+    
+                $sftp->chdir($directory);
+                $files = $sftp->nlist();
+                foreach ($files as $file) {
+                    if (stripos($file, 'index.php') !== false || stripos($file, 'index.html') !== false) {
+                        $indexFile = $file;
+                        break;
+                    }
+                }
+    
+                if (!$indexFile) {
+                    return 'Index file not found!';
+                }
+    
+                $content = $sftp->get($indexFile);
+                break;
+    
+            default:
+                return 'Unsupported Protocol!';
+        }
+    
+        // Analyze content to check HTML ratio
+        $htmlTags = substr_count($content, '<');
+        $phpTags = substr_count($content, '<?php');
+        $totalTags = $htmlTags + $phpTags;
+      
+        if ($totalTags == 0) {
+            return 'No HTML or PHP tags found in the index file!';
+        }
+    
+        $htmlRatio = ($htmlTags / $totalTags) * 100;
+        $analysisResult = $htmlRatio > 80 ? 1 : 0;
+    
+        // Prepare data to POST
+        $postData = [
+            /* 'host' => $host,
+            'directory' => $directory,
+            'protocol' => $protocol, */
+            'analysis_result' => $analysisResult,
+        ];
+        return $postData;
+    }
+
 }

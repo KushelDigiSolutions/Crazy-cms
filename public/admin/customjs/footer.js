@@ -6,14 +6,14 @@ document.write(`
   <div class="fotItem">
     <!-- first -->
     <div class="fotItem1">
-     <a class="text-decoration-none" href="/"><p class="addBorder">Home</p></a>
-      <p class="addBorder">Features</p>
-     <a class="text-decoration-none" href="/page3"><p class="addBorder">Pricing</p></a>
-      <p class="addBorder">Privacy Policy</p>
-      <p class="addBorder">Terms Of Service</p>
-      <p class="addBorder">Site Map</p>
-      <p class="addBorder">Mobile Site</p>
-     <a class="text-decoration-none" href="/login"> <p>Sign In</p></a>
+   <a href="https://mycrazysimplecms.com/" target="_blank" class="text-decoration-none"><p class="addBorder">Home</p></a>
+    <a href="https://mycrazysimplecms.com/features" target="_blank" class="text-decoration-none"><p class="addBorder">Features</p></a>
+    <a href="https://mycrazysimplecms.com/pricing" target="_blank" class="text-decoration-none"><p class="addBorder">Pricing</p></a>
+    <a href="https://mycrazysimplecms.com/privacy_policy" target="_blank" class="text-decoration-none"><p class="addBorder">Privacy Policy</p></a>
+    <a href="https://mycrazysimplecms.com/terms_services" target="_blank" class="text-decoration-none"><p class="addBorder">Terms Of Service</p></a>
+    <a href="https://mycrazysimplecms.com/site" target="_blank" class="text-decoration-none"><p class="addBorder">Site Map</p></a>
+    <a href="https://mycrazysimplecms.com/mobile_site" target="_blank" class="text-decoration-none"><p class="addBorder">Mobile Site</p></a>
+     <a class="text-decoration-none" href="https://mycrazysimplecms.com/login"> <p>Sign In</p></a>
      
     </div>
   </div>

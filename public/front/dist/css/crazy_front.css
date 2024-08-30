@@ -96,3 +96,89 @@
     cursor: pointer;
     margin-right: 4px;
 }
+
+
+.test_sect{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+   
+}
+.preview_sect{
+    padding: 10px 30px;
+    border: 1px solid #D9E0E6;
+    bottom: 0;
+    position: fixed;
+    left: 0;
+    right: 0;
+    background: #fff;
+}
+.second_preview{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.first_preview{
+    display: flex;
+    margin-left:-20%;
+    align-items: center;
+}
+.first_preview .a_one{
+    color: #3F4254;
+    font-weight: 500;
+    font-size: 17px;
+    font-family: inter !important;
+    text-decoration: none;
+}
+.first_preview a{
+    font-family: inter !important;
+    text-decoration: none;
+    color: #7E8299;
+    font-size: 14px;
+    font-weight: 400;
+    margin-right: 40px;
+}
+.second_preview{
+    display: flex;
+    align-items: center;
+}
+.preview_svg{
+    display: flex;
+    align-items: center;
+}
+.preview_btn{
+    margin-left: 25px;
+}
+.preview_btn button, .preview_btn select{
+    width: auto;
+    height: 38px;
+    padding: 0 20px;
+    border-radius: 8px;
+    border: 1px solid #0F3D5F;
+    box-shadow: 0px 1px 2px 0px #1018280D;
+    background: transparent;
+    color: #0F3D5F;
+    font-weight: 500;
+    font-size: 14px;
+    font-family: inter !important;
+}
+
+.preview_svg svg{
+    margin: 0px 5px;
+}
+.modal-header{
+    background-color: #0F3D5F;   
+}
+.modal-header h5{
+    color: #FFF;   
+}
+
+#floating-toolbar {
+    background: #333;
+    color: #fff;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    z-index: 1000;
+}

@@ -31,13 +31,15 @@ function submitForm() {
 
     setTimeout(() => {
 
-        pretight.innerHTML = ``
+        
 
         if (webUrlInput == "") {
+            pretight.innerHTML = ``
             $("#errorMsg").html("website URL cannot be empty.");
             $("#errorModal").modal("show");
             return;
         } else if (!isValidURL(webUrlInput)) {
+            pretight.innerHTML = ``
             $("#errorMsg").html("Pleae enter valid URL.");
             $("#errorModal").modal("show");
             return;
@@ -46,7 +48,6 @@ function submitForm() {
         var formData = {
             url: webUrlInput,
         };
-
 
         $.ajaxSetup({
             headers: {
@@ -62,12 +63,14 @@ function submitForm() {
                 // Handle success
                 setTimeout(function () {
                     window.location.href = window.appConfig.baseUrl + '/preview/' + response.url;
-                }, 5000)
+                    pretight.innerHTML = ``
+                }, 200)
 
                 console.log('Success:', response);
             },
             error: function (xhr, status, error) {
                 // Handle error
+                pretight.innerHTML = ``
                 $("#errorMsg").html("Pleae enter valid URL.");
                 $("#errorModal").modal("show");
                 return;
@@ -75,8 +78,68 @@ function submitForm() {
             }
         });
     }, 2000);
+}
 
 
+function verifyFtp() {
+    // Collect form data
+    var webUrlInput = $("#webUrlInput").val();
+
+    pretight.innerHTML = `<div class="set">
+      <div class="spinner-border" style="width: 4rem; height: 4rem;" role="status">
+    <span class="visually-hidden">Loading...</span>
+  </div>
+    </div>`
+
+    setTimeout(() => {
+
+        
+
+        if (webUrlInput == "") {
+            pretight.innerHTML = ``
+            $("#errorMsg").html("website URL cannot be empty.");
+            $("#errorModal").modal("show");
+            return;
+        } else if (!isValidURL(webUrlInput)) {
+            pretight.innerHTML = ``
+            $("#errorMsg").html("Pleae enter valid URL.");
+            $("#errorModal").modal("show");
+            return;
+        }
+
+        var formData = {
+            url: webUrlInput,
+        };
+
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        // Perform AJAX request
+        $.ajax({
+            url: window.appConfig.apiUrl + '/front-api/downloadWeb', // Replace with your server URL
+            type: 'POST',
+            data: formData,
+            success: function (response) {
+                // Handle success
+                setTimeout(function () {
+                    window.location.href = window.appConfig.baseUrl + '/preview/' + response.url;
+                    pretight.innerHTML = ``
+                }, 200)
+
+                console.log('Success:', response);
+            },
+            error: function (xhr, status, error) {
+                // Handle error
+                pretight.innerHTML = ``
+                $("#errorMsg").html("Pleae enter valid URL.");
+                $("#errorModal").modal("show");
+                return;
+                //  console.error('Error:', status, error);
+            }
+        });
+    }, 2000);
 }
 
 function isValidURL(url) {

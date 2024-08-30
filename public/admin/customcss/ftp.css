@@ -49,7 +49,9 @@
     font-size: 18px;
     font-weight: 500;
     line-height: 24px;
-    padding: 15px 10px;
+    padding-top: 10px;
+    width: 100%;
+    text-align: left;
 }
 #crazy-crm-page1 .crazy-crm-left-form-main input{
     width: 40em;
@@ -57,6 +59,14 @@
     padding: 10px;
     border: 1px solid #C8C8C8;
     border-radius: 6px;
+}
+#crazy-crm-page1 .crazy-crm-left-form-main select{
+    width: 40em;
+    max-width: 100%;
+    padding: 10px;
+    border: 1px solid #C8C8C8;
+    border-radius: 6px;
+    background: #fff;
 }
 #crazy-crm-page1 .crazy-crm-right-image{
     background-color: #0F3D5F;
@@ -167,3 +177,16 @@
 
 
 
+.set{
+    position: fixed;
+  background-color: #ffffffc9;
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

@@ -4,12 +4,25 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Order;
-
+use DB;
 class OrderController extends Controller
 {
-    public function index()
+   public function index()
     {
-        $data = Order::orderBy('id','DESC')->get();
+        $data = DB::table('my_sites')
+        ->join('payments', 'my_sites.user_id', '=', 'payments.user_id')
+        ->select(
+            'my_sites.id',           
+            'payments.transaction_id as transactionId',        
+            'my_sites.url',
+            'my_sites.created_at',
+            DB::raw('DATE_SUB(DATE_ADD(my_sites.created_at, INTERVAL 1 YEAR), INTERVAL 1 DAY) as end_date')         
+        )
+            ->where('payments.status', 'success')
+            ->whereNotNull('my_sites.payment_id')
+        ->get();
+        // echo '<pre>'; print_r($data); die;
+        // $data = Order::orderBy('id','DESC')->get();
         return view('admin.order.index',compact('data'));
     }
 
