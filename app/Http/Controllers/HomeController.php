@@ -99,6 +99,16 @@ class HomeController extends Controller
         return view('frontend/pagesix');
     }
 
+    public function pageseven(Request $request)
+    {
+        return view('frontend/pageseven');
+    }
+    public function pageeight(Request $request)
+    {
+        return view('frontend/pageeight');
+    }
+
+
     public function store(Request $request)
     {
         $request->validate([
@@ -146,6 +156,7 @@ class HomeController extends Controller
             'user_password' => 'required|string|max:255|min:6',
             'url_path' => 'required',
         ]);
+
 
         $userId = Auth::id();
         echo $userId; die;

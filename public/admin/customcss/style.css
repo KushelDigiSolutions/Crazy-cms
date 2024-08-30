@@ -8,8 +8,11 @@
 
 #navbar {
     width: 100vw;
-    position: relative;
+    position: fixed;
     background-color: #0F3D5F;
+    z-index: 100;
+    left: 0;
+    right: 0;
 }
 
 #navbar .navCont {
@@ -231,6 +234,7 @@ nav svg {
     background-repeat: no-repeat;
     background-size: cover;
     width: 100%;
+    margin-top: 5rem;
 }
 
 #banner_first .banner_left {
@@ -596,6 +600,7 @@ nav svg {
     background-color: #F6F6F6;
     position: relative;
     width: 100%;
+    margin-top: 5rem !important;
 }
 
 
