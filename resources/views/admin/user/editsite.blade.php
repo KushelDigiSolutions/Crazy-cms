@@ -373,6 +373,7 @@ $(document).ready(function() {
 });
 
 
+<<<<<<< Updated upstream
 function savePage(){
     event.preventDefault(); // Prevent default form submission
 
@@ -406,6 +407,8 @@ function savePage(){
             });
 }
 
+=======
+>>>>>>> Stashed changes
 $(document).ready(function() {
     $('#history_updated').on('change', function() {
         // Get the value of the selected option (assuming this is the slug like 'sell-your-home.html')
