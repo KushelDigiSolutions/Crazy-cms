@@ -56,6 +56,20 @@ class UserController extends Controller
         $user = User::where('id',decrypt($id))->first();
         return view('admin.user.edit',compact('user'));
     }
+    
+// Author Dileep 31-09-24
+
+    public function block($encryptedId)
+    {
+        $id = decrypt($encryptedId);
+    
+        DB::table('users')
+            ->where('id', $id)
+            ->update(['status' => DB::raw('IF(status = 0, 1, 0)')]);
+    
+        return redirect()->route('admin.user.index')->with('success', 'User status updated successfully.');
+    }
+    
     public function update(Request $request, User $user)
     {
         $request->validate([

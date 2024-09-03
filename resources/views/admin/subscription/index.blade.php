@@ -28,14 +28,14 @@
                                     class="btn btn-sm btn-primary">Edit</a>
                             </td>
                             
-                            <td>
-                                <form action="{{ route('admin.subscription.destroy', encrypt($item->id)) }}" method="POST"
-                                    onsubmit="return confirm('Are sure want to delete?')">
-                                    @method('DELETE')
-                                    @csrf
-                                    <button type="submit" class="btn btn-sm btn-danger">Delete</button>
-                                </form>
-                            </td>
+                            <!--<td>-->
+                            <!--    <form action="{{ route('admin.subscription.destroy', encrypt($item->id)) }}" method="POST"-->
+                            <!--        onsubmit="return confirm('Are sure want to delete?')">-->
+                            <!--        @method('DELETE')-->
+                            <!--        @csrf-->
+                            <!--        <button type="submit" class="btn btn-sm btn-danger">Delete</button>-->
+                            <!--    </form>-->
+                            <!--</td>-->
                         </tr>
                     @endforeach
                 </tbody>

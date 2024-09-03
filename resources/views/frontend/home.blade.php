@@ -54,7 +54,19 @@
       <a  href="{{url('/pricing')}}" class="navSinItem">Pricing</a>
       <!-- <a href="#" class="navSinItem">Offers</a>
       <a href="#"> <button class="navSinBtn"><span>CONTACT</span></button></a> -->
-      <a href="{{url('/login')}}"> <button class="navSinBtn"><span>SIGN IN</span></button></a>
+      <!--<a href="{{url('/login')}}"> <button class="navSinBtn"><span>SIGN IN</span></button></a>-->
+      
+      @if (Auth::check())
+    <div class="navUserDropdown">
+        <a href="javascript::void()" class="navSinItem">Hello {{ Auth::user()->name }} </a>
+          
+                   
+    </div>
+@else
+    <a href="{{ url('/login') }}">
+        <button class="navSinBtn"><span>SIGN IN</span></button>
+    </a>
+@endif
 
     </div>
 
@@ -208,15 +220,8 @@
             </clipPath>
           </defs>
         </svg>
-        <p class="para1">
-          Unlock the Power of MyCrazySimple: Simplify Website Editing
-        </p>
-        <p class="para2">
-          Welcome to MyCrazySimple, a revolutionary solution that
-          transforms the way you manage your website. What sets us apart?
-          Unlike other platforms, we work seamlessly with most HTML
-          websites. You don't need to migrate to a special platform; we
-          empower you to control your site effortlessly.
+        <p class="para1">On-line Website Editor</p>
+        <p class="para2">What You See Is What You Get (WYSIWYG) editor shows you exactly how your website will appear as you make changes in real-time. The online editor’s "Click to Edit" feature lets you effortlessly modify text or images—no installations, downloads, or complicated tools required.
         </p>
       </div>
     </div>
@@ -239,15 +244,8 @@
             </clipPath>
           </defs>
         </svg>
-        <p class="para1">Boost Your SEO with Regular Updates</p>
-        <p class="para2">
-          One of the key benefits of keeping your website content fresh is
-          the positive impact it can have on your search engine rankings
-          (SEO). Whether you're a restaurant owner adjusting menu prices,
-          showcasing new project images, or promoting holiday specials,
-          maintaining an up-to-date website is crucial. MyCrazySimple
-          provides you with the flexibility to make these changes and
-          more.
+        <p class="para1">Nothing to Install</p>
+        <p class="para2">Simply enter your website address and click “Edit Website” to see a live view of your site. As you hover over text or images, just click to edit them. Your changes appear instantly in real-time—no software installation or setup required.
         </p>
       </div>
     </div>
@@ -270,11 +268,8 @@
             </clipPath>
           </defs>
         </svg>
-        <p class="para1">What You Can Edit</p>
-        <p class="para2">
-          With MyCrazySimple, you can easily edit text and images on your
-          website. However, please note that changes to the site's
-          structure, fonts, or colors are not currently supported.
+        <p class="para1">Boost Your SEO</p>
+        <p class="para2">Regularly updating your website with fresh content signals to search engines that your site is active and relevant. This improves your rankings, attracts more visitors, and keeps your audience engaged. Fresh content also helps you target new keywords, boosting your visibility in search results.
         </p>
       </div>
     </div>
@@ -295,14 +290,8 @@
 </defs>
 </svg>
 
-        <p class="para1">Experience the Free Demo</p>
-        <p class="para2">
-          Curious to see how MyCrazySimple works? Try our FREE demo – no
-          installations, no credit card required. The demo allows you to
-          experience how user-friendly it is to edit your website. Simply
-          provide your website address, and our system will generate a
-          visual editor, enabling you to "Click To Edit" text and images
-          on your site.
+        <p class="para1">Affordable Website Editing Solutions</p>
+        <p class="para2">This online tool is both powerful and highly affordable, with plans starting as low as $5. You can effortlessly update your website without needing a developer or dealing with complicated tools. It's a cost-effective solution for maintaining your website with ease.
         </p>
       </div>
     </div>
@@ -330,14 +319,8 @@
 </defs>
 </svg>
 
-        <p class="para1">Moving Forward with MyCrazySimple</p>
-        <p class="para2">
-          If you're impressed by the demo and want to utilize this website
-          editing tool, you can create an account and provide FTP access
-          to your hosting account. Our straightforward instructions will
-          guide you through this process. FTP access allows our online
-          website editor to publish changes to your live site. Plans start
-          at just $5 per month, ensuring affordability for all budgets.
+        <p class="para1">“Click To Edit” Text</p>
+        <p class="para2">MyCrazySimpleCMS’s text editing feature simplifies updating your website’s content. With just a few clicks, you can change your text directly in the online preview—no need to learn HTML. Keep your site up-to-date, enhance SEO, and remove outdated information effortlessly.
         </p>
       </div>
     </div>
@@ -360,13 +343,8 @@
 </defs>
 </svg>
 
-        <p class="para1">Standard and Professional Packages</p>
-        <p class="para2">
-          Choose between two packages: Standard and Professional. The
-          Standard plan allows text edits, while the Professional plan
-          includes the media library, enabling you to change and upload
-          new images. The Standard plan is priced at $5 per month, and the
-          Professional plan is available for just $8 per month.
+        <p class="para1">Easily Update Website Images</p>
+        <p class="para2">The "Media Library" in MyCrazySimpleCMS makes managing your website’s images simple and efficient. You can easily upload, replace, and organize your images all in one place. This feature streamlines your workflow, ensuring your site’s visuals are always up-to-date and looking great.
         </p>
       </div>
     </div>
@@ -389,12 +367,8 @@
             </clipPath>
           </defs>
         </svg>
-        <p class="para1">Media Library for Image Control</p>
-        <p class="para2">
-          The media library offers access to all your website's images,
-          allowing you to upload new ones and swap them out with ease. You
-          can also edit the "ALT" tags for each image, which can have a
-          positive impact on SEO.
+        <p class="para1">No Need To Learn HTML</p>
+        <p class="para2">You don’t need to know HTML with MyCrazySimpleCMS. Simply update your text or swap images, and we’ll ensure your original HTML stays intact. Our system lets you make content changes effortlessly, while we take care of the technical details.
         </p>
       </div>
     </div>
@@ -417,11 +391,8 @@
             </clipPath>
           </defs>
         </svg>
-        <p class="para1">Your Peace of Mind</p>
-        <p class="para2">
-          We prioritize your website's security. Before publishing any
-          changes, we create a backup of your site, ensuring that
-          unintended results can be easily undone.
+        <p class="para1">Meta Tags</p>
+        <p class="para2">Effortlessly manage meta tags for each page to boost your site’s SEO. With MyCrazySimpleCMS, you can edit titles, descriptions, and keywords directly in the editor, enhancing your website’s search engine visibility without the need for technical skills.
         </p>
       </div>
     </div>
@@ -448,13 +419,8 @@
 </defs>
 </svg>
 
-        <p class="para1">The Future of MyCrazySimple</p>
-        <p class="para2">
-          Choose between two packages: Standard and Professional. The
-          Standard plan allows text edits, while the Professional plan
-          includes the media library, enabling you to change and upload
-          new images. The Standard plan is priced at $5 per month, and the
-          Professional plan is available for just $8 per month.
+        <p class="para1">How Does It Work</p>
+        <p class="para2">To "publish" your temporary changes, your server files need to be updated, which requires FTP access. Our simple, step-by-step instructions will guide you through the process. Additionally, your original website is automatically backed up, allowing for a complete recovery if needed.
         </p>
       </div>
     </div>

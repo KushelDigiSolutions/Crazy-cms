@@ -39,21 +39,22 @@
                             <td>{{ $i++ }}</td>
                             <td>{{ $item->name }}</td>
                             <td>{{ $item->url }}</td>
+                            <td>{{ $item->location }}</td>
                             <td>{{ $item->created_at }}</td>
                             <td>{{ $item->status == 1 ? 'Paid User' : 'Not Paid' }}</td>
                             <td>{{ $item->user_email }}</td>
                             <td><a  class="btn btn-sm btn-danger" href="{{ route('admin.loginAsUser', $item->id) }}" target="_blank">
     Login as {{ $item->name }}
 </a></td>
-                            <td>
+                            <!--<td>-->
                             
-                                <form action="{{ route('admin.enquiry.destroy', encrypt($item->id)) }}" method="POST"
-                                    onsubmit="return confirm('Are sure want to delete?')">
-                                    @method('DELETE')
-                                    @csrf
-                                    <button type="submit" class="btn btn-sm btn-danger">Delete</button>
-                                </form>
-                            </td>
+                            <!--    <form action="{{ route('admin.enquiry.destroy', encrypt($item->id)) }}" method="POST"-->
+                            <!--        onsubmit="return confirm('Are sure want to delete?')">-->
+                            <!--        @method('DELETE')-->
+                            <!--        @csrf-->
+                            <!--        <button type="submit" class="btn btn-sm btn-danger">Delete</button>-->
+                            <!--    </form>-->
+                            <!--</td>-->
                         </tr>
                     @endforeach
                 </tbody>

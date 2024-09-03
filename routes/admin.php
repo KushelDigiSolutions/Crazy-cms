@@ -46,6 +46,7 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'verified'])->group(
         Route::get('/get/subcategory',[ProductController::class,'getsubcategory'])->name('getsubcategory');
         Route::get('/remove-external-img/{id}',[ProductController::class,'removeImage'])->name('remove.image');
         Route::put('/subscription', [SubscriptionController::class, 'update'])->name('subscription.update');
+        Route::get('/user/block/{id}', [UserController::class, 'block'])->name('user.block');
         Route::get('/enquiry/filter', [EnquiryController::class, 'filter'])->name('enquiry.filter');
         Route::resource('enquiries', EnquiryController::class)->except(['show']);
         Route::get('customer', [UserController::class,'customer'])->name('customer');

@@ -40,6 +40,15 @@ class LoginRequest extends FormRequest
     public function authenticate(): void
     {
         $this->ensureIsNotRateLimited();
+        
+            $user = \App\Models\User::where('email', $this->input('email'))->first();
+
+            if (!$user || $user->status == 1) {
+                 throw ValidationException::withMessages([
+             'email' => 'Your account is blocked. Please contact support.',
+                ]);
+            }
+        
 
         if (! Auth::attempt($this->only('email', 'password'), $this->boolean('remember'))) {
             RateLimiter::hit($this->throttleKey());

@@ -27,11 +27,11 @@
                     @foreach ($results as $user)
                         <tr>
                         <td>{{ $user->id }} </td>
-                            <td>{{ $user->protocol }}</td>
-                            <td>{{ $user->host }}</td>
-                            <td>{{ $user->port }}</td>
+                            <td>{{ $user->protocol ?? 'Not Available' }}</td>
+                            <td>{{ $user->host ?? 'Not Available' }}</td>
+                            <td>{{ $user->port ?? 'Not Available' }}</td>
                             <td>{{ $user->user_name }}</td>
-                            <td>{{ $user->url }}</td>
+                            <td>{{ $user->url ?? 'Not Available' }}</td>
                             <td>
 <<<<<<< Updated upstream
                                 <a href="{{ url('admin/editsite').'/'.$user->id }}"

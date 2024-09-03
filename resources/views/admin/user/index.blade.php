@@ -33,14 +33,21 @@
                             <!--    <a href="{{ route('admin.user.edit', encrypt($user->id)) }}"-->
                             <!--        class="btn btn-sm btn-primary">Login</a>-->
                             <!--</td>-->
-                            <td>
-                                <form action="{{ route('admin.user.destroy', encrypt($user->id)) }}" method="POST"
-                                    onsubmit="return confirm('Are sure want to delete?')">
-                                    @method('DELETE')
-                                    @csrf
-                                    <button type="submit" class="btn btn-sm btn-danger">Delete</button>
-                                </form>
+                            <!--<td>-->
+                            <!--    <form action="{{ route('admin.user.destroy', encrypt($user->id)) }}" method="POST"-->
+                            <!--        onsubmit="return confirm('Are sure want to delete?')">-->
+                            <!--        @method('DELETE')-->
+                            <!--        @csrf-->
+                            <!--        <button type="submit" class="btn btn-sm btn-danger">Delete</button>-->
+                            <!--    </form>-->
+                            <!--</td>-->
+                            
+                             <td>
+                                <a href="{{ route('admin.user.block', encrypt($user->id)) }}" class="btn btn-sm btn-primary">
+                                    {{ $user->status == 0 ? 'Active' : 'Block' }}
+                                </a>
                             </td>
+                            
                         </tr>
                     @endforeach
                 </tbody>

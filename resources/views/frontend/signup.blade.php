@@ -202,12 +202,12 @@
                         @endphp
                             @foreach($items as $item)
                                 <div class="singlePoint">
-                                    @if($item["status"] == true)
-                                    <img src="{{asset('admin/img/correct.png')}}" alt="" />
+                                    @if(isset($item['status']) && $item['status'] == true)
+                                        <img src="{{ asset('admin/img/correct.png') }}" alt="" />
                                     @else
-                                    <img src="{{asset('admin/img/cancel.png')}}" alt="" />
+                                        <img src="{{ asset('admin/img/cancel.png') }}" alt="" />
                                     @endif
-                                    <p>{{$item["descriptions"]}}</p>
+                                    <p>{{ $item['descriptions'] ?? 'No description available' }}</p>
                                 </div>
                             @endforeach
                            
