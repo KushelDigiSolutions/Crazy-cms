@@ -34,9 +34,12 @@
                             <td>{{ $user->url ?? 'Not Available' }}</td>
                             <td>
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
                                 <a href="{{ url('admin/editsite').'/'.$user->id }}"
                                     class="btn btn-sm btn-primary">Edit</a>
