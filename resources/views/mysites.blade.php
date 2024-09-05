@@ -33,14 +33,13 @@
                             <td>{{ $user->user_name }}</td>
                             <td>{{ $user->url ?? 'Not Available' }}</td>
                             <td>
-<<<<<<< Updated upstream
                                 <a href="{{ url('admin/editsite').'/'.$user->id }}"
                                     class="btn btn-sm btn-primary">Edit</a>
                             </td>
                             <!-- <td>
                                 <a href=""
                                     class="btn btn-sm btn-primary">Login</a>
-                            </td> -->
+                            </td> --> 
                             <td>
                             @if(empty($user->payment_id))
                                 <form action="" method="POST"
@@ -92,11 +91,11 @@
                             @endphp 
                         <tr>
                         <td>{{ $user->id }} </td>
-                            <td>{{ $user->protocol }}</td>
-                            <td>{{ $user->host }}</td>
-                            <td>{{ $user->port }}</td>
+                            <td>{{ $user->protocol ?? 'Not Available' }}</td>
+                            <td>{{ $user->host ?? 'Not Available' }}</td>
+                            <td>{{ $user->port ?? 'Not Available' }}</td>
                             <td>{{ $user->user_name }}</td>
-                            <td>{{ $user->url }}</td>
+                            <td>{{ $user->url ?? 'Not Available' }}</td>
                             <td>{{  $cr->format('d-m-Y') }}</td>
                             <td>{{  $expiryDate->format('d-m-Y'). $isExpired }}</td>
                             <td>
@@ -107,26 +106,17 @@
                                     <a href="{{ url('admin/editsite').'/'.$user->name.'/'.$user->id }}" class="btn btn-sm btn-primary">Edit</a>
                                 @endif
                             </td>
-                            <!-- <td>
-                                <a href=""
-                                    class="btn btn-sm btn-primary">Login</a>
-                            </td> -->
+                            <td>
+                            <a href="{{ url('admin/editmysite').'/'.$user->id }}" class="btn btn-sm btn-primary">Edit</a>
+                            </td> 
                             @if(!empty($user->payment_id))
                             <td>
-=======
-                                <a href="{{ url('admin/editsite').'/'.$user->name.'/'.$user->id }}"
-                                    class="btn btn-sm btn-primary">Edit</a>
-                            </td>
-                            <td>
-                                @if(empty($user->payment_id))
->>>>>>> Stashed changes
                                 <form action="" method="POST"
                                     onsubmit="return confirm('Are sure want to delete?')">
                                     @method('DELETE')
                                     @csrf
                                     <button type="submit" class="btn btn-sm btn-danger">Delete</button>
                                 </form>
-                                @endif
                             </td>
                             @endif
                         </tr>

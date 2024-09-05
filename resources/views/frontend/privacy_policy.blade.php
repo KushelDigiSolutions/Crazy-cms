@@ -71,46 +71,18 @@
   </div>
   <div class="row row2 justify-content-md-center">
     <div class="col-lg-9 col-md-12 col-sm-12  -center">
-      <p>
-        “ Have you ever wished for a simple way to make quick
-        <span> text or image </span> adjustments to your
-        <span> website </span> without the need for a web developer or
-        complex software? Until recently, making minor updates to your
-        website could be a real challenge. Most people would have to rely
-        on developers or learn HTML just to make small changes. But times
-        have changed.
-      </p>
-      <p>
-        As a web developer, I've encountered countless clients who asked,
-        <span>"Can I make changes to my website on my own?"</span> My
-        answer was always <span> "Yes."</span> However, the reality was
-        that without the right software and some
-        <span> HTML </span> knowledge, the majority of website owners
-        found it nearly impossible to edit their sites independently.
-        That's why I decided to come up with a solution.
-      </p>
-      <p>
-        I've developed a <span> user-friendly tool </span> that allows you
-        to effortlessly <span> edit your website.</span> With just a few
-        clicks, you can modify text and images and publish your changes.
-        No need to install any software or learn HTML. It's as simple as
-        using a standard text editor.
-      </p>
-      <p>
-        You can put it to the test right now. Just enter your website
-        address, and within moments, our system will
-        <span> analyze your site,</span> providing you with an editable
-        view using the "What You See Is What You Get" (WYSIWYG) approach.
-        All you need to do is point to the text or image you want to edit,
-        click when the area is highlighted, make your
-        <span> changes,</span> and <span>save.</span>
-      </p>
-      <p>
-        Empower yourself to take control of your website's content
-        <span> without the hassle </span> of technical complexities. Try
-        our user-friendly solution and experience the ease of making
-        updates at your <span> fingertips. </span>
-      </p>
+      <p>Last updated: September 03, 2024</p>
+      <p>This Privacy Policy describes Our policies and procedures on the collection, use and disclosure of Your information when You use the Service and tells You about Your privacy rights and how the law protects You.</p>
+      <p>We use Your Personal data to provide and improve the Service. By using the Service, You agree to the collection and use of information in accordance with this Privacy Policy. This Privacy Policy has been created with the help of the Free Privacy Policy Generator.</p>
+      <h3>Interpretation and Definitions</h3>
+      <h4>Interpretation</h4>
+      <p>The words of which the initial letter is capitalized have meanings defined under the following conditions. The following definitions shall have the same meaning regardless of whether they appear in singular or in plural.</p>
+      <h4>Definitions</h4>
+      <p>For the purposes of this Privacy Policy:</p>
+      <ul>
+          <li><strong>Account</strong> means a unique account created for You to access our Service or parts of our Service.</li>
+          <li><strong>Affiliate</strong> means an entity that controls, is controlled by or is under common control with a party, where "control" means ownership of 50% or more of the shares, equity interest or other securities entitled to vote for election of directors or other managing authority.</li>
+      </ul>
     </div>
   </div>
 </div>

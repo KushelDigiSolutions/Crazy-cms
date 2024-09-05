@@ -178,6 +178,40 @@ class UserController extends Controller
         return view('frontend/pageone');
     }
 
+
+ public function editmysite($id)
+    {
+        $data = MySite::where('id',$id)->first();
+        
+        return view('admin.user.editmysite',compact('data'));
+    }
+
+    public function updateMySite(Request $request)
+    {
+        $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'protocol' => ['required', 'string', 'max:255'],
+            'host' => ['required', 'string', 'max:255'],
+            'port' => ['required'],
+            'location' => ['required', 'string', 'max:255'],
+            'user' => ['required', 'string', 'max:255'],
+            'password' => ['required', 'string', 'max:255'],
+        ]); 
+        $password = $request->password;
+        $hashpassword = bcrypt($password);
+        $mysite = mySite::find($request->id);
+        $mysite->name = $request->name;
+        $mysite->protocol = $request->protocol;
+        $mysite->host = $request->host;
+        $mysite->port = $request->port;
+        $mysite->location = $request->location;
+        $mysite->user = $request->user;
+        $mysite->password = $hashpassword;
+        $mysite->save();
+       
+        return redirect()->route('admin.mysites')->with('success','User updated successfully.');
+    }
+
     public function editsite(Request $request,$variable,$id)
     {
         $data = MySite::where('id',$id)->where('user_id',Auth::id())->first();
@@ -499,7 +533,7 @@ public function mySite270824()
 
         $host = $validFtpSiteData['host'];
         $username = $validFtpSiteData['username'];
-        $password = $validFtpSiteData['password'];
+        $password = bcrypt($validFtpSiteData['password']);
         $directory = $validFtpSiteData['directory'];
         $url = $validFtpSiteData['url'];
         $protocol = $validFtpSiteData['protocol'];

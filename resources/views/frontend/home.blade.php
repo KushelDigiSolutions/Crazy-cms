@@ -58,7 +58,7 @@
       
       @if (Auth::check())
     <div class="navUserDropdown">
-        <a href="javascript::void()" class="navSinItem">Hello {{ Auth::user()->name }} </a>
+        <a href="{{ url('admin/dashboard') }}" class="navSinItem">Hello {{ Auth::user()->name }} </a>
           
                    
     </div>
