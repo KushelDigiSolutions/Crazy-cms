@@ -1,4 +1,3 @@
-<!-- resources/views/home.blade.php -->
 @extends('layouts.home_header')
 
 @section('title', 'Preview Page')
@@ -408,10 +407,6 @@ function savePage(){
             });
 }
 
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
 $(document).ready(function() {
     $('#history_updated').on('change', function() {
         // Get the value of the selected option (assuming this is the slug like 'sell-your-home.html')

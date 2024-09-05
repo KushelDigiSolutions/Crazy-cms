@@ -42,6 +42,13 @@ class HomeApiController extends Controller
     public function downloadWeb(Request $request)
     {
         $url = $request->all()["url"];
+        $surl = $this->checkUrlHasScheme($url);
+      
+        if($surl == false){
+            return redirect()->back()->withErrors(['url' => 'Invalid URL provided.']);
+        }else{
+            $url = $surl;
+        }     
         
         if (filter_var($url, FILTER_VALIDATE_URL) === false) {
             return redirect()->back()->withErrors(['url' => 'Invalid URL provided.']);
@@ -67,12 +74,18 @@ class HomeApiController extends Controller
 
         try {
             $publicPath = public_path();
+            $folderPath = $publicPath.'/previews/'.$cleaned_url;
+          
+            try {
+                $this->deleteDirectory($folderPath);
+               // echo "Directory successfully deleted.";
+            } catch (Exception $e) {
+                //echo "An error occurred: " . $e->getMessage();
+            }
             // Path to the Python script
-            $scriptPath = $publicPath.'/web.py '.$url.' '.$publicPath.'/previews/'.$cleaned_url;
-
-            // Execute the Python script
+            $scriptPath = $publicPath.'/web.py '.$url.' '.$folderPath;
+            
             $output = shell_exec("python3 " . $scriptPath);
-            //dd($scriptPath );
             // Return the output
             return response()->json(['message' => 'URL created successfully','url'=>$cleaned_url], 201);
         } catch (\Exception $e) {
@@ -80,6 +93,73 @@ class HomeApiController extends Controller
           //  return redirect()->back()->withErrors(['url' => 'An error occurred: ' . $e->getMessage()]);
         }
         
+    }
+
+    function deleteDirectory($dir) {
+        if (!file_exists($dir)) {
+            return false;
+        }
+    
+        if (is_file($dir)) {
+            // Delete the file
+            return unlink($dir);
+        }
+    
+        // Directory case
+        foreach (scandir($dir) as $item) {
+            if ($item === '.' || $item === '..') {
+                continue;
+            }
+    
+            $path = $dir . DIRECTORY_SEPARATOR . $item;
+            if (is_dir($path)) {
+                deleteDirectory($path);
+            } else {
+                unlink($path);
+            }
+        }
+    
+        // Remove the now-empty directory
+        return rmdir($dir);
+    }
+    
+
+    public function checkAndAddScheme($url)
+    {
+        // Remove any existing scheme (if the URL was sent with one)
+        $url = preg_replace("/^https?:\/\//", "", $url);
+
+        // Try with HTTPS first
+        $httpsUrl = "https://" . $url;
+        $httpUrl = "http://" . $url;
+
+        // Use get_headers to check for a successful response
+        $headersHttps = @get_headers($httpsUrl);
+        if ($headersHttps && strpos($headersHttps[0], '200') !== false) {
+            return $httpsUrl;
+        }
+
+        // If HTTPS fails, check with HTTP
+        $headersHttp = @get_headers($httpUrl);
+        if ($headersHttp && strpos($headersHttp[0], '200') !== false) {
+            return $httpUrl;
+        }
+
+        // If both fail, return null or an error message
+        return false;
+    }
+
+    public function checkUrlHasScheme($url)
+    {
+        // Parse the URL to get its components
+        $parsedUrl = parse_url($url);
+
+        // Check if the 'scheme' is set and is either 'http' or 'https'
+        if (isset($parsedUrl['scheme']) && in_array($parsedUrl['scheme'], ['http', 'https'])) {
+            return $url;
+        } else {
+            return $this->checkAndAddScheme($url);
+        }
     }
     
     private function __getWebsiteName($url) {

@@ -15,6 +15,7 @@ use App\Providers\RouteServiceProvider;
 use App\Services\FTPService;
 use Illuminate\Support\Facades\Http;
 use Carbon\Carbon;
+use App\Services\EncryptionService;
 use DB;
 
 class UserController extends Controller
@@ -223,13 +224,13 @@ class UserController extends Controller
             ], 404);
             exit;
         }
-        
+    
         $this->ftpService = new FTPService(
             $data->protocol,
             $data->port,
             $data->host,
             $data->user,
-            $data->password,
+            EncryptionService::decryptWithSalt($data->password),
             $data->location
         );
         $files = $this->ftpService->listFiles();
@@ -533,7 +534,7 @@ public function mySite270824()
 
         $host = $validFtpSiteData['host'];
         $username = $validFtpSiteData['username'];
-        $password = bcrypt($validFtpSiteData['password']);
+        $password = EncryptionService::encryptWithSalt($validFtpSiteData['password']);
         $directory = $validFtpSiteData['directory'];
         $url = $validFtpSiteData['url'];
         $protocol = $validFtpSiteData['protocol'];
@@ -579,7 +580,7 @@ public function mySite270824()
             'host' => $host,
             'url' => $url,
             'user' => $username,
-            'password' => $password,
+            'password' => EncryptionService::encryptWithSalt($password),
             'location' => $directory,
             'status' => 0, // or any default status you want
             'user_id' => Auth::id(),

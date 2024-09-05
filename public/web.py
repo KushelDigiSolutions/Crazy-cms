@@ -42,6 +42,28 @@ def save_webpage_with_original_links(url, save_folder):
                 new_url = urljoin(url, old_url.strip('"\''))
                 tag['style'] = tag['style'].replace(old_url, new_url)
     
+    # Ensure Slick Slider dependencies are included
+    slick_css_urls = [
+        'https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css',
+        'https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css'
+    ]
+    
+    for css_url in slick_css_urls:
+        link_tag = soup.new_tag('link', rel='stylesheet', href=css_url)
+        soup.head.append(link_tag)
+
+    # Ensure jQuery and Slick Slider JS are included
+    jquery_url = 'https://code.jquery.com/jquery-3.6.0.min.js'
+    slick_js_url = 'https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js'
+    
+    # Add jQuery
+    jquery_tag = soup.new_tag('script', src=jquery_url)
+    soup.body.insert(0, jquery_tag)
+    
+    # Add Slick Slider JS
+    slick_js_tag = soup.new_tag('script', src=slick_js_url)
+    soup.body.append(slick_js_tag)
+
     # Save the modified HTML with original resource links
     html_file_path = os.path.join(save_folder, 'index.html')
     with open(html_file_path, 'w', encoding='utf-8') as file:

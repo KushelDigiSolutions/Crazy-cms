@@ -38,17 +38,10 @@ function submitForm() {
             $("#errorMsg").html("website URL cannot be empty.");
             $("#errorModal").modal("show");
             return;
-        } else if (!isValidURL(webUrlInput)) {
-            pretight.innerHTML = ``
-            $("#errorMsg").html("Pleae enter valid URL.");
-            $("#errorModal").modal("show");
-            return;
-        }
-
+        } 
         var formData = {
             url: webUrlInput,
         };
-
         $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')

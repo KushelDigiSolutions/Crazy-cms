@@ -48,7 +48,7 @@
         </svg>
       </label>
 
-   <a class="ekaa" href="/"><img class="home-link" src="{{asset('admin/img/summer.svg')}}" alt=""></a>
+   <a class="ekaa" href="{{ url('/') }}"><img class="home-link" src="{{asset('admin/img/summer.svg')}}" alt=""></a>
       <!-- link back to homepage -->
       <a href="#" class="navSinItem">Features</a>
       <a  href="{{url('/page3')}}" class="navSinItem">Pricing</a>
@@ -107,26 +107,7 @@
 
           <!-- slide img end  -->
 
-          <!-- autmatiic  navigate start -->
-          <div class="navigation-auto">
-            <div class="auto-btn1"></div>
-            <div class="auto-btn2"></div>
-            <div class="auto-btn3"></div>
-            <div class="auto-btn4"></div>
-          </div>
-          <!-- autmatiic  navigate end -->
-        </div>
-
-        <!-- manual navigation start  -->
-        <div class="navigaWrap">
-          <div class="navigation-manual">
-            <label for="radio1" class="manual-btn"></label>
-            <label for="radio2" class="manual-btn"></label>
-            <label for="radio3" class="manual-btn"></label>
-            <label for="radio4" class="manual-btn"></label>
-          </div>
-        </div>
-        <!-- manual navigation end -->
+         
       </div>
     </div>
   </div>

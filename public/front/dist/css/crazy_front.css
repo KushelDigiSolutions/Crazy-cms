@@ -114,6 +114,11 @@
     right: 0;
     background: #fff;
 }
+.previewHeader{
+    min-height: 50px;
+    border-bottom: 3px solid #D9E0E6;
+    background: #fff;
+}
 .second_preview{
     display: flex;
     align-items: center;

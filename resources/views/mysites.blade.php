@@ -1,10 +1,6 @@
-@php
-        use Carbon\Carbon;
-    @endphp
 <x-admin>
     @section('title', 'My Site')
     @if(Auth::user()->hasRole('admin'))
- 
     <div class="card canting">
         <div class="card-header">
             <h3 class="card-title cd_tit">My Site</h3>
@@ -27,33 +23,24 @@
                     @foreach ($results as $user)
                         <tr>
                         <td>{{ $user->id }} </td>
-                            <td>{{ $user->protocol ?? 'Not Available' }}</td>
-                            <td>{{ $user->host ?? 'Not Available' }}</td>
-                            <td>{{ $user->port ?? 'Not Available' }}</td>
+                            <td>{{ $user->protocol }}</td>
+                            <td>{{ $user->host }}</td>
+                            <td>{{ $user->port }}</td>
                             <td>{{ $user->user_name }}</td>
-                            <td>{{ $user->url ?? 'Not Available' }}</td>
+                            <td>{{ $user->url }}</td>
                             <td>
-                                <a href="{{ url('admin/editsite').'/'.$user->id }}"
-                                    class="btn btn-sm btn-primary">Edit</a>
+                                <a href="{{ url('admin/editsite').'/'.$user->name.'/'.$user->id }}" class="btn btn-sm btn-primary">Edit</a>
                             </td>
                             <!-- <td>
                                 <a href=""
                                     class="btn btn-sm btn-primary">Login</a>
-                            </td> --> 
+                            </td> -->
                             <td>
-                            @if(empty($user->payment_id))
-                                <a href="{{ url('admin/editsite').'/'.$user->name.'/'.$user->id }}"
-                                    class="btn btn-sm btn-primary">Edit</a>
-                            </td>
-                            <td>
-                                @if(empty($user->payment_id))
-                                <form action="" method="POST"
-                                    onsubmit="return confirm('Are sure want to delete?')">
-                                    @method('DELETE')
-                                    @csrf
-                                    <button type="submit" class="btn btn-sm btn-danger">Delete</button>
-                                </form>
-                                @endif
+                            <form action="{{ route('admin.mysites.delete', encrypt($user->id)) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete?')">
+                                @method('DELETE')
+                                @csrf
+                                <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+                            </form>
                             </td>
                         </tr>
                     @endforeach
@@ -80,20 +67,12 @@
                         <th>Port</th>
                         <th>User</th>
                         <th>Url</th>
-                        <th>Subscription Start</th>
-                        <th>Expiry Start</th>
                         <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach ($data as $user)
-                            @php
-                            
-                                $cr = Carbon::parse($user->created_at);
-                                $createdAt = Carbon::parse($user->created_at);
-                                $expiryDate = $createdAt->addYear()->subDay();
-                                $isExpired = now()->greaterThan($expiryDate);
-                            @endphp 
+                        
                         <tr>
                         <td>{{ $user->id }} </td>
                             <td>{{ $user->protocol ?? 'Not Available' }}</td>
@@ -101,29 +80,32 @@
                             <td>{{ $user->port ?? 'Not Available' }}</td>
                             <td>{{ $user->user_name }}</td>
                             <td>{{ $user->url ?? 'Not Available' }}</td>
-                            <td>{{  $cr->format('d-m-Y') }}</td>
-                            <td>{{  $expiryDate->format('d-m-Y'). $isExpired }}</td>
+                            @php
+                                // $isExpired = \Carbon\Carbon::parse($user->created_at)->lt(now());
+
+                                $oneYearAgo = now()->subYear();
+                                $isExpired = \Carbon\Carbon::parse($user->created_at)->lt($oneYearAgo);
+                            @endphp 
+                            @if($isExpired)
                             <td>
-                                                       
-                                @if($isExpired)
-                                    <a href="{{ url('admin/editsite').'/'.$user->id }}" class="btn btn-sm btn-primary">Renew</a>
-                                @else
-                                    <a href="{{ url('admin/editsite').'/'.$user->name.'/'.$user->id }}" class="btn btn-sm btn-primary">Edit</a>
-                                @endif
+                                <a href="{{ url('admin/editsite').'/'.$user->id }}" class="btn btn-sm btn-primary">Renew</a>
                             </td>
-                            <td>
-                            <a href="{{ url('admin/editmysite').'/'.$user->id }}" class="btn btn-sm btn-primary">Edit</a>
-                            </td> 
-                            @if(!empty($user->payment_id))
-                            <td>
-                                <form action="" method="POST"
-                                    onsubmit="return confirm('Are sure want to delete?')">
-                                    @method('DELETE')
-                                    @csrf
-                                    <button type="submit" class="btn btn-sm btn-danger">Delete</button>
-                                </form>
+                                    @else
+                            <td>                           
+                            <a href="{{ url('admin/editsite').'/'.$user->name.'/'.$user->id }}" class="btn btn-sm btn-primary">Edit</a>
                             </td>
                             @endif
+                            <!-- <td>
+                                <a href=""
+                                    class="btn btn-sm btn-primary">Login</a>
+                            </td> -->
+                            <td>
+                            <form action="{{ route('admin.mysites.delete', encrypt($user->id)) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete?')">
+                                @method('DELETE')
+                                @csrf
+                                <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+                            </form>
+                            </td>
                         </tr>
                     @endforeach
                 </tbody>

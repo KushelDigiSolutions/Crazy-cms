@@ -37,7 +37,7 @@
                     </svg>
                 </label>
 
-              <a class="ekaa" href="/"><img class="home-link" src="{{asset('admin/img/summer.svg')}}" alt=""></a> 
+              <a class="ekaa" href="{{ url('/') }}"><img class="home-link" src="{{asset('admin/img/summer.svg')}}" alt=""></a> 
                 <!-- link back to homepage -->
                 <a href="#" class="navSinItem">Features</a>
                 <a id="srt" href="{{url('/page3')}}" class="navSinItem">Pricing</a>

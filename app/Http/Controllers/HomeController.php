@@ -17,13 +17,14 @@ class HomeController extends Controller
 
         // Define the path to your HTML file in the public folder
         $filePath = public_path('previews/'.$variable.'/index.html');
+        $url = url('previews/'.$variable.'/index.html');
         // Check if the file exists
         if (file_exists($filePath)) {
             // Get the content of the file
             $htmlContent = file_get_contents($filePath);
 
              // Pass the content to the view
-             return view('frontend/preview', ['htmlContent' => $htmlContent,'variable'=>$variable]);
+             return view('frontend/preview', ['htmlContent' => $htmlContent,'variable'=>$variable,'webUrl'=>$url]);
         } else {
             return response()->json([
                 'error' => 'File not found.'
