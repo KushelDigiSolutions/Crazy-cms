@@ -33,6 +33,11 @@
                             <td>{{ $user->user_name }}</td>
                             <td>{{ $user->url ?? 'Not Available' }}</td>
                             <td>
+<<<<<<< Updated upstream
+=======
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
                                 <a href="{{ url('admin/editsite').'/'.$user->id }}"
                                     class="btn btn-sm btn-primary">Edit</a>
                             </td>
@@ -42,6 +47,13 @@
                             </td> --> 
                             <td>
                             @if(empty($user->payment_id))
+=======
+                                <a href="{{ url('admin/editsite').'/'.$user->name.'/'.$user->id }}"
+                                    class="btn btn-sm btn-primary">Edit</a>
+                            </td>
+                            <td>
+                                @if(empty($user->payment_id))
+>>>>>>> Stashed changes
                                 <form action="" method="POST"
                                     onsubmit="return confirm('Are sure want to delete?')">
                                     @method('DELETE')

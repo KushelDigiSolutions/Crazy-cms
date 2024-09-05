@@ -374,6 +374,7 @@ $(document).ready(function() {
 
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 function savePage(){
     event.preventDefault(); // Prevent default form submission
 
@@ -407,6 +408,8 @@ function savePage(){
             });
 }
 
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
 $(document).ready(function() {
