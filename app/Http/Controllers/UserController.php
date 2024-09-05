@@ -183,7 +183,7 @@ class UserController extends Controller
  public function editmysite($id)
     {
         $data = MySite::where('id',$id)->first();
-        
+        $data->password = EncryptionService::decryptWithSalt($data->password);
         return view('admin.user.editmysite',compact('data'));
     }
 
@@ -199,7 +199,7 @@ class UserController extends Controller
             'password' => ['required', 'string', 'max:255'],
         ]); 
         $password = $request->password;
-        $hashpassword = bcrypt($password);
+        $hashpassword = EncryptionService::encryptWithSalt($password);
         $mysite = mySite::find($request->id);
         $mysite->name = $request->name;
         $mysite->protocol = $request->protocol;
