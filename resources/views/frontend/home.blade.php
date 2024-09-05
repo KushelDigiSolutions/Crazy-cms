@@ -179,11 +179,11 @@
       <p>Do you wish that you could make <span>simple text and image</span> changes to your website without a web developer or complex software? </p>
       <p><span>My Crazy Simple CMS does just that!</span></p>
       <p>There are many reasons why you need to edit your website such as;<br/>
-      <span>+ changing your business hours,<br/>
-      + post holiday specials or greetings,<br/>
-      + add new updated images,<br/>
-      + improve search engine optimization (SEO),<br/>
-      + and many more.</span></p>
+      <span> <span class="i">.</span> changing your business hours,<br/>
+      <span class="i">.</span> post holiday specials or greetings,<br/>
+      <span class="i">.</span> add new updated images,<br/>
+      <span class="i">.</span> improve search engine optimization (SEO),<br/>
+      <span class="i">.</span> and many more.</span></p>
       <p>MyCrazySimpleCMS.com is an on-line website editor that allows you do all of these things and more.  Just provide your website address and start editing.</p>
       <p>If you like what you see and want to save your changes, simply create an account and provide a few details so your changes can be published.  There are simple instructions provided on how to do that.</p>
     </div>

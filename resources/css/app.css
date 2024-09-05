@@ -50,6 +50,9 @@ border: none !important;
 .content-header h1{
     color: #414141 !important;
 }
+h1,h2,h3{
+    overflow:hidden !important;
+}
 .int{
     display: flex;
     align-items: center;
@@ -419,6 +422,7 @@ border: none !important;
 .dfl{
     margin-left: 6px;
 }
+
 /* ======this end========================== */
 
 @media only screen and (max-width:850px){

@@ -285,7 +285,11 @@ nav svg {
     border-radius: 10px;
     overflow: hidden;
 }
-
+.i{
+    font-size: 55px !important;
+    position: relative;
+    top: -3px;
+}
 
 .slides {
     width: 500%;
@@ -538,6 +542,7 @@ nav svg {
     font-family: Inter;
     font-weight: 400;
     line-height: 30px;
+    overflow:hidden !important;
 }
 
 #what_we_do .row2 p span {
