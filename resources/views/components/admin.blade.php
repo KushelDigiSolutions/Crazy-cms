@@ -96,7 +96,7 @@
         <div class="float-right d-none d-sm-block">
             <b>Version</b> 3.2.0
         </div>
-        <strong>Copyright © 2023-{{ date('Y') }} <a href="#">KushelDigi</a>.</strong> All rights reserved.
+        <strong>Copyright © 2023-{{ date('Y') }} <a href="#">MyCrazyCMS</a>.</strong> All rights reserved.
     </footer>
     <!-- ./wrapper -->
 
