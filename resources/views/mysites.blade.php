@@ -29,7 +29,7 @@
                             <td>{{ $user->user_name }}</td>
                             <td>{{ $user->url }}</td>
                             <td>
-                                <a href="{{ url('admin/editsite').'/'.$user->name.'/'.$user->id }}" class="btn btn-sm btn-primary">Edit</a>
+                                 <a href="{{ url('admin/editsite').'/'.$user->name.'/'.$user->id }}" class="btn btn-sm btn-primary">Edit</a>
                             </td>
                             <!-- <td>
                                 <a href=""
@@ -92,7 +92,7 @@
                             </td>
                                     @else
                             <td>                           
-                            <a href="{{ url('admin/editsite').'/'.$user->name.'/'.$user->id }}" class="btn btn-sm btn-primary">Edit</a>
+                             <a href="{{ url('admin/editsite').'/'.$user->name.'/'.$user->id }}" class="btn btn-sm btn-primary">Edit {{$user->name}}</a>
                             </td>
                             @endif
                             <!-- <td>
