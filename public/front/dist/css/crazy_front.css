@@ -22,11 +22,10 @@
     box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
 }
 .Projects #secondDiv{
-    flex: 1;
-    padding: 20px;
     position: relative; /* Allows absolute positioning of child elements */
     background-color: #fff;
     overflow: auto; 
+    margin-bottom:80px;
 } 
 #secondDiv p, #secondDiv span {
     position: relative; /* Ensure positioning context for absolute child */
@@ -115,7 +114,6 @@
     background: #fff;
 }
 .previewHeader{
-    min-height: 50px;
     border-bottom: 3px solid #D9E0E6;
     background: #fff;
 }
@@ -186,4 +184,69 @@
     border-radius: 5px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
     z-index: 1000;
+}
+
+
+.upload-area {
+	margin-top: 1.25rem;
+	border: none;
+	background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' stroke='%23ccc' stroke-width='3' stroke-dasharray='6%2c 14' stroke-dashoffset='0' stroke-linecap='square'/%3e%3c/svg%3e");
+	background-color: transparent;
+	padding: 3rem;
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	&:hover, &:focus {
+			background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' stroke='%232e44ff' stroke-width='3' stroke-dasharray='6%2c 14' stroke-dashoffset='0' stroke-linecap='square'/%3e%3c/svg%3e");
+	}
+} 
+
+.upload-area-icon {
+	display: block;
+	width: 2.25rem;
+	height: 2.25rem;
+	svg {
+		max-height: 100%;
+		max-width: 100%;
+	}
+}
+
+.upload-area-title {
+	margin-top: 1rem;
+	display: block;
+	font-weight: 700;
+		color: var(--c-text-primary);
+}
+
+.upload-area-description {
+		display: block;
+		color: var(--c-text-secondary);
+	strong {
+		color: var(--c-action-primary);
+		font-weight: 700;
+	}
+}
+
+#mediaCurrent{
+    border: 1px solid #ccc;
+    padding: 10px;
+    width: 100%;
+    height: calc(100% - 30px);
+    margin-top: 20px;
+    overflow-y: auto;
+    max-height: 600px;
+    cursor: pointer;
+}
+#mediaCurrent ul{
+    padding:0px;
+}
+#mediaCurrent li{
+    margin-bottom:10px;
+}
+#mediaCurrent li img{
+    width: 100%;
+    height: 150px;
+    border:1px solid #ccc;
+    padding: 5px;
 }
