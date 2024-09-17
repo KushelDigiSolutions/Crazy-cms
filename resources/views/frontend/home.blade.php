@@ -438,12 +438,11 @@
 
         <div class="planWhitewrap">
           <p class="dollorHead">
-            <span class="span1">$5</span>
-            <span class="span2">/Month</span>
-            <img class="suy" src="{{asset('admin/img/chose.svg')}}" alt="">
-          </p>
-
-          <span class="only">($60 per year)</span>
+                            <span class="span1">$60</span>
+                            <span style="font-weight:600;" class="span2">/Yearly</span>
+                            <span><s style="font-size: 30px; font-weight: 100;color: gray;">($72)</s></span>
+                        </p>
+                        <span class="only">(Only 5 per month)</span>
 
           <!-- scond part  -->
           <div class="planPoint">
@@ -473,7 +472,7 @@
             </div>
           </div>
 
-          <button class="chooseBtn2"><span>Choose Plan</span></button>
+          <a style="max-width:261px; width:100%;" href="/register"><button class="chooseBtn2"><span>Choose Plan</span></button></a>
         </div>
       </div>
     </div>
@@ -487,13 +486,16 @@
         </div>
 
         <div class="planWhitewrap">
-          <p class="dollorHead">
-            <span class="span1">$8</span>
-            <span class="span2">/Month</span>
-            <img class="suy" src="{{asset('admin/img/chose1.svg')}}" alt="">
-          </p>
-
-          <span class="only">($96 per year)</span>
+             <p class="dollorHead">
+                            <span class="span1">$96</span>
+                            <span style="font-weight:600;" class="span2">/Yearly</span>
+                            <span><s style="font-size: 30px; font-weight: 100;color: gray;">($120)</s></span>
+                        </p>
+                        <span class="only">(Only 8 per month)</span>
+          <!--<div class="for_span">-->
+          <!--      <span class="span1">$8</span>-->
+          <!--  <span class="span2">/Month</span>-->
+          <!--</div>-->
 
           <!-- scond part  -->
           <div class="planPoint">
@@ -523,7 +525,7 @@
             </div>
           </div>
 
-          <button class="chooseBtn2"><span>Choose Plan</span></button>
+          <a style="max-width:261px; width:100%;" href="/register"><button class="chooseBtn2"><span>Choose Plan</span></button></a>
         </div>
       </div>
     </div>
@@ -537,13 +539,12 @@
         </div>
 
         <div class="planWhitewrap">
-          <p class="dollorHead">
-            <span class="span1">$16</span>
-            <span class="span2">/Month</span>
-            <img class="suy" src="{{asset('admin/img/chose2.svg')}}" alt="">
-          </p>
-
-          <span class="only">($192 per year)</span>
+           <p class="dollorHead">
+                            <span class="span1">$192</span>
+                            <span style="font-weight:600;" class="span2">/Yearly</span>
+                            <span><s style="font-size: 30px; font-weight: 100;color: gray;">($240)</s></span>
+                        </p>
+                        <span class="only">(Only 16 per month)</span>
 
           <!-- scond part  -->
           <div class="planPoint">

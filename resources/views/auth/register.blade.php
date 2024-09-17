@@ -83,7 +83,7 @@
             <div class="card-body">
                 <!-- <p class="login-box-msg">Sign in to start your session</p> -->
 
-                <form action="{{ route('login') }}" method="POST">
+                <form action="{{ route('register') }}" method="POST">
                     @csrf
                     <div class="input-group mb-3 input_gp11">
                         <label for="email">Name</label>
@@ -118,16 +118,10 @@
                         </div> -->
                         <x-input-error :messages="$errors->get('password')" class="mt-2" />
                     </div>
-                    <div class="input-group mb-3 input_gp11">
-                        <label for="confirmPassword">Confirm Password</label>
-                        <input id="confirmPassword" class="form-control" type="password" name="confirmPassword" required
-                            autocomplete="current-password">
-                        <!-- <div class="input-group-append">
-                            <div class="input-group-text">
-                                <span class="fas fa-lock"></span>
-                            </div>
-                        </div> -->
-                        <x-input-error :messages="$errors->get('confirmPassword')" class="mt-2" />
+                  <div class="input-group mb-3 input_gp11">
+                        <label for="password_confirmation">Confirm Password</label>
+                            <input id="password_confirmation" class="form-control" type="password" name="password_confirmation" required>
+                            <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
                     </div>
                     <div class="row">
                         <div class="col-8">
@@ -145,21 +139,21 @@
                         <!-- /.col -->
                     </div>
                 </form>
-                <div class="social-auth-links text-center mb-3">
-                    <p>- OR -</p>
-                    <a href="{{ route('facebook.login') }}" class="btn btn-block btn-primary">
+                <!--<div class="social-auth-links text-center mb-3">-->
+                <!--    <p>- OR -</p>-->
+                <!--    <a href="{{ route('facebook.login') }}" class="btn btn-block btn-primary">-->
                        
-                        Sign in using Facebook
-                    </a>
-                    <a href="{{ route('google.login') }}" class="btn btn-block btn-danger">
+                <!--        Sign in using Facebook-->
+                <!--    </a>-->
+                <!--    <a href="{{ route('google.login') }}" class="btn btn-block btn-danger">-->
                        
-                        Sign in using Google+
-                    </a>
-                    <a href="{{ route('github.login') }}" class="btn btn-block btn-dark">
+                <!--        Sign in using Google+-->
+                <!--    </a>-->
+                <!--    <a href="{{ route('github.login') }}" class="btn btn-block btn-dark">-->
                        
-                        Sign in using Github
-                    </a>
-                </div>
+                <!--        Sign in using Github-->
+                <!--    </a>-->
+                <!--</div>-->
                 <!-- <p class="mb-1">
                     <a href="{{ route('password.request') }}">I forgot my password</a>
                 </p> -->

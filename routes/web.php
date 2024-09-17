@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\LoginWithOTPController;
 use App\Http\Controllers\SocialiteController;
 use Illuminate\Support\Facades\Route;
@@ -68,6 +69,12 @@ Route::prefix('/otp')->middleware('guest')->name('otp.')->controller(LoginWithOT
     Route::get('/verification/{userId}','verification')->name('verification');
     Route::post('login/verification','loginWithOtp')->name('loginWithOtp');
 });
+
+Route::get('register', [RegisteredUserController::class, 'create'])->name('register');
+
+// Handle the form submission and register the user
+Route::post('register', [RegisteredUserController::class, 'store'])->name('register.store');
+
 
 // Socialite Routes
 Route::prefix('oauth/')->group(function(){

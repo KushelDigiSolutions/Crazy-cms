@@ -180,16 +180,11 @@
                     </div>
 
                     <div class="planWhitewrap">
-                        <p class="dollorHead">
+                          <p class="dollorHead">
                             <span class="span1">${{$subscription->price}}</span>
                             <span class="span2">/Yearly</span>
-                            <span><s style="
-    font-size: 30px;
-    font-weight: 100;
-    color: gray;
-">(${{$subscription->mrp}})</s></span>
+                            <span><s style="font-size: 30px; font-weight: 100;color: gray;">(${{$subscription->mrp}})</s></span>
                         </p>
-
                         <span class="only">(Only {{$subscription->monthly_price}} per month)</span>
 
                         <!-- scond part  -->
@@ -242,7 +237,7 @@
         $('.chooseBtn2active').removeClass('chooseBtn2active');
         $('.chooseBtn2 span').html('Choose Plan');
         $('#plan_'+val).addClass('chooseBtn2active');
-        $('#plan_'+val+" span").html('Choosed');
+        $('#plan_'+val+" span").html('Selected');
         $("#selectedplan").val($('#plan_'+val).attr('data-id'));
     }
 

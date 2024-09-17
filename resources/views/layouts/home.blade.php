@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Online Website Editor @yield('title') | {{ config('app.name') }}</title>
+    <title>Edit Your Website Online @yield('title') | {{ config('app.name') }}</title>
 
 
     <link rel="stylesheet" href="{{asset('admin/customcss/style.css')}}">

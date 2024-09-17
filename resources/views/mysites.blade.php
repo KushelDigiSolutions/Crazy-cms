@@ -105,6 +105,7 @@
                                     <a href="{{ url('admin/editsite').'/'.$user->name.'/'.$user->id }}" class="btn btn-sm btn-primary">Modify Pages</a>
                                 @endif
                             </td>
+
                             <td>
                             <a href="{{ url('admin/editmysite').'/'.$user->id }}" class="btn btn-sm btn-primary">Edit FTP</a>
                             </td> 
@@ -116,6 +117,7 @@
                                     @csrf
                                     <button type="submit" class="btn btn-sm btn-danger">Delete</button>
                                 </form>
+
                             </td>
                             @endif
                         </tr>

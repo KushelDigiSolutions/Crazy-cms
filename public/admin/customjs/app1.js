@@ -24,10 +24,9 @@ function submitForm() {
     var webUrlInput = $("#webUrlInput").val();
 
     pretight.innerHTML = `<div class="set">
-      <div class="spinner-border" style="width: 4rem; height: 4rem;" role="status">
-    <span class="visually-hidden">Loading...</span>
+       <img src="https://res.cloudinary.com/ecommerce-website/image/upload/v1725709329/aronswebsites-_bmrgzo.gif" alt=""/>
   </div>
-    </div>`
+    `
 
     setTimeout(() => {
 

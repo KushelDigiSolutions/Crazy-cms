@@ -30,7 +30,7 @@
                                         <option value="ftp">FTP</option>
                                         <option value="sftp">SFTP</option>
                                     </select>
-                                    <label for="host">Host</label>
+                                    <label for="host">Ftp Username</label>
                                     <input type="text" id="host" placeholder="Server IP Address" name="host">
                                     <label for="port">Port</label>
                                     <input type="text" id="port" placeholder="20/21" name="port" >
@@ -69,9 +69,7 @@
         var webUrlInput = $("#webUrlInput").val();
 
         var elementdata = `<div class="set">
-        <div class="spinner-border" style="width: 4rem; height: 4rem;" role="status">
-        <span class="visually-hidden">Loading...</span>
-        </div>
+            <img src = "https://res.cloudinary.com/ecommerce-website/image/upload/v1725709329/aronswebsites-_bmrgzo.gif" alt="web"/>
         </div>`;
 
         e.preventDefault();
@@ -147,7 +145,7 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-      <iframe src="{{url('/crazy-faq.pdf')}}" width="100%" height="600px" style="border: none;"></iframe>
+      <iframe src="{{url('/site.pdf')}}" width="100%" height="600px" style="border: none;"></iframe>
       </div>
     </div>
   </div>

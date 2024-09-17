@@ -39,7 +39,7 @@
 }
 .only{
     position: relative;
-    top: -20px;
+    top: -7px;
     color: #202020 !important;
     font-weight: 400;
     font-size: 18px;
@@ -110,7 +110,10 @@ nav {
    background-repeat: no-repeat;
    background-position: center;
 }
-
+.for_span{
+    display:flex;
+    overflow:hidden !important;
+}
 .links-container {
     height: 100%;
     width: 100%;
@@ -622,7 +625,7 @@ nav svg {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
 }
 
 #Plan .row2 .inner_section {
@@ -688,7 +691,19 @@ img {
     text-align: left;
     color: #4F4F4F;
 }
-
+.span1{
+     font-family: Poppins;
+    font-size: 25px;
+    font-weight: 600;
+    line-height: 24px;
+    letter-spacing: 0.01em;
+    text-align: left;
+    color: #4F4F4F;
+    overflow:hidden !important;
+}
+.span2{
+     overflow:hidden !important;
+}
 .planWhitewrap .dollorHead .span2 {
     font-family: Poppins;
     font-size: 18px;

@@ -22,7 +22,7 @@
                         <tr>
                             <td>{{ $item->id }}</td>
                             <td>{{ $item->name }}</td>
-                            <td>{{ $item->created_at }}</td>
+                            <td>{{$item->created_at}}</td>
                             <td>
                                 <a href="{{ route('admin.subscription.edit', encrypt($item->id)) }}"
                                     class="btn btn-sm btn-primary">Edit</a>
