@@ -2,9 +2,7 @@
 @section('title', 'Preview Page')
 @section('content')
 <x-front-header-component />
-<div style="height: calc(100% - 140px);position: absolute;width: 100%;">
-<iframe  id="myIframe" src="{{$webUrl}}"    style="width: 100%; height: 100%; border: none; position: absolute;top:0;left: 0;bottom:0;"></iframe>
-</div>
+<iframe  id="myIframe" src="{{$webUrl}}"></iframe>
 <div class="preview_sect">
    <div class="test_sect">
       <div class="first_preview">

@@ -250,3 +250,7 @@
     border:1px solid #ccc;
     padding: 5px;
 }
+#myIframe{
+    width: 100%;
+    height: calc(100vh - 140px);
+}

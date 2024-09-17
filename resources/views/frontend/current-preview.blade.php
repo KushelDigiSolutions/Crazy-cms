@@ -67,6 +67,8 @@
         </div>
     </div>
 </div>
+
+
 <div id="floatingToolbar" style="display:none; position:absolute; background-color:lightgrey; border:1px solid #ccc; padding:5px;">
   <button id="duplicateButton">Duplicate</button>
 </div>

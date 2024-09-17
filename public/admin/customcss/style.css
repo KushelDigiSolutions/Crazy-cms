@@ -8,11 +8,7 @@
 
 #navbar {
     width: 100vw;
-    position: fixed;
     background-color: #0F3D5F;
-    z-index: 100;
-    left: 0;
-    right: 0;
 }
 
 #navbar .navCont {
