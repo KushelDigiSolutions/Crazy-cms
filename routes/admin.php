@@ -26,6 +26,8 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'verified'])->group(
     Route::delete('/mysites/{id}', [UserController::class, 'delete'])->name('mysites.delete');
     Route::get('/addmysites', [UserController::class,'addMySite'])->name('addmysites');
     Route::get('/editsite/{variable}/{id}', [UserController::class, 'editsite'])->name('editWebsite');
+    Route::post('/updatesite/{id}', [UserController::class, 'updatesite'])->name('updatesite');
+    Route::post('/saveimages/{id}', [UserController::class, 'saveimages'])->name('saveimages');
     Route::get('/editmysite/{id}', [UserController::class, 'editMysite'])->name('editmysite');
     Route::post('/storeAdd', [UserController::class, 'storeAdd'])->name('storeAdd');
     Route::post('/addSite', [UserController::class, 'addSite'])->name('addSite');

@@ -1,24 +1,14 @@
+<div id="pretight"></div>
 <section id="navbar">
-
 <div class="navCont">
-
-
   <nav class="navSome">
-
     <img class="navbarImg" src="{{asset('admin/img/summer.svg')}}" alt="">
-
-
     <input type="checkbox" id="sidebar-active" />
-
-
-
     <label for="sidebar-active" class="open-sidebar-button">
       <svg xmlns="http://www.w3.org/2000/svg" height="32" viewBox="0 -960 960 960" width="32">
         <path d="M120-240v-80h720v80H120Zm0-200v-80h720v80H120Zm0-200v-80h720v80H120Z" />
       </svg>
     </label>
-
-
     <div class="links-container">
 
       <label for="sidebar-active" class="close-sidebar-button">
@@ -47,12 +37,7 @@
         <button class="navSinBtn"><span>SIGN IN</span></button>
     </a>
 @endif
-
     </div>
-
-  </nav>
-
+</nav>
 </div>
-
-
 </section>

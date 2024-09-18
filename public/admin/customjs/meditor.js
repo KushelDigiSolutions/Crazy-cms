@@ -1,16 +1,17 @@
 var iframe;
+var selectedElement;
 let cropper = null;
 $(document).ready(function() {
 
-    const pretight = document.getElementById("pretight");
+  /*   const pretight = document.getElementById("pretight");
     pretight.innerHTML = `<div class="set">
                             <img src="https://res.cloudinary.com/ecommerce-website/image/upload/v1725709329/aronswebsites-_bmrgzo.gif" alt=""/>
-                        </div>`;
+                        </div>`; */
 
-    iframe = $("#myIframe");
+    iframe = $("#myFinalIframe");
     iframe.on('load', function() {
         var iframeDocument = iframe.contents();
-        pretight.remove();
+    //    pretight.remove();
         // Add styles for editorBorder and duplicate-button
         var style = $(`<style>
                         .duplicate-button, .remove-button{
@@ -263,6 +264,7 @@ $(document).ready(function() {
 
         function initializeImageInput(currentElement) {
 
+            selectedElement = currentElement;
     /* 
             let $imageList = $('<ul class="row"></ul>');
             iframeDocument.find('img').each(function() {
@@ -303,23 +305,60 @@ $(document).ready(function() {
                         
                         // Read the cropped image and update the src or background-image of the original element
                         reader.onload = function(e) {
-                            if ($(currentElement).is('img')) {
-                                $(currentElement).attr('src', e.target.result);  // Update <img> element
-                            } else {
-                                $(currentElement).css('background-image', 'url(' + e.target.result + ')');  // Update background-image
-                            }
-
-                            $('#imageUploadModal').modal('hide');  // Hide the modal after updating
-                            saveStateToUndoStack();  // Save the current state to the undo stack
+                            var dataUrl = e.target.result;
+            
+                            // Get the CSRF token from the meta tag
+                            var csrfToken = $('meta[name="csrf-token"]').attr('content');
+                            
+                            // Send the Base64 image data to the server via AJAX
+                            $.ajax({
+                                url: saveImgUrl,  // Update this with your actual upload URL
+                                type: 'POST',
+                                data: {
+                                    img: dataUrl,  // Sending the image data as 'img'
+                                    _token: csrfToken  // CSRF token from the meta tag
+                                },
+                                success: function(response) {
+                                    // Assume the server returns { url: "newImageUrl" }
+                                    if (response.url) {
+                                        if ($(currentElement).is('img')) {
+                                            $(currentElement).attr('src', response.url);  // Update <img> element
+                                        } else {
+                                            $(currentElement).css('background-image', 'url(' + response.url + ')');  // Update background-image
+                                        }
+                                        
+                                        $('#imageUploadModal').modal('hide');  // Hide the modal after updating
+                                        saveStateToUndoStack();  // Save the current state to the undo stack
+                                    } else {
+                                        alert('Error: No URL returned from server.');
+                                    }
+                                },
+                                error: function(xhr) {
+                                    alert('An error occurred: ' + xhr.status + ' ' + xhr.statusText);
+                                }
+                            });
                         };
-
+            
                         reader.readAsDataURL(blob);  // Read the blob to get the data URL
                     });
                 }
             });
+            
+            $('#mediaCurrent li img').off('click').on('click', function() {
+                const imageUrl = $(this).attr("src");
+                if ($(currentElement).is('img')) {
+                    $(currentElement).attr('src', imageUrl);  // Update <img> element
+                } else {
+                    $(currentElement).css('background-image', 'url(' + imageUrl + ')'); 
+                }
+                saveStateToUndoStack();  
+                $('#imageUploadModal').modal('hide');
+            });
 
         }
         
+
+
         
         
         // Attach hover events when iframe loads
@@ -382,9 +421,7 @@ $(document).ready(function() {
     });
 
     // Handle upload button click (just an example, replace with actual upload logic)
-    $('#uploadImageButton').on('click', function() {
-        alert('Upload image logic goes here');
-    });
+ 
     function uploadImageUrl(imageUrl) {
         fetch(imageUrl)
         .then(response => response.blob())
@@ -406,5 +443,12 @@ $(document).ready(function() {
             console.error('Error fetching the image from URL:', err);
         });
     }
+
+    
+
+
+
     window.uploadImageUrl = uploadImageUrl;
+    window.updateImageCroper = updateImageCroper;
 });
+

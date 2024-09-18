@@ -213,18 +213,21 @@ class UserController extends Controller
         return redirect()->route('admin.mysites')->with('success','User updated successfully.');
     }
 
-    public function editsite(Request $request,$variable,$id)
+    public function editsite(Request $request, $variable, $id)
     {
-        $data = MySite::where('id',$id)->where('user_id',Auth::id())->first();
-        
-        
-        if(empty($data)){
+        // Get the MySite data for the given site and user
+        $data = MySite::where('id', $id)
+            ->where('user_id', Auth::id())
+            ->first();
+
+        // If no data is found, return an error response
+        if (empty($data)) {
             return response()->json([
                 'error' => 'Website not available'
             ], 404);
-            exit;
         }
-    
+
+        // Initialize FTP service with decrypted credentials
         $this->ftpService = new FTPService(
             $data->protocol,
             $data->port,
@@ -233,39 +236,142 @@ class UserController extends Controller
             EncryptionService::decryptWithSalt($data->password),
             $data->location
         );
+        
+        // Get the list of files from the FTP server
         $files = $this->ftpService->listFiles();
         
         if (!empty($files)) {
-            // Get the content of the file
-            //dd($files);
+            // Determine the file to get the content for
             $page = !empty($request->query('page')) ? $request->query('page') : $files[0];
-            if(!empty($request->query('history_id'))){
-                $lastHistory = History::where('id',$request->query('history_id'))
-                              ->where('my_site_id', $id)
-                              ->where('user_id', Auth::id())
-                              ->latest('created_at')
-                              ->first();
-              
-                $htmlContent = json_decode($lastHistory->content,true);
-           
-            }else{
-                
-                $htmlContent = $this->ftpService->getFileContent($page,$data->url);
+
+            // Check if history_id is provided and fetch corresponding history content
+            if (!empty($request->query('history_id'))) {
+                $lastHistory = History::where('id', $request->query('history_id'))
+                    ->where('my_site_id', $id)
+                    ->where('user_id', Auth::id())
+                    ->latest('created_at')
+                    ->first();
+
+                $htmlContent = json_decode($lastHistory->content, true);
+            } else {
+                // Fetch file content from the FTP server
+                $htmlContent = $this->ftpService->getFileContent($page, $data->url);
             }
-            $saveData["mysite_id"] =$id;
-            $saveData["user_id"] =Auth::id();
-            $saveData["pagename"] =$page;
-            $saveData["content"] =json_encode($htmlContent);
-            $saved = $this->saveHistory($saveData);
-            $histories = $this->getHistory($id,Auth::id(),$page);
+
+            $allImages = $this->ftpService->getMostCommonImageFolder($htmlContent['html_content']);
         
-             // Pass the content to the view
-             return view('admin.user.editsite', ['htmlContent' => $htmlContent["html_content"],'seo'=>$htmlContent["meta_data"],'files'=>$files,'filename'=>$files[0],'variable'=>$variable,'subs_id'=>$data->subscription_id,'pagename'=>$page,'histories'=>$histories,'site_id'=>$id]);
+
+            // Save history of the file content
+            $saveData["mysite_id"] = $id;
+            $saveData["user_id"] = Auth::id();
+            $saveData["pagename"] = $page;
+            $saveData["content"] = json_encode($htmlContent);
+            $saved = $this->saveHistory($saveData);
+
+            session(['my_sites_mostCommonFolder' => $allImages['mostCommonFolder']]);
+            session(['my_sites_last_page' => $page]);
+            // Fetch file history
+            $histories = $this->getHistory($id, Auth::id(), $page);
+
+            // File handling - Create/overwrite the HTML file in user-specific directory
+            $userId = Auth::id();
+            $folderPath = 'user_sites/' . $userId;
+            $directoryPath = public_path($folderPath);
+            $fileName = $id . '_' . $page;
+            $filePath = $directoryPath . '/' . $fileName;
+            $webPath = url('/'.$folderPath.'/'.$fileName);
+        
+            // Check if directory exists, if not, create it
+            if (!file_exists($directoryPath)) {
+                mkdir($directoryPath, 0755, true); // Create the directory with proper permissions
+            }
+
+            // If the file already exists, delete it
+            if (file_exists($filePath)) {
+                unlink($filePath);
+            }
+
+            // Create and write HTML content to the file
+            file_put_contents($filePath, $htmlContent["html_content"]);
+
+            // Pass the content to the view
+            return view('admin.user.editsite', [
+                'webUrl' => $webPath,
+                'allImages' => $allImages['imagesInFolder'],
+                'seo' => $htmlContent["meta_data"],
+                'files' => $files,
+                'filename' => $files[0],
+                'variable' => $variable,
+                'subs_id' => $data->subscription_id,
+                'pagename' => $page,
+                'histories' => $histories,
+                'site_id' => $id
+            ]);
         } else {
             return response()->json([
                 'error' => 'Website not downloaded'
             ], 404);
         }
+    }
+
+    public function updatesite(Request $request,$id){
+        $data = MySite::where('id', $id)
+        ->where('user_id', Auth::id())
+        ->first();
+
+        // If no data is found, return an error response
+        if (empty($data)) {
+            return response()->json([
+                'error' => 'Website not available'
+            ], 404);
+        }
+
+        // Initialize FTP service with decrypted credentials
+        $this->ftpService = new FTPService(
+            $data->protocol,
+            $data->port,
+            $data->host,
+            $data->user,
+            EncryptionService::decryptWithSalt($data->password),
+            $data->location
+        );
+        $page = session('my_sites_last_page' );
+        $this->ftpService->renameFile($page,'backup_'.date('m-d-Y-h-i-s').'_'.$page);
+        $this->ftpService->saveOrUpdateFile($page,$request->iframeHtml);
+        return response()->json([
+            'success' => 'Website saved'
+        ], 200);
+        exit;
+    }
+    public function saveimages(Request $request,$id){
+        $data = MySite::where('id', $id)
+        ->where('user_id', Auth::id())
+        ->first();
+
+        // If no data is found, return an error response
+        if (empty($data)) {
+            return response()->json([
+                'error' => 'Website not available'
+            ], 404);
+        }
+
+        // Initialize FTP service with decrypted credentials
+        $this->ftpService = new FTPService(
+            $data->protocol,
+            $data->port,
+            $data->host,
+            $data->user,
+            EncryptionService::decryptWithSalt($data->password),
+            $data->location
+        );
+        $folder = session('my_sites_mostCommonFolder' );
+  
+        $filename = $this->ftpService->saveBase64Image($request->img,$folder);
+        
+        return response()->json([
+            'url' => $data->url.$filename
+        ], 200);
+        exit;
     }
 
 

@@ -24,9 +24,8 @@ function submitForm() {
     var webUrlInput = $("#webUrlInput").val();
 
     pretight.innerHTML = `<div class="set">
-       <img src="https://res.cloudinary.com/ecommerce-website/image/upload/v1725709329/aronswebsites-_bmrgzo.gif" alt=""/>
-  </div>
-    `
+                            <img src="https://res.cloudinary.com/ecommerce-website/image/upload/v1725709329/aronswebsites-_bmrgzo.gif" alt=""/>
+                        </div>`;
 
     setTimeout(() => {
 
