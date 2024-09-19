@@ -241,8 +241,18 @@ class UserController extends Controller
         $files = $this->ftpService->listFiles();
         
         if (!empty($files)) {
+            
+            $firstIndexFile = null;
+            foreach ($files as $file) {
+                if (strpos($file, 'index.html') !== false) {
+                    $firstIndexFile = $file;
+                    break; // Stop the loop once the first occurrence is found
+                }
+            }
+
             // Determine the file to get the content for
-            $page = !empty($request->query('page')) ? $request->query('page') : $files[0];
+            $page = !empty($request->query('page')) ? $request->query('page') : $firstIndexFile;
+            
 
             // Check if history_id is provided and fetch corresponding history content
             if (!empty($request->query('history_id'))) {
@@ -269,7 +279,8 @@ class UserController extends Controller
             $userId = Auth::id();
             $folderPath = 'user_sites/' . $userId;
             $directoryPath = public_path($folderPath);
-            $fileName = $id . '_' . $page;
+            $fileName = $id . '_' . str_replace('./', '', $page);
+           
             $filePath = $directoryPath . '/' . $fileName;
             $webPath = url('/'.$folderPath.'/'.$fileName);
         
@@ -282,7 +293,8 @@ class UserController extends Controller
             if (file_exists($filePath)) {
                 unlink($filePath);
             }
-
+            
+           
             // Create and write HTML content to the file
             file_put_contents($filePath, $htmlContent["html_content"]);
 

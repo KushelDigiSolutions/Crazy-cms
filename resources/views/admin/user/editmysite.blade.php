@@ -45,7 +45,7 @@
                         <div class="form-group">
                             <label for="port" class="form-label">Port:*</label>
                             <input type="text" class="form-control" name="port" required
-                                value="{{ $data->host }}">
+                                value="{{ $data->port }}">
                             @error('port')
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror                            
