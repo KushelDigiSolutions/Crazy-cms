@@ -260,14 +260,6 @@ class UserController extends Controller
 
             $allImages = $this->ftpService->getMostCommonImageFolder($htmlContent['html_content']);
         
-
-            // Save history of the file content
-            $saveData["mysite_id"] = $id;
-            $saveData["user_id"] = Auth::id();
-            $saveData["pagename"] = $page;
-            $saveData["content"] = json_encode($htmlContent);
-            $saved = $this->saveHistory($saveData);
-
             session(['my_sites_mostCommonFolder' => $allImages['mostCommonFolder']]);
             session(['my_sites_last_page' => $page]);
             // Fetch file history
@@ -336,6 +328,16 @@ class UserController extends Controller
             $data->location
         );
         $page = session('my_sites_last_page' );
+
+
+        // Save history of the file content
+        $htmlContent = $this->ftpService->getFileContent($page, $data->url);
+        $saveData["mysite_id"] = $id;
+        $saveData["user_id"] = Auth::id();
+        $saveData["pagename"] = $page;
+        $saveData["content"] = json_encode($htmlContent);
+        $saved = $this->saveHistory($saveData);
+
         $this->ftpService->renameFile($page,'backup_'.date('m-d-Y-h-i-s').'_'.$page);
         $this->ftpService->saveOrUpdateFile($page,$request->iframeHtml);
         return response()->json([

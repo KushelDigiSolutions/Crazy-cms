@@ -444,10 +444,6 @@ $(document).ready(function() {
         });
     }
 
-    
-
-
-
     window.uploadImageUrl = uploadImageUrl;
     window.updateImageCroper = updateImageCroper;
 });

@@ -258,3 +258,67 @@
     width: 100%;
     height: calc(100vh - 60px);
 }
+.tag {
+    display: inline-block;
+    margin: 5px;
+}
+.tag .close {
+    margin-left: 5px;
+    cursor: pointer;
+    color: white;
+}
+#healthMeter {
+    margin-top: 10px;
+}
+.counter {
+    font-size: 0.9em;
+    color: gray;
+}
+.suggestion {
+    margin-bottom: 20px;
+    background: #fcffcb;
+    padding: 10px;
+    border-radius: 10px;
+}
+.autocomplete-suggestions {
+    border: 1px solid #ccc;
+    max-height: 150px;
+    overflow-y: auto;
+    position: absolute;
+    z-index: 1000;
+    background: white;
+    width: calc(100% - 20px);
+}
+.autocomplete-suggestion {
+    padding: 10px;
+    cursor: pointer;
+}
+.autocomplete-suggestion:hover {
+    background: #f0f0f0;
+}
+.offcanvas{
+    z-index: 99999 !important;
+}
+.pagenamescreen{
+    font-size: 20px;
+    font-weight: bold;
+    border: 1px solid #ccc;
+    padding: 3px 10px;
+    text-transform: capitalize;
+    border-radius: 10px;
+}
+.customBtnUpdate{
+    width: auto;
+    height: 38px;
+    padding: 0 20px;
+    border-radius: 8px;
+    border: 1px solid #0F3D5F;
+    box-shadow: 0px 1px 2px 0px #1018280D;
+    background: transparent;
+    color: #0F3D5F;
+    font-weight: 500;
+    font-size: 14px;
+    font-family: inter !important;
+    float: right;
+    margin-top: 40px;
+}

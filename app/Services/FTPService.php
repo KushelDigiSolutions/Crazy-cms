@@ -59,7 +59,7 @@ class FTPService
     {
         try {
             $files = [];
-    
+
             if ($this->ftpType === 'ftp') {
                 // Retrieve list of files from the directory
                 $files = ftp_nlist($this->connection, ".");
@@ -69,18 +69,18 @@ class FTPService
                 $allFiles = scandir($directory);
                 $files = array_diff($allFiles, ['.', '..']);
             }
-    
+
             // Log the full list of files for debugging
             Log::info('All files: ', $files);
-    
-            // Filter to include only .html and .php files
+
+            // Filter to include only .html and .php files, excluding those with 'backup_' followed by digits
             $filteredFiles = array_filter($files, function ($file) {
-                return preg_match('/\.(html|php)$/i', $file);
+                return preg_match('/\.(html|php)$/i', $file) && !preg_match('/backup_\d+/i', $file);
             });
-    
+
             // Reset array keys to ensure they start from 0
             $filteredFiles = array_values($filteredFiles);
-    
+
             // Prioritize index.php or index.html by moving them to the top
             $priorityFiles = ['index.php', 'index.html'];
             usort($filteredFiles, function ($a, $b) use ($priorityFiles) {
@@ -88,16 +88,17 @@ class FTPService
                 $bPriority = in_array($b, $priorityFiles) ? 0 : 1;
                 return $aPriority <=> $bPriority;
             });
-    
+
             // Log the filtered and prioritized list of files for debugging
             Log::info('Filtered and prioritized files: ', $filteredFiles);
-    
+
             return $filteredFiles;
         } catch (\Exception $e) {
             Log::error('List Files Error: ' . $e->getMessage());
             throw new \Exception($e->getMessage());
         }
     }
+
     
 
 
