@@ -109,7 +109,7 @@
                             <td>
                             <a href="{{ url('admin/editmysite').'/'.$user->id }}" class="btn btn-sm btn-primary">Edit FTP</a>
                             </td> 
-                            @if(!empty($user->payment_id))
+                            @if(empty($user->payment_id))
                             <td>
                                 <form action="" method="POST"
                                     onsubmit="return confirm('Are sure want to delete?')">

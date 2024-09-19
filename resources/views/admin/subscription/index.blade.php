@@ -3,7 +3,7 @@
     <div class="card canting">
         <div class="card-header">
             <h3 class="card-title cd_tit">Subscription Table</h3>
-            <div class="card-tools"><a href="{{ route('admin.subscription.create') }}" class="btn btn-sm btn-primary">Add</a></div>
+            <?php /*<div class="card-tools"><a href="{{ route('admin.subscription.create') }}" class="btn btn-sm btn-primary">Add</a></div>*/?>
         </div>
         <div class="card-body">
             <table class="table table-striped" id="itemTable">
