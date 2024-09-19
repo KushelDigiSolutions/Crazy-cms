@@ -46,13 +46,16 @@ class SubscriptionController extends Controller
         $subscription->mrp = $request->mrp;
         $subscription->price = $request->sale_price;
         $subscription->monthly_price = $request->monthly_price;
-        $subscription->status = is_array($request->status) ? $request->status[0] : $request->status;
         
         // Encode the description and status arrays as JSON
-        $subscription->items = json_encode([
-            'descriptions' => $request->description,
-            'statuses' => $request->status
-        ]);
+        $descriptions = [];
+        foreach($request->description as $key => $desc){
+            $item['descriptions'] = $desc;
+            $item['status'] = $request->statuses[$key];
+            $descriptions[] = $item;    
+        }
+        
+        $subscription->items = json_encode($descriptions);
         
         $subscription->save();
         

@@ -49,3 +49,21 @@
     </section>
 </body>
 </html>
+<script>
+     // Function to get URL parameters
+     function getUrlParameter(name) {
+        // Construct the regular expression to find the parameter
+        name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+        var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+        var results = regex.exec(location.search);
+        // Return the decoded parameter value if found, otherwise return null
+        return results === null ? null : decodeURIComponent(results[1].replace(/\+/g, ' '));
+    }
+
+    // Check if the 'isPlan' parameter exists and its value is 1
+    var isPlan = getUrlParameter('isPlan');
+    if (isPlan === '1') {
+        // Display an alert if isPlan is 1
+        alert('Hello, you need to create a new website to choose the plan');
+    }
+</script>

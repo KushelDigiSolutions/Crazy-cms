@@ -21,7 +21,7 @@
                     </div>
                     <div class="col-lg-6">
                         <div class="form-group">
-                            <label for="Email" class="form-label">MRP($):*</label>
+                            <label for="Email" class="form-label">Standard Price($):*</label>
                             <input type="text" class="form-control" name="mrp" required
                                 value="{{ $data->mrp }}">
                         </div>
@@ -70,9 +70,9 @@
                                         </td>
                                         <td>
                                             <select name="statuses[]" id="status" class="form-control" required>
-                                                <option value="" selected>Status</option>
-                                                <option value="1">Active</option>
-                                                <option value="0">Inactive</option>
+                                                <option value="0">Status</option>
+                                                <option {{ $value["status"] == 1 ? 'selected' : '' }} value="1">Active</option>
+                                                <option {{ $value["status"] == 0 ? 'selected' : '' }} value="0">Inactive</option>
                                             </select>
                                         </td>
                                         <td class="text-center">

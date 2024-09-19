@@ -42,6 +42,7 @@
    <div class="test_sect">
 
         <div class="preview_btn">
+            <button onclick="window.location.href='{{ url('/admin/mysites') }}?isPlan=1'">Go Back</button>
             @if($subs_id == 2)
             <button  type="button" data-bs-toggle="offcanvas" data-bs-target="#seoSidebar" aria-controls="seoSidebar">Meta Tags</button> @endif
             <select name="history_updated" id="history_updated">

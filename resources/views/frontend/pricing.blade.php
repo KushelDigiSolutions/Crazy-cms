@@ -118,7 +118,7 @@
                            
                         </div>
                         @if($subscription->status)  
-                            <button class="chooseBtn2" type="button" data-id="{{$subscription->id}}" onclick="setPlan({{$sid}})" id="plan_{{$sid}}"><span>Choose Plan</span></button>
+                           <button class="chooseBtn2" type="button" data-id="{{$subscription->id}}" onclick="window.location.href='{{ route('admin.addmysites') }}?isPlan=1'" id="plan_{{$sid}}"><span>Choose Plan</span></button>
                         @else
                             <p class="notavailable">NOT AVAILABLE NOW</p>
                         @endif

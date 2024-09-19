@@ -472,7 +472,7 @@
             </div>
           </div>
 
-          <a style="max-width:261px; width:100%;" href="/register"><button class="chooseBtn2"><span>Choose Plan</span></button></a>
+          <a style="max-width:261px; width:100%;" href="{{ route('admin.addmysites') }}?isPlan=1"><button class="chooseBtn2"><span>Choose Plan</span></button></a>
         </div>
       </div>
     </div>
@@ -525,7 +525,7 @@
             </div>
           </div>
 
-          <a style="max-width:261px; width:100%;" href="/register"><button class="chooseBtn2"><span>Choose Plan</span></button></a>
+          <a style="max-width:261px; width:100%;" href="{{ route('admin.addmysites') }}?isPlan=1"><button class="chooseBtn2"><span>Choose Plan</span></button></a>
         </div>
       </div>
     </div>
