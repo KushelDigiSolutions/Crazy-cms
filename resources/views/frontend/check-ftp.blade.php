@@ -30,7 +30,7 @@
                                         <option value="ftp">FTP</option>
                                         <option value="sftp">SFTP</option>
                                     </select>
-                                    <label for="host">Ftp Username</label>
+                                    <label for="host">Ftp Host</label>
                                     <input type="text" id="host" placeholder="Server IP Address" name="host">
                                     <label for="port">Port</label>
                                     <input type="text" id="port" placeholder="20/21" name="port" >

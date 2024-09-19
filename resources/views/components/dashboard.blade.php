@@ -54,7 +54,7 @@
             <div class="user_card">
                 <div class="new_user">
                     <h3>New User</h3>
-                    <p>View All</p>
+                  <a href="/admin/user"><p>View All</p></a> 
                 </div>
                 <div class="main_user_card">
                     @foreach($userlatest as $user)

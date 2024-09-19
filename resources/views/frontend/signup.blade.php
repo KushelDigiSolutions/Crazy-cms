@@ -185,7 +185,7 @@
                             <span class="span2">/Yearly</span>
                             <span><s style="font-size: 30px; font-weight: 100;color: gray;">(${{$subscription->mrp}})</s></span>
                         </p>
-                        <span class="only">(Only {{$subscription->monthly_price}} per month)</span>
+                        <span class="only">(Only ${{$subscription->monthly_price}} per month)</span>
 
                         <!-- scond part  -->
                         <div class="planPoint">
