@@ -16,6 +16,14 @@
     <h1 style="background: yellow;">This is under Maintenance</h1>
 @else
 
+<style>
+    .per_yr{
+        font-weight:bold;
+        font-size:30px;
+    }
+</style>
+
+<script>(function(){var pp=document.createElement('script'), ppr=document.getElementsByTagName('script')[0]; stid='TzY3QVA1UEhrNEEwV2dtek80a05xQT09';pp.type='text/javascript'; pp.async=true; pp.src=('https:' == document.location.protocol ? 'https://' : 'http://') + 's01.live2support.com/dashboardv2/chatwindow/'; ppr.parentNode.insertBefore(pp, ppr);})();</script>
 
     <section id="navbar">
 
@@ -81,10 +89,8 @@
 <div class=" com1">
   <div class="row">
     <div class="col-lg-6 col-md-9 banner_left">
-      <h1>Try It Now</h1>
-      <p>Edit your website <span>right now</span> in seconds!</p>
-      <p>Just click on the text and images you want to edit.</p>
-      <p>Please be patient while we work on fixing a few bugs. If you encounter any issues, please try again later.</p>
+      <h1>Easily Edit Your Website<br/>No Coding Required!</h1>
+      <p>Make changes to your website content quickly and effortlessly, whether you're updating text, images, or SEO tags. Perfect for small businesses and website owners who need an easy way to stay in control!</p>
       <!--<button type="button" class="btn btn-light">
         <span> GET STARTED</span>
       </button>-->
@@ -127,7 +133,7 @@
 <section id="email_section">
 <div class=" com1 webAdWrap">
   <div class="row">
-    <p>What is your <span> Website</span> address?</p>
+    <p>Enter Your Website URL to Start Editing Now <span>FREE</span>!</p>
 
   </div>
 
@@ -442,7 +448,7 @@
                             <span style="font-weight:600;" class="span2">/Yearly</span>
                             <span><s style="font-size: 30px; font-weight: 100;color: gray;">($72)</s></span>
                         </p>
-                        <span class="only">(Only $5 per month)</span>
+                        <span class="only">(Only <span class="per_yr">$5</span> per month)</span>
 
           <!-- scond part  -->
           <div class="planPoint">
@@ -472,7 +478,7 @@
             </div>
           </div>
 
-          <a style="max-width:261px; width:100%;" href="{{ route('admin.addmysites') }}?isPlan=1"><button class="chooseBtn2"><span>Choose Plan</span></button></a>
+          <a style="max-width:261px; width:100%;" href="/register"?isPlan=1"><button class="chooseBtn2"><span>Choose Plan</span></button></a>
         </div>
       </div>
     </div>
@@ -491,7 +497,7 @@
                             <span style="font-weight:600;" class="span2">/Yearly</span>
                             <span><s style="font-size: 30px; font-weight: 100;color: gray;">($120)</s></span>
                         </p>
-                        <span class="only">(Only $8 per month)</span>
+                        <span class="only">(Only <span class="per_yr">$8</span>  per month)</span>
           <!--<div class="for_span">-->
           <!--      <span class="span1">$8</span>-->
           <!--  <span class="span2">/Month</span>-->
@@ -525,7 +531,7 @@
             </div>
           </div>
 
-          <a style="max-width:261px; width:100%;" href="{{ route('admin.addmysites') }}?isPlan=1"><button class="chooseBtn2"><span>Choose Plan</span></button></a>
+          <a style="max-width:261px; width:100%;" href="/register"?isPlan=1"><button class="chooseBtn2"><span>Choose Plan</span></button></a>
         </div>
       </div>
     </div>
@@ -544,7 +550,7 @@
                             <span style="font-weight:600;" class="span2">/Yearly</span>
                             <span><s style="font-size: 30px; font-weight: 100;color: gray;">($240)</s></span>
                         </p>
-                        <span class="only">(Only $16 per month)</span>
+                        <span class="only">(Only <span class="per_yr">$16</span>  per month)</span>
 
           <!-- scond part  -->
           <div class="planPoint">
@@ -600,7 +606,7 @@
 
       <div class="answer">
         <p>
-        MyCrazySimple is an online website editor that simplifies the process of making updates to your HTML website. It provides you with an intuitive interface, making it easy to locate and edit text or images directly on your site.
+        MyCrazySimpleCMS is simple to use. Just enter your website URL, and the system provides an editable preview. You can make text and image changes easily, and once you’re done, you publish your updates by providing FTP access.
         </p>
       </div>
     </div>
@@ -616,7 +622,21 @@
 
       <div class="answer">
         <p>
-        Yes, you can! MyCrazySimple is specifically designed for individuals who may not have coding expertise. You can make changes to your website's content without the need for HTML or programming skills.
+        Yes, with MyCrazySimpleCMS, you can easily edit your HTML website without any coding knowledge. It’s designed to make HTML website updates simple and user-friendly, allowing you to make text and image changes without touching the code.
+        </p>
+      </div>
+    </div>
+
+    <div class="faq">
+      <div class="question">
+        <h3>Q. How Can You Edit My Website Without Having Access to It?</h3>
+
+        <img src="{{asset('admin/img/plus.png')}}" alt="" />
+      </div>
+
+      <div class="answer">
+        <p>
+        Initially, you can edit your website in preview mode using MyCrazySimpleCMS. To publish the changes to your live website, you’ll need to provide FTP access, which allows the system to upload your edits securely.
         </p>
       </div>
     </div>
@@ -630,21 +650,21 @@
 
       <div class="answer">
         <p>
-        MyCrazySimple allows you to edit text and images on your HTML website. You can update content, replace images, and keep your website fresh without the complexity of traditional editing methods.
+        	You can update text, images, and basic content on your website without any coding. MyCrazySimpleCMS allows you to duplicate, delete, and format content, making it easy to manage your website content with this no-code tool.
         </p>
       </div>
     </div>
 
     <div class="faq">
       <div class="question">
-        <h3>Q. Is There a Learning Curve?</h3>
+        <h3>Q. What's the Cost of Using MyCrazySimpleCMS?</h3>
 
         <img src="{{asset('admin/img/plus.png')}}" alt="" />
       </div>
 
       <div class="answer">
         <p>
-        	MyCrazySimple is incredibly user-friendly, requiring no extensive learning curve. The interface is designed to be intuitive, so you can start making edits right away.
+        	MyCrazySimpleCMS offers affordable pricing, with two plans currently available, starting at $5 per month. It’s an ideal solution for beginners who want a simple and cost-effective way to edit their website. Best of all, it’s free to try—no credit card required. You can try it right now by simply typing in your website address and start editing immediately! Visit our pricing page for more details.
         </p>
       </div>
     </div>
@@ -658,21 +678,7 @@
 
       <div class="answer">
         <p>
-        	No, there's no need to install additional software or plugins. MyCrazySimple is an online tool, so you can access it directly from your web browser.
-        </p>
-      </div>
-    </div>
-
-    <div class="faq">
-      <div class="question">
-        <h3>Q. What's the Cost of Using MyCrazySimple?</h3>
-
-        <img src="{{asset('admin/img/plus.png')}}" alt="" />
-      </div>
-
-      <div class="answer">
-        <p>
-        MyCrazySimple offers both free and paid plans. You can start with a free demo to see how it works, and if you decide to continue using the tool, affordable pricing plans are available.
+        No, you don’t need to install any software or plugins. MyCrazySimpleCMS is a fully online, no-code tool that you can access directly through your web browser.
         </p>
       </div>
     </div>
@@ -686,24 +692,162 @@
 
       <div class="answer">
         <p>
-        Yes, we take precautions to protect your website. MyCrazySimple creates backups before publishing changes, ensuring that any unintended results can be easily undone.
+        Yes, MyCrazySimpleCMS automatically creates a backup of your original HTML file before any changes are published. This ensures that you can easily revert your changes if needed, offering peace of mind for small business owners.
         </p>
       </div>
     </div>
 
     <div class="faq">
       <div class="question">
-        <h3>Q. Can I Collaborate with Others on Website Editing?</h3>
+        <h3>Q. Can I Add Formatting Such as Bold, Italic, Underline, etc., to My Text?</h3>
 
         <img src="{{asset('admin/img/plus.png')}}" alt="" />
       </div>
 
       <div class="answer">
         <p>
-        Collaboration features are in the works, allowing teams to work together on website editing in the future.
+        MyCrazySimpleCMS is designed for text editing only, meaning you can easily update the content on your website, while the original formatting and styling, such as bold, italic, and underline, remain consistent with your website’s design.
         </p>
       </div>
     </div>
+
+    <div class="faq">
+      <div class="question">
+        <h3>Q. Why Are Some Areas of My Website Not Available for Editing?</h3>
+
+        <img src="{{asset('admin/img/plus.png')}}" alt="" />
+      </div>
+
+      <div class="answer">
+        <p>
+        Some areas of your website may not be editable by MyCrazySimpleCMS because they are dynamically generated or part of complex design elements, such as scripts, widgets, or databases. MyCrazySimpleCMS is designed to make it easy to update text and images in the static HTML areas of your website.
+        </p>
+      </div>
+    </div>
+
+    <div class="faq">
+      <div class="question">
+        <h3>Q. Can I Upgrade to the Professional Plan?</h3>
+
+        <img src="{{asset('admin/img/plus.png')}}" alt="" />
+      </div>
+
+      <div class="answer">
+        <p>
+        Yes, you can upgrade at any time by simply paying the difference in price. Currently, two of the three plans are available, and upgrading gives you access to additional features and greater flexibility for managing your website content.
+        </p>
+      </div>
+    </div>
+
+    <div class="faq">
+      <div class="question">
+        <h3>Q. Can I Pay Monthly for the Service?</h3>
+
+        <img src="{{asset('admin/img/plus.png')}}" alt="" />
+      </div>
+
+      <div class="answer">
+        <p>
+        MyCrazySimpleCMS currently offers annual pricing plans only, designed to provide small businesses with a cost-effective and simple website editing solution. This structure helps keep our service affordable while offering the flexibility and features small business owners need.
+        </p>
+      </div>
+    </div>
+
+    <div class="faq">
+      <div class="question">
+        <h3>Q. Can I Edit More Than One Website with My Plan?</h3>
+
+        <img src="{{asset('admin/img/plus.png')}}" alt="" />
+      </div>
+
+      <div class="answer">
+        <p>
+        Each MyCrazySimpleCMS plan is designed for a single website. However, you can manage multiple websites by adding additional plans under the same login account, allowing you to control all your sites from one convenient dashboard. This gives you the flexibility to handle multiple projects or businesses with ease.
+        </p>
+      </div>
+    </div>
+
+    <div class="faq">
+      <div class="question">
+        <h3>Q. Can I Make Edits to My Website From a Smartphone?</h3>
+
+        <img src="{{asset('admin/img/plus.png')}}" alt="" />
+      </div>
+
+      <div class="answer">
+        <p>
+        Yes, you can use MyCrazySimpleCMS on your smartphone to make edits to your website, as it is fully mobile-friendly. However, for the best experience and ease of use, we recommend using a desktop computer, especially for more detailed edits or managing larger amounts of content.
+        </p>
+      </div>
+    </div>
+
+    <div class="faq">
+      <div class="question">
+        <h3>Q. Do I Need a Credit Card to Try the Demo?</h3>
+
+        <img src="{{asset('admin/img/plus.png')}}" alt="" />
+      </div>
+
+      <div class="answer">
+        <p>
+        Free to try with no credit card required! Simply enter your website URL, and you can start editing your site instantly. It’s an ideal way for beginners to experience how easy it is to make changes, completely risk-free.
+        </p>
+      </div>
+    </div>
+
+    <div class="faq">
+      <div class="question">
+        <h3>Q. What is FTP and Why Do I Need to Provide It?</h3>
+
+        <img src="{{asset('admin/img/plus.png')}}" alt="" />
+      </div>
+
+      <div class="answer">
+        <p>
+        FTP (File Transfer Protocol) allows MyCrazySimpleCMS to connect to your website's hosting server. Providing FTP details is not required to use the editor, but it is necessary if you want to save and publish your changes to your live website.
+        </p>
+      </div>
+    </div>
+
+    <div class="faq">
+      <div class="question">
+        <h3>Q. How Do I Get FTP Access Information?</h3>
+
+        <img src="{{asset('admin/img/plus.png')}}" alt="" />
+      </div>
+
+      <div class="answer">
+        <p>
+        You can obtain your FTP access details from your website hosting provider, typically found in your hosting control panel or account settings. We also have simple instructions available for download to guide you through the process, and a video tutorial will be available soon to make it even easier.
+
+
+        </p>
+      </div>
+    </div>
+
+    <div class="faq">
+      <div class="question">
+        <h3>Q. Can I Preview Changes Before Publishing?</h3>
+
+        <img src="{{asset('admin/img/plus.png')}}" alt="" />
+      </div>
+
+      <div class="answer">
+        <p>
+        Absolutely! MyCrazySimpleCMS uses a WYSIWYG (What You See Is What You Get) approach, allowing you to make edits while previewing your website exactly as it will appear when published. This means you can see all your changes in real time before saving or publishing. Additionally, a backup of your website is automatically created before uploading any changes, ensuring you can easily restore your site in case of any issues.
+        </p>
+      </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
   </div>
 </div>
 </section>

@@ -16,6 +16,13 @@
     <h1 style="background: yellow;">This is under Maintenance</h1>
 @else
 
+<style>
+    .per_yr{
+        font-size:30px;
+        font-weight:bold;
+    }
+</style>
+
 
     <section id="navbar">
 
@@ -61,7 +68,7 @@
 </section>
 @endif
 
-<section id="what_we_do">
+<section class="hfhf" id="what_we_do">
 <div class=" com1">
   <div class="row row1 justify-content-md-center">
     <div class="col-lg-12 text-center">
@@ -97,7 +104,7 @@
                             <span class="span2">/Yearly</span>
                             <span><s style="font-size: 30px; font-weight: 100;color: gray;">(${{$subscription->mrp}})</s></span>
                         </p>
-                        <span class="only">(Only ${{$subscription->monthly_price}} per month)</span>
+                        <span class="only">(Only <span class="per_yr">${{$subscription->monthly_price}}</span>  per month)</span>
                         <div class="planPoint">
 
                         @php
@@ -118,7 +125,7 @@
                            
                         </div>
                         @if($subscription->status)  
-                           <button class="chooseBtn2" type="button" data-id="{{$subscription->id}}" onclick="window.location.href='{{ route('admin.addmysites') }}?isPlan=1'" id="plan_{{$sid}}"><span>Choose Plan</span></button>
+                          <a style="max-width:261px; width:100%;" href="/register"><button class="chooseBtn2" type="button" data-id="{{$subscription->id}}" id="plan_{{$sid}}"><span>Choose Plan</span></button></a>
                         @else
                             <p class="notavailable">NOT AVAILABLE NOW</p>
                         @endif

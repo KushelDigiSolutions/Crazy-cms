@@ -124,7 +124,7 @@
 }
 .first_preview{
     display: flex;
-    margin-left:-20%;
+    /*margin-left:-20%;*/
     align-items: center;
 }
 .first_preview .a_one{
@@ -253,6 +253,7 @@
 #myIframe{
     width: 100%;
     height: calc(100vh - 140px);
+    margin-top:5rem !important;
 }
 #myFinalIframe{
     width: 100%;

@@ -18,8 +18,10 @@ class ProfileController extends Controller
 
     public function dashboard()
     {
+        $user = User::where('id', Auth::id())->first();
         $usersData =  $this->getUserAndPaidCounts();
         return view('dashboard', [
+            'user' => $user,
             'userCount' => $usersData['userCount'], // Pass user count data
             'paidUserCount' => $usersData['paidUserCount'] // Pass paid user count data
         ]);
@@ -45,8 +47,11 @@ class ProfileController extends Controller
         if ($request->user()->isDirty('email')) {
             $request->user()->email_verified_at = null;
         }
-        User::where('id', $request->user()->id)->update(['mode'=>$request->mode]);
-
+        
+        User::where('id', $request->user()->id)->update([
+            'mode' => 'dark',
+            'two_step' => $request->two_step // Replace with the actual value
+        ]);
         $request->user()->save();
 
         return Redirect::route('admin.profile.edit')->with('status', 'profile-updated');

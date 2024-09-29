@@ -16,6 +16,16 @@ document.write(`
      <a class="text-decoration-none" href="https://mycrazysimplecms.com/login"> <p>Sign In</p></a>
      
     </div>
+    <div>
+       <h5 class="text-white" style="overflow:hidden;">Socail Links</h5>
+       
+       <div style="display: flex; align-items: center; gap: 12px; margin-top:20px;">
+               <a href="https://www.youtube.com/channel/UC0qJbtrVpAQfygLMpMcxnXQ" target="_blank"><img width="40" src="https://res.cloudinary.com/dgif730br/image/upload/v1727451665/channels4_profile_hnqye2.jpg" alt=""></a>
+               <a href="https://g.page/r/CXdjf_Kw7_fjEAI/review" target="_blank"><img width="40" src="https://res.cloudinary.com/dgif730br/image/upload/v1727451272/images_rrbxwd.png" alt=""></a>
+               <a href="" target="_blank"><img width="40" src="https://res.cloudinary.com/dgif730br/image/upload/v1727451836/images_jsnsyq.png" alt=""></a>
+            </div>
+      
+    </div>
   </div>
 
   <hr />

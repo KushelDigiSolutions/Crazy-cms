@@ -42,11 +42,11 @@
    <div class="test_sect">
 
         <div class="preview_btn">
-            <button onclick="window.location.href='{{ url('/admin/mysites') }}?isPlan=1'">Go Back</button>
+            <button onclick="window.location.href='{{ url('/admin/mysites') }}?isPlan=1'">Exit Editor</button>
             @if($subs_id == 2)
-            <button  type="button" data-bs-toggle="offcanvas" data-bs-target="#seoSidebar" aria-controls="seoSidebar">Meta Tags</button> @endif
+            <button  type="button" data-bs-toggle="offcanvas" data-bs-target="#seoSidebar" aria-controls="seoSidebar">Edit Meta Tags</button> @endif
             <select name="history_updated" id="history_updated">
-                <option value="">History Page</option>
+                <option value="">Restore Backup</option>
                 @foreach($histories as $history)
                 <option value="{{$history['id']}}">{{$history["name"]}}</option>
                 @endforeach
@@ -76,7 +76,7 @@
 
            </div> -->
            <div class="preview_btn">
-               <button onclick="savePage()"> Save</button>
+               <button onclick="savePage()">Save/Publish</button>
            </div>
       </div>
    </div>

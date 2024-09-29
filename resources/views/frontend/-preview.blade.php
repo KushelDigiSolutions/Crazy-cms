@@ -114,7 +114,7 @@
 </section>
 </div>
 
-<div style="position: relative;">
+<div style="position: relative; top:50px;">
     <div id="gjs"></div>
 </div>
 

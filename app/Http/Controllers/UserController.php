@@ -340,7 +340,8 @@ class UserController extends Controller
             $data->location
         );
         $page = session('my_sites_last_page' );
-
+        
+        $pagetoSave = str_replace('./', '', $page);
 
         // Save history of the file content
         $htmlContent = $this->ftpService->getFileContent($page, $data->url);
@@ -350,8 +351,8 @@ class UserController extends Controller
         $saveData["content"] = json_encode($htmlContent);
         $saved = $this->saveHistory($saveData);
 
-        $this->ftpService->renameFile($page,'backup_'.date('m-d-Y-h-i-s').'_'.$page);
-        $this->ftpService->saveOrUpdateFile($page,$request->iframeHtml);
+        $this->ftpService->renameFile($pagetoSave,'backup_'.date('m-d-Y-h-i-s').'_'.$pagetoSave);
+        $this->ftpService->saveOrUpdateFile($pagetoSave,$request->iframeHtml);
         return response()->json([
             'success' => 'Website saved'
         ], 200);
@@ -444,7 +445,8 @@ class UserController extends Controller
         $history = History::where('my_site_id', $mysiteId)
                         ->where('user_id', $userId)
                         ->where('pagename', $pagename)
-                        ->get();
+                        ->orderBy('created_at', 'desc')
+                        ->limit(10)->get();
     
         return $history->map(function ($record) {
             // Format created_at as 'Y-m-d H:i:s'

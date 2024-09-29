@@ -32,9 +32,9 @@
         </div>
         <div class="mb-3">
             <x-input-label for="Mode" class="form-label" :value="__('Mode')" />
-            <select name="mode" id="Mode" class="form-control">
-                <option {{ Auth::user()->mode == 'dark' ? 'selected' : '' }} value="dark">Dark</option>
-                <option {{ Auth::user()->mode == 'light' ? 'selected' : '' }} value="light">Light</option>
+            <select name="two_step" id="Mode" class="form-control">
+                <option {{ Auth::user()->two_step == 0 ? 'selected' : '' }} value="0">Disabled</option>
+                <option {{ Auth::user()->two_step == 1 ? 'selected' : '' }} value="1">Enabled</option>
             </select>
             <x-input-error class="mt-2" :messages="$errors->get('mode')" />
         </div>
@@ -44,7 +44,7 @@
                 autocomplete="username" />
             <x-input-error class="mt-2" :messages="$errors->get('email')" />
 
-            @if ($user instanceof \Illuminate\Contracts\Auth\MustVerifyEmail && !$user->hasVerifiedEmail())
+            @if (!$user->hasVerifiedEmail())
                 <div>
                     <p class="text-sm mt-2 text-gray-800">
                         {{ __('Your email address is unverified.') }}

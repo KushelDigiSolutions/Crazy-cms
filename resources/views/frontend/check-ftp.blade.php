@@ -31,15 +31,15 @@
                                         <option value="sftp">SFTP</option>
                                     </select>
                                     <label for="host">Ftp Host</label>
-                                    <input type="text" id="host" placeholder="Server IP Address" name="host">
+                                    <input type="text" id="host" placeholder=" ftp.yourdomain.com" name="host">
                                     <label for="port">Port</label>
                                     <input type="text" id="port" placeholder="20/21" name="port" >
                                     <label for="username">User</label>
-                                    <input type="text" placeholder="Username" id="username" name="username">
+                                    <input type="text" placeholder=" your FTP user name" id="username" name="username">
                                     <label for="password">Password</label>
-                                    <input type="password" placeholder="Password" id="password" name="password">
+                                    <input type="password" placeholder="your FTP Password" id="password" name="password">
                                     <label for="directory">Path URL</label>
-                                    <input type="text" id="directory" placeholder="Website location" name="directory">
+                                    <input type="text" id="directory" placeholder="Your website address" name="directory">
                                     <label for="directory">Website URL</label>
                                     <input type="text" id="url" value="@if(!empty($siteurl)){{$siteurl}}@endif" @if(!empty($siteurl)) disabled @endif placeholder="Website URL" name="url">
                                     <div id="errortxt"></div>

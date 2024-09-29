@@ -6,6 +6,13 @@
 
 @section('content')
 
+<style>
+    .per_yr{
+        font-weight:bold;
+        font-size:30px;
+    }
+</style>
+
 <section id="navbar">
 
     <div class="navCont">
@@ -185,7 +192,7 @@
                             <span class="span2">/Yearly</span>
                             <span><s style="font-size: 30px; font-weight: 100;color: gray;">(${{$subscription->mrp}})</s></span>
                         </p>
-                        <span class="only">(Only ${{$subscription->monthly_price}} per month)</span>
+                        <span class="only">(Only <span class="per_yr">${{$subscription->monthly_price}}</span>  per month)</span>
 
                         <!-- scond part  -->
                         <div class="planPoint">
