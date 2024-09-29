@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\LoginWithOTPController;
+use App\Http\Controllers\TwoStepVerificationController;
 use App\Http\Controllers\SocialiteController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Str;
@@ -57,7 +58,10 @@ Route::middleware(['web'])->group(function () {
     Route::get('cancel', [PayPalController::class, 'cancel'])->name('paypal.cancel');
     Route::get('success-page', [HomeController::class, 'successPage'])->name('success.page');
     Route::get('failure-page', [HomeController::class, 'failurePage'])->name('failure.page');
-
+    
+    Route::get('/two-step-verification', [TwoStepVerificationController::class, 'show'])->name('two.step.verification');
+    Route::get('/two-step-resend', [TwoStepVerificationController::class, 'resend'])->name('two.step.resend');
+    Route::post('/verfy-otp', [TwoStepVerificationController::class, 'verify'])->name('two.step.verify');
 
 
 });

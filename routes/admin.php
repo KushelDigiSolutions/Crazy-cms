@@ -14,7 +14,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\SubCateoryController;
 use Illuminate\Support\Facades\Route;
 
-Route::prefix('admin')->name('admin.')->middleware(['auth', 'verified'])->group(function () {
+Route::prefix('admin')->name('admin.')->middleware(['auth', 'verified', 'two_step_verified'])->group(function () {
     Route::get('/admin/login-as-user/{id}', [UserController::class, 'loginAsUser'])->name('loginAsUser');
     Route::get('/dashboard',[ProfileController::class,'dashboard'])->name('dashboard');
     Route::match(['PUT', 'PATCH'],'/profile', [ProfileController::class, 'update'])->name('profile.update');
