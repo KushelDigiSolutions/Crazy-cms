@@ -21,6 +21,26 @@
         font-weight:bold;
         font-size:30px;
     }
+    .sdfh{
+        margin-bottom:0rem !important;
+        font-size:20px;
+    }
+    .firs{
+        font-weight:bold;
+        font-size:25px;
+    }
+    .firs1{
+        margin-top:-20px;
+        font-weight:500 !important;
+    }
+    .dollorHead{
+        margin-bottom:0rem !important;
+    }
+    .if{
+        width:528px;
+        height:300px;
+        border-radius:20px;
+    }
 </style>
 
 <script>(function(){var pp=document.createElement('script'), ppr=document.getElementsByTagName('script')[0]; stid='TzY3QVA1UEhrNEEwV2dtek80a05xQT09';pp.type='text/javascript'; pp.async=true; pp.src=('https:' == document.location.protocol ? 'https://' : 'http://') + 's01.live2support.com/dashboardv2/chatwindow/'; ppr.parentNode.insertBefore(pp, ppr);})();</script>
@@ -32,7 +52,7 @@
 
   <nav class="navSome">
 
-    <img class="navbarImg" src="{{asset('admin/img/summer.svg')}}" alt="">
+    <img class="navbarImg" src="{{asset('admin/img/summer.svg')}}" alt="MyCrazySimpleCMS logo - Simple website editor for non-tech users">
 
 
     <input type="checkbox" id="sidebar-active" />
@@ -56,7 +76,7 @@
         </svg>
       </label>
 
-   <a class="ekaa" href="{{url('/')}}"><img class="home-link" src="{{asset('admin/img/summer.svg')}}" alt=""></a>
+   <a class="ekaa" href="{{url('/')}}"><img class="home-link" src="{{asset('admin/img/summer.svg')}}" alt="MyCrazySimpleCMS logo - Simple website editor for non-tech users"></a>
       <!-- link back to homepage -->
       <a href="{{url('/features')}}" class="navSinItem">Features</a>
       <a  href="{{url('/pricing')}}" class="navSinItem">Pricing</a>
@@ -110,7 +130,8 @@
 
           <!-- slide iamge start  -->
           <div class="slide first">
-            <img src="{{asset('admin/img/Group.png')}}" alt="banner1" />
+            <!--<img src="{{asset('admin/img/Group.png')}}" alt="banner1" />-->
+             <iframe class="if" src="{{asset('admin/img/crafty.mp4')}}" frameborder="0"></iframe>
           </div>
           <!-- <div class="slide">
             <img src="{{asset('admin/img/Group.png')}}" alt="banner1" />
@@ -140,7 +161,7 @@
   <div class="websiteAdd">
 
     <div class="webInput">
-      <img src="{{asset('admin/img/chain.svg')}}" alt="" />
+      <img src="{{asset('admin/img/chain.svg')}}" alt="Type in your website address here to use the simple editor." />
       <input class="web_uri" type="ttextext" id="webUrlInput" placeholder="Enter your website Address" />
     </div>
 
@@ -156,8 +177,8 @@
 <div class=" com1">
   <div class="row row1 justify-content-md-center">
     <div class="col-lg-9 text-center">
-      <h2>What Is MyCrazySimpleCMS.com</h2>
-      <!--<img src="{{asset('admin/img/what.svg')}}" alt="">-->
+      <h2>Simple Website Editor Without Coding</h2>
+      <!--<img src="{{asset('admin/img/what.svg')}}" alt="Type in your webiste address here.">-->
     </div>
   </div>
   <div class="row row2 justify-content-md-center">
@@ -182,7 +203,7 @@
   <div class="row row1 justify-content-md-center">
     <div class="col-lg-9 text-center">
       <!-- <h2 class="overflow-hidden">About US</h2> -->
-      <img src="{{asset('admin/img/sak.svg')}}" alt="sdf" />
+      <img src="{{asset('admin/img/sak.svg')}}" alt="Website Editor for non-tech users." />
       
     </div>
   </div>
@@ -438,42 +459,44 @@
     <div class="inner_section">
       <div class="inner_section_container">
         <div class="planImgWrap">
-          <img src="{{asset('admin/img/plan1.png')}}" alt="" />
+          <img src="{{asset('admin/img/plan1.png')}}" alt="Standard Plan For Text Only Editing" />
           <p>STANDARD</p>
         </div>
 
         <div class="planWhitewrap">
           <p class="dollorHead">
-                            <span class="span1">$60</span>
-                            <span style="font-weight:600;" class="span2">/Yearly</span>
-                            <span><s style="font-size: 30px; font-weight: 100;color: gray;">($72)</s></span>
+                            <span class="span1">$5</span>
+                            <span style="font-weight:600;" class="span2">Monthly</span>
+                            
                         </p>
-                        <span class="only">(Only <span class="per_yr">$5</span> per month)</span>
+                        <p class="sdfh" style="font-weight:bold;">Introductory Price - $60 per year!</p>
+                        <span class="only firs">50% OFF!</span>
+                        <span class="firs1">(Regular price: $120 per year)</span>
 
           <!-- scond part  -->
           <div class="planPoint">
             <div class="singlePoint">
-              <img src="{{asset('admin/img/correct.png')}}" alt="" />
-              <p>“Click To Edit” WebSite Text Editor</p>
+              <img src="{{asset('admin/img/correct.png')}}" alt="Text Editor" />
+              <p>“Click To Edit” Text Editor</p>
             </div>
 
             <div class="singlePoint">
-              <img src="{{asset('admin/img/cancel.png')}}" alt="" />
-              <p>Edit WebSite Images – “Media Library”</p>
+              <img src="{{asset('admin/img/cancel.png')}}" alt="Image Editor" />
+              <p>“Click To Edit” Image Editor</p>
             </div>
 
             <div class="singlePoint">
-              <img src="{{asset('admin/img/cancel.png')}}" alt="" />
-              <p>S.E.O. meta tags & Image alt tags”</p>
+              <img src="{{asset('admin/img/cancel.png')}}" alt="SEO Meta Tag Editor" />
+              <p>S.E.O. Image Alt Tags</p>
             </div>
 
             <div class="singlePoint">
-              <img src="{{asset('admin/img/cancel.png')}}" alt="" />
-              <p>Meta Tags</p>
+              <img src="{{asset('admin/img/cancel.png')}}" alt="Alt Tag Editor" />
+              <p>S.E.O. Meta Tags</p>
             </div>
 
             <div class="singlePoint">
-              <img src="{{asset('admin/img/cancel.png')}}" alt="" />
+              <img src="{{asset('admin/img/cancel.png')}}" alt="Advanced Editing Tools" />
               <p>Advanced Website Editing Tools</p>
             </div>
           </div>
@@ -487,17 +510,19 @@
     <div class="inner_section">
       <div class="inner_section_container">
         <div class="planImgWrap anotherplan">
-          <img src="{{asset('admin/img/blueColor.png')}}" alt="" />
+          <img src="{{asset('admin/img/blueColor.png')}}" alt="Professional Plan" />
           <p>PROFESSIONAL</p>
         </div>
 
         <div class="planWhitewrap">
              <p class="dollorHead">
-                            <span class="span1">$96</span>
-                            <span style="font-weight:600;" class="span2">/Yearly</span>
-                            <span><s style="font-size: 30px; font-weight: 100;color: gray;">($120)</s></span>
+                            <span class="span1">$8</span>
+                            <span style="font-weight:600;" class="span2">Monthly</span>
+                           
                         </p>
-                        <span class="only">(Only <span class="per_yr">$8</span>  per month)</span>
+                         <p class="sdfh" style="font-weight:bold;">Introductory Price - $96 per year!</p>
+                          <span class="only firs">50% OFF!</span>
+                           <span class="firs1">(Regular price: $192 per year)</span>
           <!--<div class="for_span">-->
           <!--      <span class="span1">$8</span>-->
           <!--  <span class="span2">/Month</span>-->
@@ -506,27 +531,27 @@
           <!-- scond part  -->
           <div class="planPoint">
             <div class="singlePoint">
-              <img src="{{asset('admin/img/correct.png')}}" alt="" />
-              <p>“Click To Edit” WebSite Text Editor</p>
+              <img src="{{asset('admin/img/correct.png')}}" alt="Text Editor" />
+              <p>“Click To Edit” Text Editor</p>
             </div>
 
             <div class="singlePoint">
-              <img src="{{asset('admin/img/correct.png')}}" alt="" />
-              <p>Edit WebSite Images – “Media Library”</p>
+              <img src="{{asset('admin/img/correct.png')}}" alt="Image Editor" />
+              <p>“Click To Edit” Image Editor</p>
             </div>
 
             <div class="singlePoint">
-              <img src="{{asset('admin/img/correct.png')}}" alt="" />
-              <p>S.E.O. meta tags & Image alt tags”</p>
+              <img src="{{asset('admin/img/correct.png')}}" alt="SEO Meta Tag Editor" />
+              <p>S.E.O. Image Alt Tags</p>
             </div>
 
             <div class="singlePoint">
-              <img src="{{asset('admin/img/correct.png')}}" alt="" />
-              <p>Meta Tags</p>
+              <img src="{{asset('admin/img/correct.png')}}" alt="Alt Tag Editor" />
+              <p>S.E.O. Meta Tags</p>
             </div>
 
             <div class="singlePoint">
-              <img src="{{asset('admin/img/cancel.png')}}" alt="" />
+              <img src="{{asset('admin/img/cancel.png')}}" alt="Advanced Editing Tools" />
               <p>Advanced Website Editing Tools</p>
             </div>
           </div>
@@ -540,42 +565,43 @@
     <div class="inner_section">
       <div class="inner_section_container">
         <div class="planImgWrap">
-          <img src="{{asset('admin/img/orangeColor.png')}}" alt="" />
+          <img src="{{asset('admin/img/orangeColor.png')}}" alt="Premium Plan" />
           <p>PREMIUM</p>
         </div>
 
         <div class="planWhitewrap">
            <p class="dollorHead">
-                            <span class="span1">$192</span>
-                            <span style="font-weight:600;" class="span2">/Yearly</span>
-                            <span><s style="font-size: 30px; font-weight: 100;color: gray;">($240)</s></span>
+                            <span class="span1">$16</span>
+                            <span style="font-weight:600;" class="span2">Monthly</span>
                         </p>
-                        <span class="only">(Only <span class="per_yr">$16</span>  per month)</span>
+                        <p class="sdfh" style="font-weight:bold;">Introductory Price - $192 per year!</p>
+                         <span class="only firs">50% OFF!</span>
+                        <span class="firs1">(Regular price: $384 per year)</span>
 
           <!-- scond part  -->
           <div class="planPoint">
             <div class="singlePoint">
-              <img src="{{asset('admin/img/correct.png')}}" alt="" />
-              <p>“Click To Edit” WebSite Text Editor</p>
+              <img src="{{asset('admin/img/correct.png')}}" alt="Text Editor" />
+              <p>“Click To Edit” Text Editor</p>
             </div>
 
             <div class="singlePoint">
-              <img src="{{asset('admin/img/correct.png')}}" alt="" />
-              <p>Edit WebSite Images – “Media Library”</p>
+              <img src="{{asset('admin/img/correct.png')}}" alt="Image Editor" />
+              <p>“Click To Edit” Images Editor</p>
             </div>
 
             <div class="singlePoint">
-              <img src="{{asset('admin/img/correct.png')}}" alt="" />
-              <p>S.E.O. meta tags & Image alt tags”</p>
+              <img src="{{asset('admin/img/correct.png')}}" alt="SEO Meta Tag Editor" />
+              <p>S.E.O. Image Alt Tags</p>
             </div>
 
             <div class="singlePoint">
-              <img src="{{asset('admin/img/correct.png')}}" alt="" />
-              <p>Meta Tags</p>
+              <img src="{{asset('admin/img/correct.png')}}" alt="Alt Tag Editor" />
+              <p>S.E.O. Meta Tags</p>
             </div>
 
             <div class="singlePoint">
-              <img src="{{asset('admin/img/correct.png')}}" alt="" />
+              <img src="{{asset('admin/img/correct.png')}}" alt="Advanced Editing Tools" />
               <p>Advanced Website Editing Tools</p>
             </div>
           </div>
@@ -597,11 +623,25 @@
   </div>
 
   <div class="row2">
+
+    <div class="faq">
+      <div class="question">
+        <h3>Q. What makes MyCrazySimple different from other website Editors?</h3>
+
+        <img src="{{asset('admin/img/plus.png')}}" class="plus1" alt="How does mycrazysimplecms work?" />
+      </div>
+
+      <div class="answer">
+        <p>
+        MyCrazySimpleCMS stands out by offering a unique solution for non-technical users who want to edit their existing HTML websites without needing to install software or migrate to a new platform. It provides a simple, no-code approach that allows users to make instant text and image edits, directly publishing changes through FTP. Unlike other website editors, there's no need to switch hosting or learn complex coding skills.</p>
+      </div>
+    </div>
+
     <div class="faq">
       <div class="question">
         <h3>Q. How Does MyCrazySimple Work?</h3>
 
-        <img src="{{asset('admin/img/plus.png')}}" class="plus1" alt="" />
+        <img src="{{asset('admin/img/plus.png')}}" class="plus1" alt="How does mycrazysimplecms work?" />
       </div>
 
       <div class="answer">
@@ -617,7 +657,7 @@
           Q. Can I Edit My HTML Website Without Any Coding Knowledge?
         </h3>
 
-        <img src="{{asset('admin/img/plus.png')}}" alt="" />
+        <img src="{{asset('admin/img/plus.png')}}" alt="No Code website editor." />
       </div>
 
       <div class="answer">
@@ -631,7 +671,7 @@
       <div class="question">
         <h3>Q. How Can You Edit My Website Without Having Access to It?</h3>
 
-        <img src="{{asset('admin/img/plus.png')}}" alt="" />
+        <img src="{{asset('admin/img/plus.png')}}" alt="How does the editor work?" />
       </div>
 
       <div class="answer">
@@ -645,7 +685,7 @@
       <div class="question">
         <h3>Q. What Kind of Changes Can I Make?</h3>
 
-        <img src="{{asset('admin/img/plus.png')}}" alt="" />
+        <img src="{{asset('admin/img/plus.png')}}" alt="What kind of edits can I make?" />
       </div>
 
       <div class="answer">
@@ -659,7 +699,7 @@
       <div class="question">
         <h3>Q. What's the Cost of Using MyCrazySimpleCMS?</h3>
 
-        <img src="{{asset('admin/img/plus.png')}}" alt="" />
+        <img src="{{asset('admin/img/plus.png')}}" alt="What is the cost to use the editor?" />
       </div>
 
       <div class="answer">
@@ -673,7 +713,7 @@
       <div class="question">
         <h3>Q. Do I Need to Install Any Software or Plugins?</h3>
 
-        <img src="{{asset('admin/img/plus.png')}}" alt="" />
+        <img src="{{asset('admin/img/plus.png')}}" alt="Do I need to install anything?" />
       </div>
 
       <div class="answer">
@@ -687,7 +727,7 @@
       <div class="question">
         <h3>Q. Are There Any Backup Features in Case of Mistakes?</h3>
 
-        <img src="{{asset('admin/img/plus.png')}}" alt="" />
+        <img src="{{asset('admin/img/plus.png')}}" alt="Can I undo if there is a problem?" />
       </div>
 
       <div class="answer">
@@ -701,7 +741,7 @@
       <div class="question">
         <h3>Q. Can I Add Formatting Such as Bold, Italic, Underline, etc., to My Text?</h3>
 
-        <img src="{{asset('admin/img/plus.png')}}" alt="" />
+        <img src="{{asset('admin/img/plus.png')}}" alt="Can I format my text?" />
       </div>
 
       <div class="answer">
@@ -715,7 +755,7 @@
       <div class="question">
         <h3>Q. Why Are Some Areas of My Website Not Available for Editing?</h3>
 
-        <img src="{{asset('admin/img/plus.png')}}" alt="" />
+        <img src="{{asset('admin/img/plus.png')}}" alt="Can I edit everything?" />
       </div>
 
       <div class="answer">
@@ -729,7 +769,7 @@
       <div class="question">
         <h3>Q. Can I Upgrade to the Professional Plan?</h3>
 
-        <img src="{{asset('admin/img/plus.png')}}" alt="" />
+        <img src="{{asset('admin/img/plus.png')}}" alt="Can I upgrade?" />
       </div>
 
       <div class="answer">
@@ -743,7 +783,7 @@
       <div class="question">
         <h3>Q. Can I Pay Monthly for the Service?</h3>
 
-        <img src="{{asset('admin/img/plus.png')}}" alt="" />
+        <img src="{{asset('admin/img/plus.png')}}" alt="Is there a monthly plan?" />
       </div>
 
       <div class="answer">
@@ -757,7 +797,7 @@
       <div class="question">
         <h3>Q. Can I Edit More Than One Website with My Plan?</h3>
 
-        <img src="{{asset('admin/img/plus.png')}}" alt="" />
+        <img src="{{asset('admin/img/plus.png')}}" alt="Can I edit more than one website?" />
       </div>
 
       <div class="answer">
@@ -771,7 +811,7 @@
       <div class="question">
         <h3>Q. Can I Make Edits to My Website From a Smartphone?</h3>
 
-        <img src="{{asset('admin/img/plus.png')}}" alt="" />
+        <img src="{{asset('admin/img/plus.png')}}" alt="Can I use my smart phone?" />
       </div>
 
       <div class="answer">
@@ -785,7 +825,7 @@
       <div class="question">
         <h3>Q. Do I Need a Credit Card to Try the Demo?</h3>
 
-        <img src="{{asset('admin/img/plus.png')}}" alt="" />
+        <img src="{{asset('admin/img/plus.png')}}" alt="Do I need to pay to try the editor?" />
       </div>
 
       <div class="answer">
@@ -799,7 +839,7 @@
       <div class="question">
         <h3>Q. What is FTP and Why Do I Need to Provide It?</h3>
 
-        <img src="{{asset('admin/img/plus.png')}}" alt="" />
+        <img src="{{asset('admin/img/plus.png')}}" alt="What is FTP?" />
       </div>
 
       <div class="answer">
@@ -813,7 +853,7 @@
       <div class="question">
         <h3>Q. How Do I Get FTP Access Information?</h3>
 
-        <img src="{{asset('admin/img/plus.png')}}" alt="" />
+        <img src="{{asset('admin/img/plus.png')}}" alt="How do I get my FTP?" />
       </div>
 
       <div class="answer">
@@ -829,7 +869,7 @@
       <div class="question">
         <h3>Q. Can I Preview Changes Before Publishing?</h3>
 
-        <img src="{{asset('admin/img/plus.png')}}" alt="" />
+        <img src="{{asset('admin/img/plus.png')}}" alt="Can I preview before publishing?" />
       </div>
 
       <div class="answer">

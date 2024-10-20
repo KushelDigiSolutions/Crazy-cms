@@ -4,8 +4,8 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Edit Your Website Online @yield('title') | {{ config('app.name') }}</title>
-
+    <title>Simple Website Editor | Edit HTML Easily Without Coding @yield('title')</title>
+    <meta name="description" content="Easily edit your website's HTML content with MyCrazySimpleCMS. No coding needed - just enter your website and start editing. Ideal for small businesses & beginners.">
 
     <link rel="stylesheet" href="{{asset('admin/customcss/style.css')}}">
      <link rel="shortcut icon" href="https://res.cloudinary.com/ecommerce-website/image/upload/v1725540442/favicon_x7ujoh.jpg" type="image/x-icon">

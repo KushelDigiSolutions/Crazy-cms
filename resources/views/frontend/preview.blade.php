@@ -1,6 +1,64 @@
 @extends('layouts.home_header')
 @section('title', 'Preview Page')
 @section('content')
+<style>
+    .sdr{
+        display:none;
+        background:white;
+        width:200px;
+        padding:20px;
+        position:fixed;
+        top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    }
+    
+     .sdr11{
+        display:none;
+        background:white;
+        width:200px;
+        padding:20px;
+        position:fixed;
+        top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    }
+    .sdr1{
+        display:block !important;
+    }
+    .main{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+.message{
+    position: fixed;
+    top: 90%;
+    transform: translate(-141px,-30px);
+    background: white;
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+
+@media only screen and (max-width:955px){
+    .test_sect{
+        flex-wrap:wrap;
+        gap:10px;
+    }
+    .first_preview{
+          flex-wrap:wrap;
+           gap:10px;
+    }
+    .main{
+        flex-wrap:wrap;
+         gap:10px;
+    }
+    .preview_btn{
+        margin-left:0px;
+    }
+}
+</style>
 <x-front-header-component />
 <iframe  id="myIframe" src="{{$webUrl}}"></iframe>
 <div class="preview_sect">
@@ -8,6 +66,29 @@
       <div class="first_preview">
           <a class = "a_one" href="">Pages</a>
           <a href="">Home</a>
+        <div class="main" >
+        <div>
+            <button class="btn btn-outline-dark" >Exit Editor</button>
+            <span class="message"></span>
+        </div>
+     
+        <div>
+            <button  class="btn btn-outline-dark">Edit Meta Tags</button>
+            <span class="message"></span>
+        </div>
+     
+        <div>
+            <button class="btn btn-outline-dark" >Restore Backup</button>
+            <span class="message"></span>
+        </div>
+
+        <div>
+            <button class="btn btn-outline-dark" >Select Page</button>
+            <span class="message"></span>
+        </div>
+     
+       
+    </div>
       </div>
       <div class="second_preview">
         <!--    <div class="preview_svg">
@@ -111,6 +192,34 @@
     function gotoFtp(){
         window.location.href = "<?= url('check-ftp/?site=') ?>{{$variable}}";
     }
+</script>
+
+<script>
+   const buttons = document.getElementsByClassName("btn");
+const messages = document.getElementsByClassName("message");
+
+
+Array.from(buttons).forEach((button , index) => {
+    button.addEventListener("click", () => {
+
+        Array.from(messages).forEach((msg , index2) =>{
+            if(index === index2){
+                if(msg.textContent === ""){
+                    
+                    msg.textContent = "You need to  signup"
+                     setTimeout(() => {
+             msg.textContent = ""
+    }, 2000);
+                }
+                else{
+                    
+                        msg.textContent = ""
+                    }
+                }
+        })
+    });
+});
+
 </script>
 
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>

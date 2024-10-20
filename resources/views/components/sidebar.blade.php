@@ -73,6 +73,15 @@
                     </p>
                 </a>
             </li>
+            <li class="nav-item">
+                <a href="{{ route('admin.email.index') }}"
+                    class="nav-link {{ Route::is('admin.email.index') ? 'active' : '' }}">
+                    <i class="nav-icon fas fa-hat-cowboy"></i>
+                    <p>Email
+                        <span class="badge badge-danger right">{{ $PermissionCount }}</span>
+                    </p>
+                </a>
+            </li>
             
             
            <!--  <li class="nav-item">

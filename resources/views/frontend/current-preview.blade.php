@@ -24,6 +24,8 @@
       <div class="first_preview">
           <a class = "a_one" href="">Pages</a>
           <a href="">Home</a>
+           <p style="color:red;">hihii</p>
+      
       </div>
       <div class="second_preview">
            <div class="preview_svg">

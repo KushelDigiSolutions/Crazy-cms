@@ -12,6 +12,7 @@ use App\Http\Controllers\EnquiryController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\SubCateoryController;
+use App\Http\Controllers\EmailController;
 use Illuminate\Support\Facades\Route;
 
 Route::prefix('admin')->name('admin.')->middleware(['auth', 'verified', 'two_step_verified'])->group(function () {
@@ -42,6 +43,7 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'verified', 'two_ste
         Route::resource('role',RoleController::class);
         Route::resource('permission',PermissionController::class);
         Route::resource('subscription',SubscriptionController::class);
+        Route::resource('email',EmailController::class);
         Route::resource('enquiry',EnquiryController::class);
         Route::resource('order',OrderController::class);
         Route::resource('category',CategoryController::class);

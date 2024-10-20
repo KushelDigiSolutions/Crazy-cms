@@ -11,6 +11,21 @@
         font-weight:bold;
         font-size:30px;
     }
+    .sdfh{
+        margin-bottom:0rem !important;
+        font-size:20px;
+    }
+    .firs{
+        font-weight:bold;
+        font-size:25px;
+    }
+    .firs1{
+        margin-top:-20px;
+        font-weight:500 !important;
+    }
+    .dollorHead{
+        margin-bottom:0rem !important;
+    }
 </style>
 
 <section id="navbar">
@@ -187,12 +202,21 @@
                     </div>
 
                     <div class="planWhitewrap">
-                          <p class="dollorHead">
-                            <span class="span1">${{$subscription->price}}</span>
-                            <span class="span2">/Yearly</span>
-                            <span><s style="font-size: 30px; font-weight: 100;color: gray;">(${{$subscription->mrp}})</s></span>
+                        <!--  <p class="dollorHead">-->
+                        <!--    <span class="span1">${{$subscription->price}}</span>-->
+                        <!--    <span class="span2">/Yearly</span>-->
+                        <!--    <span><s style="font-size: 30px; font-weight: 100;color: gray;">(${{$subscription->mrp}})</s></span>-->
+                        <!--</p>-->
+                        <!--<span class="only">(Only <span class="per_yr">${{$subscription->monthly_price}}</span>  per month)</span>-->
+                        
+                        <p class="dollorHead">
+                            <span class="span1">${{$subscription->monthly_price}}</span>
+                            <span style="font-weight:600;" class="span2">/Monthly</span>
+                            
                         </p>
-                        <span class="only">(Only <span class="per_yr">${{$subscription->monthly_price}}</span>  per month)</span>
+                        <p class="sdfh" style="font-weight:bold;">Introductory Price - ${{$subscription->price}} per year!</p>
+                        <span class="only firs">50% OFF</span>
+                        <span class="firs1">(Regular price: $${{$subscription->mrp}} per year)</span>
 
                         <!-- scond part  -->
                         <div class="planPoint">

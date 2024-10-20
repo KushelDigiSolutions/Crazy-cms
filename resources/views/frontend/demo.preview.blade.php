@@ -9,6 +9,7 @@
             <div>
                 <a class="navbar-brand">Pages</a>
                 <a href="" class="item">Home</a>
+                 <a href="" class="item">Home</a>
             </div>
             <form class="form-inline">
                 <div class="icons_div">
