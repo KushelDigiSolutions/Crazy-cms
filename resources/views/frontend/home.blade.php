@@ -41,6 +41,25 @@
         height:300px;
         border-radius:20px;
     }
+    @media only screen and (max-width:500px){
+      .if{
+        width:100%;
+        height:270px;
+        border-radius:10px;
+    }
+     @media only screen and (max-width:450px){
+      .if{
+        width:100%;
+        height:233px;
+        border-radius:10px;
+    }
+     @media only screen and (max-width:380px){
+      .if{
+        width:100%;
+        height:175px;
+        border-radius:10px;
+    }
+    }
 </style>
 
 <script>(function(){var pp=document.createElement('script'), ppr=document.getElementsByTagName('script')[0]; stid='TzY3QVA1UEhrNEEwV2dtek80a05xQT09';pp.type='text/javascript'; pp.async=true; pp.src=('https:' == document.location.protocol ? 'https://' : 'http://') + 's01.live2support.com/dashboardv2/chatwindow/'; ppr.parentNode.insertBefore(pp, ppr);})();</script>

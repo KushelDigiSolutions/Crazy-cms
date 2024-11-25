@@ -7,21 +7,32 @@
             </a>
         </li>
         @role('admin')
-            <li class="nav-item">
-                <a href="{{ route('admin.order.index') }}"
-                    class="nav-link {{ Route::is('admin.order.index') ? 'actives' : '' }}">
-                    <i class="nav-icon fas fa-box"></i>
-                    <p>Orders
-                        <span class="badge badge-danger right">{{ $PermissionCount }}</span>
-                    </p>
-                </a>
-            </li>
+        
+        <p style="color:black;  margin-top:15px; font-size:16px; margin-left:20px;">....REPORTS....</p>
+          
             <li class="nav-item">
                 <a href="{{ route('admin.customer') }}"
                     class="nav-link {{ Route::is('admin.customer') ? 'active' : '' }}">
                     <i class="nav-icon fas fa-users"></i>
-                    <p>Customer
+                    <p>Customers/Users
                         <span class="badge badge-info right">{{ $userCount }}</span>
+                    </p>
+                </a>
+            </li>
+              <li class="nav-item">
+            <a href="{{ route('admin.mysites') }}"
+                class="nav-link {{ Route::is('admin.mysites') ? 'active' : '' }}">
+                <i class="nav-icon fas fa-server"></i>
+                <p>My Sites</p>
+            </a>
+        </li>
+        
+          <li class="nav-item">
+                <a href="{{ route('admin.order.index') }}"
+                    class="nav-link {{ Route::is('admin.order.index') ? 'actives' : '' }}">
+                    <i class="nav-icon fas fa-box"></i>
+                    <p>Orders/Purchases
+                        <span class="badge badge-danger right">{{ $PermissionCount }}</span>
                     </p>
                 </a>
             </li>
@@ -30,11 +41,14 @@
                 <a href="{{ route('admin.enquiry.index') }}"
                     class="nav-link {{ Route::is('admin.enquiry.index') ? 'actives' : '' }}">
                     <i class="nav-icon fas fa-search"></i>
-                    <p>Active Searches
+                    <p>Preview Searches
                         <span class="badge badge-danger right">{{ $PermissionCount }}</span>
                     </p>
                 </a>
             </li>
+            
+             <p style="color:black;  margin-top:15px; font-size:16px; margin-left:20px;">....MAINTENANCE....</p>
+            
             <li class="nav-item">
                 <a href="{{ route('admin.subscription.index') }}"
                     class="nav-link {{ Route::is('admin.subscription.index') ? 'actives' : '' }}">
@@ -122,13 +136,7 @@
             </li> -->
         @endrole
 
-        <li class="nav-item">
-            <a href="{{ route('admin.mysites') }}"
-                class="nav-link {{ Route::is('admin.mysites') ? 'active' : '' }}">
-                <i class="nav-icon fas fa-server"></i>
-                <p>My Sites</p>
-            </a>
-        </li>
+      
         <li class="nav-item">
             <a href="{{ route('admin.profile.edit') }}"
                 class="nav-link {{ Route::is('admin.profile.edit') ? 'active' : '' }}">

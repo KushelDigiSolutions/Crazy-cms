@@ -26,6 +26,11 @@ body{
     justify-content: center;
     gap: 12px;
 }
+.whiteBoard_box{
+   max-width:500px;
+   width:100%;
+   border:1.5px solid gray;
+}
 .row-2 .card{
     border: none;
   width: 100% !important;

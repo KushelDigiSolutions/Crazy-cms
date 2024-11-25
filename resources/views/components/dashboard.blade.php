@@ -10,16 +10,16 @@
             </select>
         </div>
         <div class="sameing mt-4">
-            <div class="col-lg-3 col-6">
-                <div class="small-box bg_int">
-                    <div class="inner int">
-                        <img src="{{asset('admin/img/usin.svg')}}" alt="">
-                        <p>Total Users</p>
-                        <h3>{{ $user }}</h3>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-6">
+            <!--<div class="col-lg-3 col-6">-->
+            <!--    <div class="small-box bg_int">-->
+            <!--        <div class="inner int">-->
+            <!--            <img src="{{asset('admin/img/usin.svg')}}" alt="">-->
+            <!--            <p>Total Users</p>-->
+            <!--            <h3>{{ $user }}</h3>-->
+            <!--        </div>-->
+            <!--    </div>-->
+            <!--</div>-->
+            <div class="col-lg-4 col-6">
                 <div class="small-box bg-success bg_int bg_int1">
                     <div class="inner int">
                         <img src="{{asset('admin/img/sipup.svg')}}" alt="">
@@ -28,7 +28,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-3 col-6">
+            <div class="col-lg-4 col-6">
                 <div class="small-box bg-primary bg_int bg_int2">
                     <div class="inner int">
                         <img src="{{asset('admin/img/umi.svg')}}" alt="">
@@ -37,12 +37,39 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-3 col-6">
+            <div class="col-lg-4 col-6">
                 <div class="small-box bg-secondary bg_int bg_int3">
                     <div class="inner int">
                         <img src="{{asset('admin/img/lime.svg')}}" alt="">
                         <p>Premium Plan Users</p>
                         <h3>{{ $userPrimiumPlan }}</h3>
+                    </div>
+                </div>
+            </div>
+              <div class="col-lg-4 col-6">
+                <div class="small-box bg_int">
+                    <div class="inner int">
+                        <img src="{{asset('admin/img/usin.svg')}}" alt="">
+                        <p>Total Users</p>
+                        <h3>{{ $user }}</h3>
+                    </div>
+                </div>
+            </div>
+             <div class="col-lg-4 col-6">
+                <div class="small-box bg_int">
+                    <div class="inner int">
+                        <img src="{{asset('admin/img/usin.svg')}}" alt="">
+                        <p>Preview Searches</p>
+                        <h3>{{ $user }}</h3>
+                    </div>
+                </div>
+            </div>
+             <div class="col-lg-4 col-6">
+                <div class="small-box bg_int">
+                    <div class="inner int">
+                        <img src="{{asset('admin/img/usin.svg')}}" alt="">
+                        <p>Website Updates</p>
+                        <h3>{{ $user }}</h3>
                     </div>
                 </div>
             </div>
@@ -53,7 +80,7 @@
         <div class="col-md-3">
             <div class="user_card">
                 <div class="new_user">
-                    <h3>New User</h3>
+                    <h3>Online Users</h3>
                   <a href="/admin/user"><p>View All</p></a> 
                 </div>
                 <div class="main_user_card">
@@ -124,6 +151,12 @@
                 </div>
             </div>
         </div>
-    </div>    
+    </div>   
+    <div class="whiteBoard mt-5">
+         <h2 class="mt-4"  style="color:black !important;">WhiteBoard</h2>
+         <div style="max-width:500px; width:100%; border:1px solid gray; border-radius:10px; padding:20px;" class="whiteBoard_box">
+             <p style="color:black;">Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum magnam, beatae distinctio, excepturi voluptatibus maiores sunt quasi eaque, sit totam ratione? Distinctio omnis excepturi repellat recusandae? Voluptatibus obcaecati voluptatem iusto!</p>
+         </div>
+    </div>
 @endif
 </div>
