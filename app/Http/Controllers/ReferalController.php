@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\ProfileUpdateRequest;
 use App\Models\User;
+use App\Models\Referral;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -13,26 +14,17 @@ use Illuminate\View\View;
 use Carbon\Carbon;
 use App\Models\MySite;
 
-class ProfileController extends Controller
+class ReferalController extends Controller
 {
 
     public function dashboard()
     {
         $user = User::where('id', Auth::id())->first();
-        // $whiteBoard   = env('WHITE_BOARD');
-
-        $filePath = public_path('whiteBoard/whiteboard.txt');
-        $whiteBoard = '';
-        if (file_exists($filePath)) {
-            $whiteBoard = file_get_contents($filePath);
-        }
-     
         $usersData =  $this->getUserAndPaidCounts();
         return view('dashboard', [
             'user' => $user,
             'userCount' => $usersData['userCount'], // Pass user count data
-            'paidUserCount' => $usersData['paidUserCount'], // Pass paid user count data
-            'whiteBoard' => $whiteBoard
+            'paidUserCount' => $usersData['paidUserCount'] // Pass paid user count data
         ]);
     }
     /**
@@ -40,15 +32,59 @@ class ProfileController extends Controller
      */
     public function edit(Request $request): View
     {
-        return view('profile.edit', [
-            'user' => $request->user(),
+       
+        // Retrieve the current logged-in user
+        $user = $request->user();
+    
+        // Fetch referral data associated with the logged-in user
+        $referrals = Referral::where('user_id', $user->id)->get();
+    
+        // Pass both user and referral data to the view
+        return view('referal.edit', [
+            'user' => $user,
+            'referrals' => $referrals,
         ]);
+    }
+    public function sendReferalEmails(Request $request): View
+    {
+          // Step 1: Retrieve the current logged-in user's ID
+        $currentUserId = auth()->id(); // Assuming you're using Laravel's authentication
+    
+        // Step 2: Get the comma-separated emails from the request
+        $emails = $request->all()['email_list']; // 'emails' is the name of your input field
+    
+         // Step 3: Convert the comma-separated string into an array and filter out null/empty values
+        $emailArray = array_filter(array_map('trim', explode(',', $emails)));
+    
+        // Step 4: Filter out emails that already exist in the database for this user
+        $existingEmails = Referral::where('user_id', $currentUserId)
+            ->whereIn('email', $emailArray)
+            ->pluck('email')
+            ->toArray();
+    
+        $uniqueEmails = array_diff($emailArray, $existingEmails);
+    
+        // Step 5: Insert unique emails into the referrals table
+        foreach ($uniqueEmails as $email) {
+            if (filter_var($email, FILTER_VALIDATE_EMAIL)) { // Validate email format
+                Referral::create([
+                    'email' => $email,
+                    'user_id' => $currentUserId,
+                    'link' => 'default_link', // Replace with your actual default value
+                    'opened' => 0, // Default value
+                    'purchased' => 0, // Default value
+                ]);
+            }
+        }
+
+        // Step 5: Return a view or redirect with a success message
+        return view('referal.edit')->with('success', 'Referral emails have been successfully sent!');
     }
 
     /**
      * Update the user's profile information.
      */
-    public function update(ProfileUpdateRequest $request): RedirectResponse
+    public function update(ReferalUpdateRequest $request): RedirectResponse
     {
         // dd($request->post());
         // dd($request->user());
@@ -63,7 +99,7 @@ class ProfileController extends Controller
         ]);
         $request->user()->save();
 
-        return Redirect::route('admin.profile.edit')->with('status', 'profile-updated');
+        return Redirect::route('admin.referal.edit')->with('status', 'referal-updated');
     }
 
     /**

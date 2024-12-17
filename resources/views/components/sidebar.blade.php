@@ -36,6 +36,31 @@
                     </p>
                 </a>
             </li>
+            
+             <li class="nav-item">
+                <a href="{{ route('admin.blog.index') }}"
+                    class="nav-link {{ Route::is('admin.blog.index') ? 'actives' : '' }}">
+                    <i class="nav-icon fas fa-box"></i>
+                    <p>Knowledge Base
+                        <span class="badge badge-danger right">{{ $PermissionCount }}</span>
+                    </p>
+                </a>
+            </li>
+            
+            
+            <!-- Dileep Code added here 16-12-2024 -->
+            
+             <li class="nav-item">
+                <a href="{{ route('admin.blogcategory.index') }}"
+                    class="nav-link {{ Route::is('admin.blog.index') ? 'actives' : '' }}">
+                    <i class="fa fa-graduation-cap"></i>
+                    <p>Knowledge category
+                        <span class="badge badge-danger right">{{ $PermissionCount }}</span>
+                    </p>
+                </a>
+            </li>
+            
+            
 
             <li class="nav-item">
                 <a href="{{ route('admin.enquiry.index') }}"
@@ -83,6 +108,14 @@
                     class="nav-link {{ Route::is('admin.permission.index') ? 'active' : '' }}">
                     <i class="nav-icon fas fa-hat-cowboy"></i>
                     <p>Permission
+                        <span class="badge badge-danger right">{{ $PermissionCount }}</span>
+                    </p>
+                </a>
+            </li>
+             <li class="nav-item">
+             <a href="{{ route('admin.whiteboard.edit') }}" class="nav-link {{ Route::is('admin.whiteboard.edit') ? 'active' : '' }}">
+                    <i class="nav-icon fas fa-hat-cowboy"></i>
+                    <p>White Board
                         <span class="badge badge-danger right">{{ $PermissionCount }}</span>
                     </p>
                 </a>
@@ -144,6 +177,22 @@
                 <p>Profile</p>
             </a>
         </li>
+        @if(!auth()->user()->hasRole('admin'))
+         <li class="nav-item">
+            <a href="{{ route('admin.mysites') }}"
+                class="nav-link {{ Route::is('admin.mysites') ? 'active' : '' }}">
+                <i class="nav-icon fas fa-server"></i>
+                <p>My Sites</p>
+            </a>
+        </li>
+         <li class="nav-item">
+            <a href="{{ route('admin.referal.edit') }}"
+                class="nav-link {{ Route::is('admin.referal.edit') ? 'active' : '' }}">
+                <i class="nav-icon fas fa-id-card"></i>
+                <p>Referal Program</p>
+            </a>
+        </li>
+        @endif
         @role('admin')
         <li class="nav-item">
             <a href="{{ route('admin.setting.edit') }}" class="nav-link {{ Route::is('admin.setting.edit') ? 'active' : '' }}">

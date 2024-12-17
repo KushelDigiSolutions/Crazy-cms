@@ -7,6 +7,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\View\View;
 use DB;
 
@@ -17,7 +18,7 @@ class SettingController extends Controller
     /**
      * Display the user's profile form.
      */
- public function edit(Request $request): View
+    public function edit(Request $request): View
     {
         $paypalsandboxclientid = env('PAYPAL_SANDBOX_CLIENT_ID');
         $paypalsandboxclientsecret = env('PAYPAL_SANDBOX_CLIENT_SECRET');
@@ -32,28 +33,82 @@ class SettingController extends Controller
     
     // Dileep Singh code here 24-08-2024
     
-        public function update(Request $request)
+    public function update(Request $request)
+    {
+        $request->validate([
+            'production_secret_key' => 'required|string|max:255',
+            'production_secret_password' => 'required|string|max:255|min:6',
+            'testing_secret_key' => 'required|string|max:255',
+            'testing_secret_password' => 'required|string|max:255|min:6', 
+            'paypal_live_app_id'      => 'required|string|max:255|min:6',               
+            'status'  => 'required',
+        ]);
+
+        $this->setEnv([
+            'PAYPAL_SANDBOX_CLIENT_ID' => $request->production_secret_key,
+            'PAYPAL_SANDBOX_CLIENT_SECRET' => $request->production_secret_password,
+            'PAYPAL_LIVE_CLIENT_ID' => $request->testing_secret_key,
+            'PAYPAL_LIVE_CLIENT_SECRET' => $request->testing_secret_password,
+            'PAYPAL_LIVE_APP_ID' => $request->paypal_live_app_id,
+            'PAYPAL_MODE' => $request->status,
+        ]);
+
+        return Redirect::route('admin.setting.edit')->with('status', 'setting-updated');
+    }
+
+    public function wedit17122024(Request $request): View
+    {
+        // Retrieve the environment variable
+        $whiteBoard = env('WHITE_BOARD');
+    
+        // Remove any enclosing double quotes from the value
+        if ($whiteBoard !== null && strlen($whiteBoard) > 1 && $whiteBoard[0] === '"' && $whiteBoard[strlen($whiteBoard) - 1] === '"') {
+            $whiteBoard = substr($whiteBoard, 1, -1);
+        }
+    
+        return view('setting.whiteboard', compact('whiteBoard'));
+    }
+
+    public function wedit(Request $request): View
+    {
+    $filePath = public_path('whiteBoard/whiteboard.txt');
+    $whiteBoard = '';
+    if (file_exists($filePath)) {
+        $whiteBoard = file_get_contents($filePath);
+    }
+
+    return view('setting.whiteboard', compact('whiteBoard'));
+    }
+
+    public function wupdate(Request $request)
     {
     $request->validate([
-        'production_secret_key' => 'required|string|max:255',
-        'production_secret_password' => 'required|string|max:255|min:6',
-        'testing_secret_key' => 'required|string|max:255',
-        'testing_secret_password' => 'required|string|max:255|min:6', 
-        'paypal_live_app_id'      => 'required|string|max:255|min:6',               
-        'status'  => 'required',
+        'white_board' => 'required|string'
     ]);
+    $whiteBoardValue = trim($request->white_board);
+    $filePath = public_path('whiteBoard/whiteboard.txt');
+    if (!is_dir(dirname($filePath))) {
+        mkdir(dirname($filePath), 0755, true);
+    }
+    file_put_contents($filePath, $whiteBoardValue);
 
-    $this->setEnv([
-        'PAYPAL_SANDBOX_CLIENT_ID' => $request->production_secret_key,
-        'PAYPAL_SANDBOX_CLIENT_SECRET' => $request->production_secret_password,
-        'PAYPAL_LIVE_CLIENT_ID' => $request->testing_secret_key,
-        'PAYPAL_LIVE_CLIENT_SECRET' => $request->testing_secret_password,
-        'PAYPAL_LIVE_APP_ID' => $request->paypal_live_app_id,
-        'PAYPAL_MODE' => $request->status,
-    ]);
+    return Redirect::route('admin.whiteboard.edit')->with('status', 'whiteboard-updated');
+    }
 
-    return Redirect::route('admin.setting.edit')->with('status', 'setting-updated');
-}
+    public function wupdate17122024(Request $request)
+    {
+        $request->validate([
+            'white_board' => 'required|string'
+        ]);
+           // Trim leading and trailing whitespace
+        $whiteBoardValue = trim($request->white_board);
+    
+        // Set environment variable with quotes to handle spaces
+        $this->setEnv([
+            'WHITE_BOARD' => '"$whiteBoardValue"'
+        ]);
+        return Redirect::route('admin.whiteboard.edit')->with('status', 'whiteboard-updated');
+    }
 
     protected function setEnv(array $data)
     {

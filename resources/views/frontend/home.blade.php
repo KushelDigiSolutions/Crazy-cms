@@ -96,7 +96,9 @@
       </label>
 
    <a class="ekaa" href="{{url('/')}}"><img class="home-link" src="{{asset('admin/img/summer.svg')}}" alt="MyCrazySimpleCMS logo - Simple website editor for non-tech users"></a>
+   <a style="overflow:hidden;" class="ekaa" href="{{url('/')}}"><img width="120" height="80" class="home-link" src="{{asset('https://res.cloudinary.com/dgif730br/image/upload/v1733840038/patent-pending-round-ribbon-isolated-label-vector-33102446_apcpp7.png')}}" alt=""></a>
       <!-- link back to homepage -->
+      <a href="{{url('/knowledge-base')}}" class="navSinItem">Knowledge Base</a>
       <a href="{{url('/features')}}" class="navSinItem">Features</a>
       <a  href="{{url('/pricing')}}" class="navSinItem">Pricing</a>
       <!-- <a href="#" class="navSinItem">Offers</a>

@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rule;
 use App\User;
+use App\Models\Blog;
+use App\Models\BlogCategory;
 use App\Models\Enquiry;
 use App\Models\Subscription;
 use Session;
@@ -148,7 +150,7 @@ class HomeController extends Controller
 
     public function storeAdd(Request $request)
     {
-        echo "Dileep"; die; 
+       
         $request->validate([
             'user_protocol' => 'required|string|max:255',
             'user_host' => 'required|string|max:255|min:6',
@@ -189,5 +191,49 @@ class HomeController extends Controller
     public function failurePage()
     {
         return view('failure');
+    }
+    public function knowledgeBase(Request $request)
+    {
+        // Retrieve optional GET parameters with default values
+        $searchText = $request->query('search', '');
+        $limit = $request->query('limit', null);
+        $offset = $request->query('offset', null);
+        $categoryId = $request->query('category_id', null);
+
+        // Default query for blogs
+        $blogs = Blog::query();
+
+        // Apply filters only when parameters are provided
+        if ($searchText) {
+            $blogs->where('name', 'LIKE', "%$searchText%")->orWhere('description', 'LIKE', "%$searchText%");
+        }
+
+        if ($categoryId) {
+            $blogs->where('category_id', $categoryId);
+        }
+
+        // Apply pagination if limit and offset are provided
+        if ($offset) {
+            $blogs->skip($offset);
+        }
+
+        if ($limit) {
+            $blogs->take($limit);
+        }
+
+        // Execute the query and get results
+        $blogs = $blogs->orderBy('id', 'ASC')->get();
+
+        // Always fetch blog categories
+        $blogCategory = BlogCategory::orderBy('id', 'ASC')->get();
+        
+        // Return the view
+        return view('frontend/knowledge_base', compact('blogs', 'blogCategory'));
+    }
+    public function knowledgeBaseDetail(Request $request,$id)
+    {
+        $blog = Blog::findOrFail($id);
+        $recents =  Blog::orderBy('id','ASC')->limit(5)->get();
+        return view('frontend/knowledge-base-details',compact('blog','recents'));
     }
 }

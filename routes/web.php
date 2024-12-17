@@ -46,6 +46,8 @@ Route::middleware(['web'])->group(function () {
 
     Route::get('/page7', [HomeController::class, 'pageseven']);
     Route::get('/page8', [HomeController::class, 'pageeight']);
+    Route::get('/knowledge-base', [HomeController::class, 'knowledgeBase']);
+    Route::get('/knowledge-base-detail/{id}', [HomeController::class, 'knowledgeBaseDetail']);
     Route::get('/features', [PageController::class, 'feature']);
     Route::get('/pricing', [PageController::class, 'pricing']);
     Route::get('/privacy_policy',[PageController::class,'privacyPolicy']);

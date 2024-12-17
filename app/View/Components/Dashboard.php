@@ -62,8 +62,9 @@ class Dashboard extends Component
 
         $endDate = $lastSite ? $lastSite->created_at->format('Y-m-d') : null;
         $startDateMinus30Days = $lastSite ? $lastSite->created_at->subDays(30)->format('Y-m-d') : null;
-
+        $whiteBoard   = env('WHITE_BOARD');
         view()->share('endDate', $endDate);
+        view()->share('whiteBoard', $whiteBoard);
         view()->share('startDateMinus30Days', $startDateMinus30Days);
 
 

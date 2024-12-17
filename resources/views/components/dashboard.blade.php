@@ -155,7 +155,13 @@
     <div class="whiteBoard mt-5">
          <h2 class="mt-4"  style="color:black !important;">WhiteBoard</h2>
          <div style="max-width:500px; width:100%; border:1px solid gray; border-radius:10px; padding:20px;" class="whiteBoard_box">
-             <p style="color:black;">Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum magnam, beatae distinctio, excepturi voluptatibus maiores sunt quasi eaque, sit totam ratione? Distinctio omnis excepturi repellat recusandae? Voluptatibus obcaecati voluptatem iusto!</p>
+             <p style="color:black;">
+                @if(!empty($whiteBoard))
+                    {{$whiteBoard}}
+                @else
+                    No New Information
+                @endif
+            </p>
          </div>
     </div>
 @endif
