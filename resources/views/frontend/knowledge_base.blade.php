@@ -43,7 +43,7 @@
        }
         .background-news {
 
-            background-image: url("https://res.cloudinary.com/dgif730br/image/upload/v1733829610/kushel_digi_knowledge_base-01_jghemz.jpg");
+            background-image: url("https://res.cloudinary.com/dd9tagtiw/image/upload/v1734530759/WhatsApp_Image_2024-12-18_at_19.13.26_0c591f8c_zenc7n.jpg");
             background-position: center;
             background-repeat: no-repeat;
             background-size: cover;
@@ -96,11 +96,12 @@
         }
 
         .col-three {
-            padding: 40px 60px 50px 60px !important;
+            padding: 40px 20px 50px 20px !important;
         }
 
         .main-content-hoot {
             justify-content: center;
+            overflow-x:scroll;
         }
 
         .apple button {
@@ -405,7 +406,25 @@
 
         }
 
+.first-one{
+height: 55px !Important;
+display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.second-one{
+height: 55px !Important;
+}
 
+
+@media(max-width:991px){
+    
+    .card-titless{
+        font-size: 18px !important;
+        line-height:28px !important;
+        
+    }
+}
 
         @media(max-width:962px) {
 
@@ -429,6 +448,12 @@
                 padding: 40px 30px 50px 30px !important;
             }
         }
+        
+        @media (min-width: 768px) {
+    .container {
+        max-width: 1000px !important;
+    }
+}
 
         @media(max-width:700px) {
 
@@ -440,9 +465,15 @@
             }
 
             .col-three {
-                padding: 40px 115px 50px 115px !important;
+                padding: 40px 20px 50px 20px !important;
             }
         }
+        
+        @media (min-width: 576px) {
+    .container {
+        max-width: 1000px;
+    }
+}
 
         @media(max-width:450px) {
 

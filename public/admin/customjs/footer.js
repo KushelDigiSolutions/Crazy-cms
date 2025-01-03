@@ -30,7 +30,7 @@ document.write(`
 
   <hr />
   <div class="somis">
-  <p class="fooText gj gj2">(c) 2013 www.crazysimplecrm | All Rights Reserved</p>
+  <p class="fooText gj gj2">(c) 2025  www.mycrazysimplecms.com | All Rights Reserved</p>
   <p class="fooText gj">Mycrazysimplecms.com</p>
   <p class="fooText gj">Powered by - <span> AronsWebSites.com</span></p>
   <div class="d-flex align-items-center justify-center gj gj1">

@@ -44,7 +44,7 @@
                         </div>
                     </div>
                     
-                    <div class="col-lg-7">
+                 <!--    <div class="col-lg-7">
                          <div class="form-group">
                             <label for="name" class="form-label">Email Address:*</label>
                             <input type="text" class="form-control" name="email_id" id="email_id" required >
@@ -61,7 +61,7 @@
                             </button>
                         </div>
                     </div>
-                    <div class="col-lg-1"></div>
+                    <div class="col-lg-1"></div> -->
 
                     <div class="col-lg-12">
                         <div class="float-right">

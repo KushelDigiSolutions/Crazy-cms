@@ -1,6 +1,8 @@
 <!-- resources/views/home.blade.php -->
 @extends('layouts.home')
- 
+@section('seo_title', $blog->seo_title)
+@section('seo_description', $blog->seo_description)
+@section('seo_keywords', $blog->seo_meta_tags)
 @section('CarzyCMS', 'Preview Page')
 
 @section('content')
@@ -111,6 +113,9 @@ img {
 
 .fi:before {
   margin: 0;
+}
+.blogcont1{
+left: 0px !important;
 }
 
 .section-padding {
@@ -9650,7 +9655,7 @@ color: #FFFFFF;
 @media (max-width:600px) {
   .blogcont1 h2{
     font-family: Montserrat;
-  font-size: 22px;
+  font-size: 16px!important;
   line-height: 32px;
 
   }
@@ -10884,7 +10889,7 @@ width: 100% !important;
 <section id="what_we_do" class="ahte_are">
     <section class="blogwrap1">
 
-<img class="blog_bg" src="https://res.cloudinary.com/dgif730br/image/upload/v1733829610/kushel_digi_knowledge_base-01_jghemz.jpg" alt="">
+<img class="blog_bg" src="https://res.cloudinary.com/dd9tagtiw/image/upload/v1734530759/WhatsApp_Image_2024-12-18_at_19.13.26_0c591f8c_zenc7n.jpg" alt="">
 <img class="blog_filterbg" src="https://res.cloudinary.com/dd9tagtiw/image/upload/v1732881778/Rectangle_394_sxi0wh.png" alt="">
 
 <div class="blogcont1">

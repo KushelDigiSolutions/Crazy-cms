@@ -1,6 +1,8 @@
 <!-- resources/views/home.blade.php -->
 @extends('layouts.home')
-
+@section('seo_title', 'Terms & Condition')
+@section('seo_description', 'This is a custom meta description for this page.')
+@section('seo_keywords', 'custom, keywords, Laravel')
 @section('CarzyCMS', 'Preview Page')
 
 @section('content')

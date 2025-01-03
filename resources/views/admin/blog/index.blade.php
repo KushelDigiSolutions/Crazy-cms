@@ -25,7 +25,8 @@
                 <tbody>
                     @forelse ($data as $rs)
                         <tr>
-                            <td>{{ $rs->id }}</td>
+                            <!-- <td>{{ $rs->id }}</td> -->
+                            <td>{{ $loop->iteration }}</td>
                             <td><img src="{{ url('/').'/'.$rs->image }}" height="100" width="100"></td>
                             <td>{{ $rs->name }}</td>
                             <td>{{ $rs->description }}</td>
@@ -58,7 +59,7 @@
     </div>
 
     @section('js')
-        <script>
+        <!--<script>
             $(function() {
                 $('#collectionTable').DataTable({
                     "paging": true,
@@ -67,6 +68,22 @@
                     "responsive": true,
                 });
             });
+        </script>-->
+
+        <script>
+            $(document).ready(function() {
+    console.log("Initializing DataTable...");
+    $('#collectionTable').DataTable({
+        "paging": true,
+        "searching": true,
+        "ordering": true,
+        "responsive": true,
+        "columnDefs": [
+            { "orderable": false, "targets": [1, 5, 6] }
+        ]
+    });
+});
         </script>
+
     @endsection
 </x-admin>

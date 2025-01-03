@@ -9,13 +9,26 @@ class BlogController extends Controller
 {
     public function index()
     {
-        $data = Blog::orderBy('id', 'DESC')->get()->map(function ($item) {
-            $item->description = strlen($item->description) > 40 ? substr($item->description, 0, 40) . '..' : $item->description;
-            $item->title = strlen($item->title) > 20 ? substr($item->title, 0, 20) . '..' : $item->title;
-            return $item;
-        });
-     
-        return view('admin.blog.index', compact('data'));
+        // $data = Blog::orderBy('id', 'DESC')->get()->map(function ($item) {
+        //     $item->description = strlen($item->description) > 40 ? substr($item->description, 0, 40) . '..' : $item->description;
+        //     $item->title = strlen($item->title) > 20 ? substr($item->title, 0, 20) . '..' : $item->title;
+        //     return $item;
+        // });
+        
+        $data = Blog::orderBy('id', 'DESC')
+    ->get()
+    ->map(function ($item) {
+        $item->description = strlen($item->description) > 40 
+            ? substr($item->description, 0, 40) . '..' 
+            : $item->description;
+
+        $item->title = strlen($item->title) > 20 
+            ? substr($item->title, 0, 20) . '..' 
+            : $item->title;
+
+        return $item;
+    });
+            return view('admin.blog.index', compact('data'));
     }
 
     public function create()
@@ -37,8 +50,6 @@ class BlogController extends Controller
             'image' => ['required', 'file', 'mimes:jpeg,png,jpg,gif', 'max:2048']
         ]);
 
-    // dd($request);
-
         $imageName = time() . '.' . $request->image->extension();
         // dd(public_path('uploads/blog'));
          $request->image->move(public_path('uploads/blog'), $imageName);
@@ -50,9 +61,10 @@ class BlogController extends Controller
             'tags' => $request->tags,
             'seo_title' => $request->seo_title,
             'seo_meta_tags' => $request->seo_meta_tags,
-            'seo_description' => $request->seo_description
-            // 'image' => 'uploads/blog/' . $imageName
+            'seo_description' => $request->seo_description,
+            'image' => 'uploads/blog/' . $imageName
         ]);
+        
 
         return redirect()->route('admin.blog.index')->with('success', 'Blog created successfully.');
     }

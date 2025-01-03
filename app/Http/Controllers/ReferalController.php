@@ -55,7 +55,37 @@ class ReferalController extends Controller
     
          // Step 3: Convert the comma-separated string into an array and filter out null/empty values
         $emailArray = array_filter(array_map('trim', explode(',', $emails)));
-    
+        
+        
+         // Step 4: Fetch the email content from the database (id = 7)
+        $emailData = \DB::table('emails')->where('id', 6)->first();
+
+        if ($emailData) {
+            $subject = $emailData->subject; // Subject of the email
+            $emailContent = $emailData->email; // Email content
+        } else {
+            // Default subject and content in case id 7 is not found
+            $subject = 'Referral Email';
+            $emailContent = 'Hello, this is a default referral message.';
+        }
+
+         // Send "Hello" message to each email
+        foreach ($emailArray as $email) {
+            // Replace [Referral Name] with the current email (or any name you want)
+            $emailContentReplaced = str_replace('[Referral Name]', $email, $emailContent);
+            $emailContentReplaced = str_replace('[Support Email]', "info@mycrazysimplecms.com", $emailContent);
+            // Replace [Start Editing Your Website Now – Link] with the actual link
+            $emailContentReplaced = str_replace('[Start Editing Your Website Now – Link]', 'https://mycrazysimplecms.com', $emailContentReplaced);
+
+            // Send the email (you can use Laravel's Mail facade here)
+            if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
+                \Mail::raw($emailContentReplaced, function($message) use ($email, $subject) {
+                    $message->to($email)
+                            ->subject($subject);
+                });
+            }
+        }
+
         // Step 4: Filter out emails that already exist in the database for this user
         $existingEmails = Referral::where('user_id', $currentUserId)
             ->whereIn('email', $emailArray)
@@ -63,7 +93,7 @@ class ReferalController extends Controller
             ->toArray();
     
         $uniqueEmails = array_diff($emailArray, $existingEmails);
-    
+        
         // Step 5: Insert unique emails into the referrals table
         foreach ($uniqueEmails as $email) {
             if (filter_var($email, FILTER_VALIDATE_EMAIL)) { // Validate email format

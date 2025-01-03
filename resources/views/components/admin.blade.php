@@ -25,13 +25,15 @@
     <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('admin/favicon/favicon-32x32.png') }}">
     <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('admin/favicon/favicon-16x16.png') }}">
     <link rel="manifest" href="{{ asset('admin/favicon/site.webmanifest') }}">
-    
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
+
     @vite(['resources/css/app.css'])
     @yield('css')
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed {{ Auth::user()->mode }}-mode">
-
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
     <div class="wrapper">
         <!-- Navbar -->
         <x-navbar />
